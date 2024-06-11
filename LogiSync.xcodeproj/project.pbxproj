@@ -21,6 +21,7 @@
 		ED57779E2C18C0520042A5B5 /* Item.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Item.swift; sourceTree = "<group>"; };
 		ED5777A02C18C0530042A5B5 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		ED5777A32C18C0530042A5B5 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		ED5777AA2C18C3810042A5B5 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -37,6 +38,7 @@
 		ED57778E2C18C0520042A5B5 = {
 			isa = PBXGroup;
 			children = (
+				ED5777AA2C18C3810042A5B5 /* README.md */,
 				ED5777992C18C0520042A5B5 /* LogiSync */,
 				ED5777982C18C0520042A5B5 /* Products */,
 			);
