@@ -8,11 +8,14 @@
 import SwiftUI
 
 struct RolePicker: View {
+    
+    @Binding var selectedRole: String
+    @Binding var fontColor: Color
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        Picker("役割", selection: $selectedRole) {
+            Text("運転手").tag("運転手")
+            Text("荷主").tag("荷主")
+        }.pickerStyle(.menu).tint(fontColor)
     }
-}
-
-#Preview {
-    RolePicker()
 }
