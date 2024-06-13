@@ -7,12 +7,18 @@
 
 import SwiftUI
 
+// 名札
 struct UserNameUI: View {
+    // 必要に応じてAppStorage
+    @Binding var name: String
+    @Binding var group: String
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        VStack{
+            VStack(alignment: .leading){
+                Text(name).font(.title).bold().lineLimit(1)
+                Text(group).font(.title2).lineLimit(2)
+            }
+        }
     }
-}
-
-#Preview {
-    UserNameUI()
 }
