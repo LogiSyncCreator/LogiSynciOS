@@ -23,6 +23,8 @@
 		ED5B97502C1B4F0E00AE1606 /* StatusList.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED5B974F2C1B4F0E00AE1606 /* StatusList.swift */; };
 		ED5B97542C1B544300AE1606 /* StatusTagModelTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED5B97532C1B544300AE1606 /* StatusTagModelTest.swift */; };
 		ED5B97562C1B552D00AE1606 /* StatusTestData.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED5B97552C1B552D00AE1606 /* StatusTestData.swift */; };
+		ED5B97582C1B570500AE1606 /* StatusView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED5B97572C1B570500AE1606 /* StatusView.swift */; };
+		ED5B975A2C1B5DDA00AE1606 /* StatusAccountModelTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED5B97592C1B5DDA00AE1606 /* StatusAccountModelTest.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -44,6 +46,8 @@
 		ED5B974F2C1B4F0E00AE1606 /* StatusList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusList.swift; sourceTree = "<group>"; };
 		ED5B97532C1B544300AE1606 /* StatusTagModelTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusTagModelTest.swift; sourceTree = "<group>"; };
 		ED5B97552C1B552D00AE1606 /* StatusTestData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusTestData.swift; sourceTree = "<group>"; };
+		ED5B97572C1B570500AE1606 /* StatusView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusView.swift; sourceTree = "<group>"; };
+		ED5B97592C1B5DDA00AE1606 /* StatusAccountModelTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusAccountModelTest.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -100,6 +104,7 @@
 			isa = PBXGroup;
 			children = (
 				ED5B973E2C1B322900AE1606 /* UI */,
+				ED5B97572C1B570500AE1606 /* StatusView.swift */,
 			);
 			path = Status;
 			sourceTree = "<group>";
@@ -133,6 +138,7 @@
 			children = (
 				ED5B97532C1B544300AE1606 /* StatusTagModelTest.swift */,
 				ED5B97552C1B552D00AE1606 /* StatusTestData.swift */,
+				ED5B97592C1B5DDA00AE1606 /* StatusAccountModelTest.swift */,
 			);
 			path = Status;
 			sourceTree = "<group>";
@@ -216,11 +222,13 @@
 				ED57779D2C18C0520042A5B5 /* ContentView.swift in Sources */,
 				ED57779F2C18C0520042A5B5 /* Item.swift in Sources */,
 				ED5B974C2C1B43C900AE1606 /* ProfileUI.swift in Sources */,
+				ED5B975A2C1B5DDA00AE1606 /* StatusAccountModelTest.swift in Sources */,
 				ED5B97442C1B344600AE1606 /* RolePicker.swift in Sources */,
 				ED57779B2C18C0520042A5B5 /* LogiSyncApp.swift in Sources */,
 				ED5B97562C1B552D00AE1606 /* StatusTestData.swift in Sources */,
 				ED5B974A2C1B428E00AE1606 /* UserNameUI.swift in Sources */,
 				ED5B97422C1B324C00AE1606 /* SettingsSheet.swift in Sources */,
+				ED5B97582C1B570500AE1606 /* StatusView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
