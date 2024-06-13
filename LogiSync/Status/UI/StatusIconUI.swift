@@ -10,15 +10,14 @@ import SwiftUI
 // ステータスアイコン
 struct StatusIconUI: View {
     
-    @Binding var symboleColor: Color    // SFシンボルの色
-    @Binding var backColor: Color       // アイコンの背景色
+    @Binding var symboleColor: Color       // アイコンの背景色
     @Binding var symbole: String        // SFシンボル
     @Binding var width: CGFloat         // サイズ
     
     var body: some View {
         ZStack{
-            Circle().frame(width: width).foregroundStyle(symboleColor)
-            Image(systemName: symbole).font(.system(size: width - 5)).foregroundColor(backColor)
+            Circle().frame(width: width).foregroundStyle(Color(.systemBackground))
+            Image(systemName: symbole).font(.system(size: width - 5)).foregroundColor(symboleColor)
         }
     }
 }
