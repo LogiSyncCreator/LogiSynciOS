@@ -18,6 +18,7 @@
 		ED5B97462C1B38CF00AE1606 /* StatusIconUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED5B97452C1B38CF00AE1606 /* StatusIconUI.swift */; };
 		ED5B97482C1B3EEC00AE1606 /* UserThumbnailUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED5B97472C1B3EEC00AE1606 /* UserThumbnailUI.swift */; };
 		ED5B974A2C1B428E00AE1606 /* UserNameUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED5B97492C1B428E00AE1606 /* UserNameUI.swift */; };
+		ED5B974C2C1B43C900AE1606 /* ProfileUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED5B974B2C1B43C900AE1606 /* ProfileUI.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,6 +35,7 @@
 		ED5B97452C1B38CF00AE1606 /* StatusIconUI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusIconUI.swift; sourceTree = "<group>"; };
 		ED5B97472C1B3EEC00AE1606 /* UserThumbnailUI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserThumbnailUI.swift; sourceTree = "<group>"; };
 		ED5B97492C1B428E00AE1606 /* UserNameUI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserNameUI.swift; sourceTree = "<group>"; };
+		ED5B974B2C1B43C900AE1606 /* ProfileUI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileUI.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -102,6 +104,7 @@
 				ED5B97452C1B38CF00AE1606 /* StatusIconUI.swift */,
 				ED5B97472C1B3EEC00AE1606 /* UserThumbnailUI.swift */,
 				ED5B97492C1B428E00AE1606 /* UserNameUI.swift */,
+				ED5B974B2C1B43C900AE1606 /* ProfileUI.swift */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -181,6 +184,7 @@
 				ED5B97462C1B38CF00AE1606 /* StatusIconUI.swift in Sources */,
 				ED57779D2C18C0520042A5B5 /* ContentView.swift in Sources */,
 				ED57779F2C18C0520042A5B5 /* Item.swift in Sources */,
+				ED5B974C2C1B43C900AE1606 /* ProfileUI.swift in Sources */,
 				ED5B97442C1B344600AE1606 /* RolePicker.swift in Sources */,
 				ED57779B2C18C0520042A5B5 /* LogiSyncApp.swift in Sources */,
 				ED5B974A2C1B428E00AE1606 /* UserNameUI.swift in Sources */,
