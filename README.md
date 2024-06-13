@@ -7,6 +7,11 @@
 ルール変更内容
 例：・LogiSync/Target/General/App Category をnone->Book
 
+2024/06/13
+対象機種の変更
+LogiSync/Target/General destinationをiphoneとipadに制限
+
+
 6/16日にApple Devを契約する予定なので、それまでチーム開発は不便かも
 Bundle identifierはしばらく各自のものになるかも。
 
