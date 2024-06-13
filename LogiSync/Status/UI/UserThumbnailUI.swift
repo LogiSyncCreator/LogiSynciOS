@@ -8,11 +8,18 @@
 import SwiftUI
 
 struct UserThumbnailUI: View {
+        
+    @Binding var width: CGFloat
+    @Binding var uiImage: UIImage?
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        ZStack{
+            // サムネイル画像があれば使用する
+            if let image = uiImage {
+                Image(uiImage: image)
+            } else {
+                Image(systemName: "person.circle.fill").resizable().aspectRatio(contentMode: .fit).frame(width: width - 5).clipShape(Circle()).foregroundStyle(.blue)
+            }
+        }
     }
-}
-
-#Preview {
-    UserThumbnailUI()
 }
