@@ -13,7 +13,7 @@ struct ProfileUI: View {
     @State var textHeight: CGFloat = 0
     var body: some View {
         VStack(alignment: .leading){
-            Text(profile).lineLimit(isOpen ? nil : 1).padding(.horizontal)
+            Text(profile).lineLimit(isOpen ? nil : 2).padding(.horizontal)
                 .background(
                     GeometryReader(content: { geometry in
                         Color.clear.onAppear(){
@@ -21,10 +21,10 @@ struct ProfileUI: View {
                         }
                     })
                 )
-            if textHeight > 21 {
+            if textHeight > 42 {
                 HStack{
                     Spacer()
-                    Button("プロフィールを展開"){
+                    Button("プロフィールを\(isOpen ? "縮小" : "展開")する"){
                         withAnimation{
                             isOpen.toggle()
                         }
