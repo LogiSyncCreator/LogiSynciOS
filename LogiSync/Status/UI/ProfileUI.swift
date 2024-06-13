@@ -18,7 +18,6 @@ struct ProfileUI: View {
                     GeometryReader(content: { geometry in
                         Color.clear.onAppear(){
                             self.textHeight = geometry.size.height
-                            print(textHeight)
                         }
                     })
                 )
