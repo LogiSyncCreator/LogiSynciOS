@@ -8,8 +8,15 @@
 import SwiftUI
 
 struct SettingButtonUI: View {
+    @State var isOpen: Bool = false
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        Button(action: {
+            isOpen.toggle()
+        }, label: {
+            Image(systemName: "gearshape.fill")
+        }).sheet(isPresented: $isOpen, content: {
+            SettingsSheet()
+        })
     }
 }
 
