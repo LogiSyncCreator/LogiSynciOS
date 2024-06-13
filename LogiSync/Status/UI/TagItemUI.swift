@@ -8,11 +8,17 @@
 import SwiftUI
 
 struct TagItemUI: View {
+    
+    @Binding var symboleColor: Color
+    @Binding var symbole: String
+    @Binding var label: String
+    @Binding var width: CGFloat
+    @Binding var font: Font
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        HStack{
+            StatusIconUI(symboleColor: $symboleColor, symbole: $symbole, width: $width)
+            Text(label).font(font)
+        }
     }
-}
-
-#Preview {
-    TagItemUI()
 }
