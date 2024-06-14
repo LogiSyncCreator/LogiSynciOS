@@ -28,7 +28,7 @@
 		ED5B975E2C1BFA9D00AE1606 /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED5B975D2C1BFA9D00AE1606 /* MapView.swift */; };
 		ED5B97602C1BFAF300AE1606 /* MapBody.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED5B975F2C1BFAF300AE1606 /* MapBody.swift */; };
 		ED5B97622C1BFBD700AE1606 /* UserLocationSendButtonUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED5B97612C1BFBD700AE1606 /* UserLocationSendButtonUI.swift */; };
-		ED5B97672C1C09EF00AE1606 /* LocationManeager.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED5B97662C1C09EF00AE1606 /* LocationManeager.swift */; };
+		ED5B97672C1C09EF00AE1606 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED5B97662C1C09EF00AE1606 /* LocationManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -55,7 +55,7 @@
 		ED5B975D2C1BFA9D00AE1606 /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
 		ED5B975F2C1BFAF300AE1606 /* MapBody.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapBody.swift; sourceTree = "<group>"; };
 		ED5B97612C1BFBD700AE1606 /* UserLocationSendButtonUI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserLocationSendButtonUI.swift; sourceTree = "<group>"; };
-		ED5B97662C1C09EF00AE1606 /* LocationManeager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManeager.swift; sourceTree = "<group>"; };
+		ED5B97662C1C09EF00AE1606 /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
 		ED5B97682C1C0B1800AE1606 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -176,7 +176,7 @@
 		ED5B97652C1C09DE00AE1606 /* Tools */ = {
 			isa = PBXGroup;
 			children = (
-				ED5B97662C1C09EF00AE1606 /* LocationManeager.swift */,
+				ED5B97662C1C09EF00AE1606 /* LocationManager.swift */,
 			);
 			path = Tools;
 			sourceTree = "<group>";
@@ -257,7 +257,7 @@
 				ED5B97502C1B4F0E00AE1606 /* StatusList.swift in Sources */,
 				ED5B97602C1BFAF300AE1606 /* MapBody.swift in Sources */,
 				ED5B97542C1B544300AE1606 /* StatusTagModelTest.swift in Sources */,
-				ED5B97672C1C09EF00AE1606 /* LocationManeager.swift in Sources */,
+				ED5B97672C1C09EF00AE1606 /* LocationManager.swift in Sources */,
 				ED5B97462C1B38CF00AE1606 /* StatusIconUI.swift in Sources */,
 				ED57779D2C18C0520042A5B5 /* ContentView.swift in Sources */,
 				ED57779F2C18C0520042A5B5 /* Item.swift in Sources */,
@@ -408,7 +408,8 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = LogiSync/Info.plist;
-				INFOPLIST_KEY_NSLocationAlwaysUsageDescription = "現在位置情報を共有、表示使用するために使用します";
+				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "位置情報を使用します";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "位置情報を使用します";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -443,7 +444,8 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = LogiSync/Info.plist;
-				INFOPLIST_KEY_NSLocationAlwaysUsageDescription = "現在位置情報を共有、表示使用するために使用します";
+				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "位置情報を使用します";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "位置情報を使用します";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
