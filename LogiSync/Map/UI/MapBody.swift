@@ -10,6 +10,8 @@ import MapKit
 
 struct MapBody: View {
     
+    @StateObject private var locationManager = LocationManager()
+    
     var sendCircleColor: UIColor = UIColor(red: 200, green: 30, blue: 0, alpha: 0.3)
     
     var body: some View {
