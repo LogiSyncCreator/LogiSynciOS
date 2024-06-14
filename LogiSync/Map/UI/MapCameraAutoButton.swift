@@ -6,13 +6,15 @@
 //
 
 import SwiftUI
+import MapKit
 
 struct MapCameraAutoButton: View {
+    @Binding var userCameraPosition: MapCameraPosition
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        Button(action: {
+            userCameraPosition = .automatic
+        }, label: {
+            Image(systemName: "map").padding(11)
+        }).background(Material.ultraThick, in: RoundedRectangle(cornerRadius: 7.0))
     }
-}
-
-#Preview {
-    MapCameraAutoButton()
 }
