@@ -15,7 +15,7 @@ struct MapBody: View {
     var body: some View {
         Map(){
             
-            // ここから#11 送信したマップのサークル
+            // ここから#11 送信したマップのサークル サークルサイズは50m
             Marker(coordinate: CLLocationCoordinate2D(latitude: 35.168477, longitude: 136.8857)) {
                 Text("22:30")
             }.tint(.red)
