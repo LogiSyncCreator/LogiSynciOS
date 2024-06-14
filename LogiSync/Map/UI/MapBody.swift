@@ -8,7 +8,11 @@
 import SwiftUI
 import MapKit
 
+
+
 struct MapBody: View {
+    
+    @Binding var mapTestData: MapViewTestData
     
     @StateObject private var locationManager = LocationManager()
     
@@ -22,10 +26,14 @@ struct MapBody: View {
             Map(position: $userCameraPosition){
                 UserAnnotation()
                 // ここから#11 送信したマップのサークル サークルサイズは50m
-                Marker(coordinate: CLLocationCoordinate2D(latitude: 35.168477, longitude: 136.8857)) {
-                    Text("22:30")
-                }.tint(.green)
-                MapCircle(center: CLLocationCoordinate2D(latitude: 35.168477, longitude: 136.8857), radius: CLLocationDistance(100)).foregroundStyle(Color(uiColor: sendCircleColor))
+                ForEach(mapTestData.sendPoints.indices, id: \.self){index in
+                    Marker(coordinate: CLLocationCoordinate2D(latitude: mapTestData.sendPoints[index].point.latitude, longitude: mapTestData.sendPoints[index].point.longitude)) {
+                        VStack{
+                            Text("\(mapTestData.sendPoints[index].time)\n\(mapTestData.sendPoints[index].status)")
+                        }
+                    }.tint(.green)
+                    MapCircle(center: CLLocationCoordinate2D(latitude: mapTestData.sendPoints[index].point.latitude, longitude: mapTestData.sendPoints[index].point.longitude), radius: CLLocationDistance(100)).foregroundStyle(Color(uiColor: sendCircleColor))
+                }
                 // #11
                 
                 // ここから#14 目的地
@@ -42,8 +50,6 @@ struct MapBody: View {
                     .mapControlVisibility(.visible)
                 MapUserLocationButton()
                     .mapControlVisibility(.visible)
-                MapCameraAutoButton(userCameraPosition: $userCameraPosition).mapControlVisibility(.visible)
-                
             }
             
             VStack(){
@@ -57,8 +63,4 @@ struct MapBody: View {
         }
         
     }
-}
-
-#Preview {
-    MapBody()
 }
