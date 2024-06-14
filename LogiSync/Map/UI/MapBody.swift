@@ -19,7 +19,7 @@ struct MapBody: View {
             Marker(coordinate: CLLocationCoordinate2D(latitude: 35.168477, longitude: 136.8857)) {
                 Text("22:30")
             }.tint(.green)
-            MapCircle(center: CLLocationCoordinate2D(latitude: 35.168477, longitude: 136.8857), radius: CLLocationDistance(50)).foregroundStyle(Color(uiColor: sendCircleColor))
+            MapCircle(center: CLLocationCoordinate2D(latitude: 35.168477, longitude: 136.8857), radius: CLLocationDistance(100)).foregroundStyle(Color(uiColor: sendCircleColor))
             // #11
             
             // ここから#14 目的地
