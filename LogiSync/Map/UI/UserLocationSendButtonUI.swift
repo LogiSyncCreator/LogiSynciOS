@@ -14,9 +14,9 @@ struct UserLocationSendButtonUI: View {
         } label: {
             HStack{
                 Image(systemName: "mappin.circle")
-                Text("位置情報を送信")
+                Text("送信")
             }.font(.title3).foregroundStyle(Color(.label)).padding()
-        }.background(Color(.systemGray4), in: RoundedRectangle(cornerRadius: 25.0))
+        }.background(Color(.systemGray4), in: RoundedRectangle(cornerRadius: 10.0))
 
     }
 }
