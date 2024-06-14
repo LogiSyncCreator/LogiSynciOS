@@ -9,9 +9,17 @@ import SwiftUI
 import MapKit
 
 struct MapView: View {
+    @State var mapTestData: MapViewTestData = MapViewTestData()
     var body: some View {
         ZStack(content: {
-            MapBody()
+            MapBody(mapTestData: $mapTestData)
+            VStack{
+                Spacer()
+                HStack{
+                    Spacer()
+                    UserLocationSendButtonUI()
+                }
+            }.padding()
         })
     }
 }
