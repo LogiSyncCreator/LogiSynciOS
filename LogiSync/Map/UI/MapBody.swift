@@ -21,6 +21,14 @@ struct MapBody: View {
             }.tint(.green)
             MapCircle(center: CLLocationCoordinate2D(latitude: 35.168477, longitude: 136.8857), radius: CLLocationDistance(50)).foregroundStyle(Color(uiColor: sendCircleColor))
             // #11
+            
+            // ここから#14 目的地
+            Marker(coordinate: CLLocationCoordinate2D(latitude: 34.763272, longitude: 137.381780)) {
+                Text("目的地")
+            }.tint(.red)
+            MapCircle(center: CLLocationCoordinate2D(latitude: 35.168477, longitude: 136.8857), radius: CLLocationDistance(50)).foregroundStyle(Color(uiColor: sendCircleColor))
+            
+            
         }
     }
 }
