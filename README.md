@@ -11,6 +11,17 @@
 対象機種の変更
 LogiSync/Target/General destinationをiphoneとipadに制限
 
+2024/6/14
+LogiSync/Tartgets/Signing & Capabilities 
+Background Modesを追加
+Location update
+Background feach
+Remote notification にチェック
+LogiSync/Tartgets/Info/Custom iOS Target Propaties
+Privacy - Location When In Use Usage Description を追加
+Privacy - Location Always and When In Use Usage Description を追加
+現在位置情報を共有、表示使用するために使用します をValueにセット
+
 
 6/16日にApple Devを契約する予定なので、それまでチーム開発は不便かも
 Bundle identifierはしばらく各自のものになるかも。
