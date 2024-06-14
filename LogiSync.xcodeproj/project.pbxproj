@@ -27,6 +27,7 @@
 		ED5B975A2C1B5DDA00AE1606 /* StatusAccountModelTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED5B97592C1B5DDA00AE1606 /* StatusAccountModelTest.swift */; };
 		ED5B975E2C1BFA9D00AE1606 /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED5B975D2C1BFA9D00AE1606 /* MapView.swift */; };
 		ED5B97602C1BFAF300AE1606 /* MapBody.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED5B975F2C1BFAF300AE1606 /* MapBody.swift */; };
+		ED5B97622C1BFBD700AE1606 /* UserLocationSendButtonUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED5B97612C1BFBD700AE1606 /* UserLocationSendButtonUI.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -52,6 +53,7 @@
 		ED5B97592C1B5DDA00AE1606 /* StatusAccountModelTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusAccountModelTest.swift; sourceTree = "<group>"; };
 		ED5B975D2C1BFA9D00AE1606 /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
 		ED5B975F2C1BFAF300AE1606 /* MapBody.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapBody.swift; sourceTree = "<group>"; };
+		ED5B97612C1BFBD700AE1606 /* UserLocationSendButtonUI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserLocationSendButtonUI.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -161,6 +163,7 @@
 			isa = PBXGroup;
 			children = (
 				ED5B975F2C1BFAF300AE1606 /* MapBody.swift */,
+				ED5B97612C1BFBD700AE1606 /* UserLocationSendButtonUI.swift */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -244,6 +247,7 @@
 				ED5B97462C1B38CF00AE1606 /* StatusIconUI.swift in Sources */,
 				ED57779D2C18C0520042A5B5 /* ContentView.swift in Sources */,
 				ED57779F2C18C0520042A5B5 /* Item.swift in Sources */,
+				ED5B97622C1BFBD700AE1606 /* UserLocationSendButtonUI.swift in Sources */,
 				ED5B974C2C1B43C900AE1606 /* ProfileUI.swift in Sources */,
 				ED5B975E2C1BFA9D00AE1606 /* MapView.swift in Sources */,
 				ED5B975A2C1B5DDA00AE1606 /* StatusAccountModelTest.swift in Sources */,
