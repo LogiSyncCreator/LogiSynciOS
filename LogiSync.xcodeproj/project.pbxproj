@@ -32,6 +32,8 @@
 		ED5B976A2C1C9C8400AE1606 /* MapCameraAutoButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED5B97692C1C9C8400AE1606 /* MapCameraAutoButton.swift */; };
 		ED5B976D2C1CA66600AE1606 /* SendPointModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED5B976C2C1CA66600AE1606 /* SendPointModel.swift */; };
 		ED5B976F2C1CA6F900AE1606 /* MapViewTestData.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED5B976E2C1CA6F900AE1606 /* MapViewTestData.swift */; };
+		ED5B97722C1D523000AE1606 /* OtherContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED5B97712C1D523000AE1606 /* OtherContentView.swift */; };
+		ED5B97752C1D5B1F00AE1606 /* CustomTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED5B97742C1D5B1F00AE1606 /* CustomTabView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -63,6 +65,8 @@
 		ED5B97692C1C9C8400AE1606 /* MapCameraAutoButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapCameraAutoButton.swift; sourceTree = "<group>"; };
 		ED5B976C2C1CA66600AE1606 /* SendPointModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendPointModel.swift; sourceTree = "<group>"; };
 		ED5B976E2C1CA6F900AE1606 /* MapViewTestData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewTestData.swift; sourceTree = "<group>"; };
+		ED5B97712C1D523000AE1606 /* OtherContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OtherContentView.swift; sourceTree = "<group>"; };
+		ED5B97742C1D5B1F00AE1606 /* CustomTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTabView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -96,6 +100,8 @@
 		ED5777992C18C0520042A5B5 /* LogiSync */ = {
 			isa = PBXGroup;
 			children = (
+				ED5B97732C1D5B0400AE1606 /* UI */,
+				ED5B97702C1D520800AE1606 /* OtherWindow */,
 				ED5B97682C1C0B1800AE1606 /* Info.plist */,
 				ED5B97652C1C09DE00AE1606 /* Tools */,
 				ED5B975B2C1BFA8200AE1606 /* Map */,
@@ -198,6 +204,22 @@
 			path = Map;
 			sourceTree = "<group>";
 		};
+		ED5B97702C1D520800AE1606 /* OtherWindow */ = {
+			isa = PBXGroup;
+			children = (
+				ED5B97712C1D523000AE1606 /* OtherContentView.swift */,
+			);
+			path = OtherWindow;
+			sourceTree = "<group>";
+		};
+		ED5B97732C1D5B0400AE1606 /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				ED5B97742C1D5B1F00AE1606 /* CustomTabView.swift */,
+			);
+			path = UI;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -285,10 +307,12 @@
 				ED5B974C2C1B43C900AE1606 /* ProfileUI.swift in Sources */,
 				ED5B975E2C1BFA9D00AE1606 /* MapView.swift in Sources */,
 				ED5B975A2C1B5DDA00AE1606 /* StatusAccountModelTest.swift in Sources */,
+				ED5B97722C1D523000AE1606 /* OtherContentView.swift in Sources */,
 				ED5B97442C1B344600AE1606 /* RolePicker.swift in Sources */,
 				ED57779B2C18C0520042A5B5 /* LogiSyncApp.swift in Sources */,
 				ED5B97562C1B552D00AE1606 /* StatusTestData.swift in Sources */,
 				ED5B974A2C1B428E00AE1606 /* UserNameUI.swift in Sources */,
+				ED5B97752C1D5B1F00AE1606 /* CustomTabView.swift in Sources */,
 				ED5B97422C1B324C00AE1606 /* SettingsSheet.swift in Sources */,
 				ED5B97582C1B570500AE1606 /* StatusView.swift in Sources */,
 			);
