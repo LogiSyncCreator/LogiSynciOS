@@ -16,7 +16,9 @@ struct CustomTabView: View {
             Spacer()
             Button {
                 withAnimation{
-                    index = 0
+                    if index != 3 {
+                        index = 0
+                    }
                 }
             } label: {
                 VStack{
@@ -27,7 +29,9 @@ struct CustomTabView: View {
             Spacer()
             Button {
                 withAnimation{
-                    index = 1
+                    if index != 3 {
+                        index = 1
+                    }
                 }
             } label: {
                 VStack{
@@ -38,7 +42,9 @@ struct CustomTabView: View {
             Spacer()
             Button {
                 withAnimation{
-                    index = 2
+                    if index != 3 {
+                        index = 2
+                    }
                 }
             } label: {
                 VStack{

@@ -8,11 +8,16 @@
 import SwiftUI
 
 struct OtherContentView: View {
+    @Binding var index: Int
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        VStack{
+            Spacer()
+            LoginView(index: $index)
+            Spacer()
+        }.background(Color(.systemBackground))
     }
 }
 
 #Preview {
-    OtherContentView()
+    ContentView()
 }
