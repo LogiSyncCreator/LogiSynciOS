@@ -19,11 +19,12 @@ struct MapView: View {
                     Spacer()
                     UserLocationSendButtonUI()
                 }
+                Spacer().frame(height: 50)
             }.padding()
         })
     }
 }
 
 #Preview {
-    MapView()
+    ContentView()
 }
