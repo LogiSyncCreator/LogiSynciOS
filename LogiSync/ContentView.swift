@@ -11,45 +11,33 @@ import SwiftData
 struct ContentView: View {
     @Environment(\.modelContext) private var modelContext
     @Query private var items: [Item]
-
+    
+    @State var isOpenOtherView: Bool = true
+    
+    @State var viewIndex: Int = 0
+    
     var body: some View {
-        NavigationSplitView {
-            List {
-                ForEach(items) { item in
-                    NavigationLink {
-                        Text("Item at \(item.timestamp, format: Date.FormatStyle(date: .numeric, time: .standard))")
-                    } label: {
-                        Text(item.timestamp, format: Date.FormatStyle(date: .numeric, time: .standard))
-                    }
-                }
-                .onDelete(perform: deleteItems)
+        ZStack{
+            switch viewIndex {
+            case 0:
+                StatusView().background(Color(.systemBackground)).transition(.move(edge: .leading))
+            case 1:
+                MapView().background(Color(.systemBackground)).transition(.move(edge: .leading))
+            case 2:
+                Text("comming soon...").background(Color(.systemBackground)).transition(.move(edge: .leading))
+            case 3:
+                OtherContentView(isOpen: $isOpenOtherView, index: $viewIndex).transition(.move(edge: .top))
+            default:
+                StatusView().transition(.move(edge: .leading))
             }
-            .toolbar {
-                ToolbarItem(placement: .navigationBarTrailing) {
-                    EditButton()
-                }
-                ToolbarItem {
-                    Button(action: addItem) {
-                        Label("Add Item", systemImage: "plus")
-                    }
-                }
-            }
-        } detail: {
-            Text("Select an item")
-        }
-    }
-
-    private func addItem() {
-        withAnimation {
-            let newItem = Item(timestamp: Date())
-            modelContext.insert(newItem)
-        }
-    }
-
-    private func deleteItems(offsets: IndexSet) {
-        withAnimation {
-            for index in offsets {
-                modelContext.delete(items[index])
+            
+            CustomTabView(index: $viewIndex)
+            
+        }.onAppear(){
+            // 実装時は未ログイン時にTrue
+            withAnimation(.easeIn){
+                isOpenOtherView = true
+                viewIndex = 0
             }
         }
     }

@@ -8,11 +8,46 @@
 import SwiftUI
 
 struct CustomTabView: View {
+    @Binding var index: Int
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        VStack{
+        Spacer()
+        HStack{
+            Spacer()
+            Button {
+                withAnimation{
+                    index = 0
+                }
+            } label: {
+                VStack{
+                    Image(systemName: "person.fill").font(.title)
+                    Text("ステータス").font(.caption)
+                }.frame(width: 100)
+            }
+            Spacer()
+            Button {
+                withAnimation{
+                    index = 1
+                }
+            } label: {
+                VStack{
+                    Image(systemName: "location.fill").font(.title)
+                    Text("位置共有").font(.caption)
+                }.frame(width: 100)
+            }
+            Spacer()
+            Button {
+                withAnimation{
+                    index = 2
+                }
+            } label: {
+                VStack{
+                    Image(systemName: "person.fill").font(.title)
+                    Text("連絡").font(.caption)
+                }.frame(width: 100)
+            }
+            Spacer()
+        }.padding(.top, 5).background(Material.bar)
     }
-}
-
-#Preview {
-    CustomTabView()
+    }
 }
