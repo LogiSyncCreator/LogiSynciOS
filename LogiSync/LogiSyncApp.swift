@@ -25,7 +25,7 @@ struct LogiSyncApp: App {
 
     var body: some Scene {
         WindowGroup {
-            MapBody()
+            ContentView()
         }
         .modelContainer(sharedModelContainer)
     }

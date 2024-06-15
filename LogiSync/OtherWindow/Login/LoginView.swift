@@ -16,7 +16,6 @@ struct LoginView: View {
     @State var userPass: String = ""
     
     @State var isOpen: Bool = false
-    
     @Binding var index: Int
     
     var body: some View {
