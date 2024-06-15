@@ -17,26 +17,31 @@ struct ContentView: View {
     
     var body: some View {
         ZStack{
-            switch viewIndex {
-            case 0:
-                StatusView().background(Color(.systemBackground)).transition(.move(edge: .leading))
-            case 1:
-                MapView().background(Color(.systemBackground)).transition(.move(edge: .leading))
-            case 2:
-                Text("comming soon...").background(Color(.systemBackground)).transition(.move(edge: .leading))
-            case 3:
-                OtherContentView(index: $viewIndex).transition(.move(edge: .top))
-            default:
-                StatusView().transition(.move(edge: .leading))
+            if viewIndex != 3 {
+                switch viewIndex {
+                case 0:
+                    StatusView().background(Color(.systemBackground)).transition(.move(edge: .leading))
+                case 1:
+                    MapView().background(Color(.systemBackground)).transition(.move(edge: .leading))
+                case 2:
+                    Text("comming soon...").background(Color(.systemBackground)).transition(.move(edge: .leading))
+                default:
+                    StatusView().transition(.move(edge: .leading))
+                }
             }
             
-            CustomTabView(index: $viewIndex)
+            if viewIndex == 3 {
+                OtherContentView(index: $viewIndex).transition(.move(edge: .top))
+            }
+            
+            if viewIndex != 3 {
+                CustomTabView(index: $viewIndex).transition(.move(edge: .bottom))
+            }
             
         }.onAppear(){
-            // 実装時は未ログイン時にTrue
-            withAnimation(.easeIn){
-                viewIndex = 0
-            }
+            // 実装時は未ログイン時に3
+            // ログイン時は1
+            viewIndex = 3
         }
     }
 }
