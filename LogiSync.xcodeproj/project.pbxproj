@@ -35,6 +35,7 @@
 		ED5B97722C1D523000AE1606 /* OtherContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED5B97712C1D523000AE1606 /* OtherContentView.swift */; };
 		ED5B97752C1D5B1F00AE1606 /* CustomTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED5B97742C1D5B1F00AE1606 /* CustomTabView.swift */; };
 		ED5B97782C1D5CA600AE1606 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED5B97772C1D5CA600AE1606 /* LoginView.swift */; };
+		ED5B977D2C1E9AFA00AE1606 /* RegistTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED5B977C2C1E9AFA00AE1606 /* RegistTextField.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -69,6 +70,7 @@
 		ED5B97712C1D523000AE1606 /* OtherContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OtherContentView.swift; sourceTree = "<group>"; };
 		ED5B97742C1D5B1F00AE1606 /* CustomTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTabView.swift; sourceTree = "<group>"; };
 		ED5B97772C1D5CA600AE1606 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
+		ED5B977C2C1E9AFA00AE1606 /* RegistTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistTextField.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -209,6 +211,7 @@
 		ED5B97702C1D520800AE1606 /* OtherWindow */ = {
 			isa = PBXGroup;
 			children = (
+				ED5B977A2C1E9AD000AE1606 /* Regist */,
 				ED5B97762C1D5C9200AE1606 /* Login */,
 				ED5B97712C1D523000AE1606 /* OtherContentView.swift */,
 			);
@@ -229,6 +232,22 @@
 				ED5B97772C1D5CA600AE1606 /* LoginView.swift */,
 			);
 			path = Login;
+			sourceTree = "<group>";
+		};
+		ED5B977A2C1E9AD000AE1606 /* Regist */ = {
+			isa = PBXGroup;
+			children = (
+				ED5B977B2C1E9AE600AE1606 /* UI */,
+			);
+			path = Regist;
+			sourceTree = "<group>";
+		};
+		ED5B977B2C1E9AE600AE1606 /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				ED5B977C2C1E9AFA00AE1606 /* RegistTextField.swift */,
+			);
+			path = UI;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -311,6 +330,7 @@
 				ED5B97542C1B544300AE1606 /* StatusTagModelTest.swift in Sources */,
 				ED5B97672C1C09EF00AE1606 /* LocationManager.swift in Sources */,
 				ED5B97462C1B38CF00AE1606 /* StatusIconUI.swift in Sources */,
+				ED5B977D2C1E9AFA00AE1606 /* RegistTextField.swift in Sources */,
 				ED5B97782C1D5CA600AE1606 /* LoginView.swift in Sources */,
 				ED5B976F2C1CA6F900AE1606 /* MapViewTestData.swift in Sources */,
 				ED57779D2C18C0520042A5B5 /* ContentView.swift in Sources */,
