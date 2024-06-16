@@ -8,11 +8,29 @@
 import SwiftUI
 
 struct RegistTextEditor: View {
+    @State var text: String
+    @State var placeholderString: String
+    
+    @FocusState var isFocus: Bool
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        TextEditor(text: $text).frame(height: 100).focused($isFocus)
+            .foregroundColor(self.text == placeholderString ? .gray : .primary)
+            .onTapGesture {
+              if self.text == placeholderString {
+                self.text = ""
+              }
+            }
+            .onChange(of: isFocus) {
+                if !isFocus && text.isEmpty {
+                    self.text = placeholderString
+                }
+            }
     }
 }
 
 #Preview {
-    RegistTextEditor()
+    ScrollView{
+        RegistTextEditor(text: "氏名を入力してください", placeholderString: "氏名を入力してください")
+    }.scrollDismissesKeyboard(.immediately)
 }
