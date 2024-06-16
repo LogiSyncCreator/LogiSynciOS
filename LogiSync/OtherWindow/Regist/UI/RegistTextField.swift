@@ -8,16 +8,14 @@
 import SwiftUI
 
 struct RegistTextField: View {
-    @State var titleKey: String = "氏名"
-    @State var text: String = ""
+    @State var title: String = ""
+    @State var titleKey: String = ""
+    @Binding var text: String
     var body: some View {
-        VStack{
+        VStack(alignment: .leading){
+            Text(title)
             TextField(titleKey, text: $text)
             Divider()
-        }
+        }.padding()
     }
-}
-
-#Preview {
-    RegistTextField()
 }
