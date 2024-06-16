@@ -11,8 +11,10 @@ struct OtherContentView: View {
     @Binding var index: Int
     var body: some View {
         VStack{
-            Spacer()
-            LoginView(index: $index)
+            Spacer().frame(height: 100)
+            ScrollView {
+                LoginView(index: $index)
+            }.scrollDismissesKeyboard(.immediately)
             Spacer()
         }.background(Color(.systemBackground))
     }
