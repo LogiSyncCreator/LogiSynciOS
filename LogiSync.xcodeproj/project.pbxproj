@@ -38,6 +38,7 @@
 		ED5B977D2C1E9AFA00AE1606 /* RegistTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED5B977C2C1E9AFA00AE1606 /* RegistTextField.swift */; };
 		ED5B97802C1E9E8B00AE1606 /* RegistTextEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED5B977F2C1E9E8B00AE1606 /* RegistTextEditor.swift */; };
 		ED5B97842C1EACEE00AE1606 /* RegistButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED5B97832C1EACEE00AE1606 /* RegistButton.swift */; };
+		ED5B97862C1EAF3200AE1606 /* RegistView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED5B97852C1EAF3200AE1606 /* RegistView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -75,6 +76,7 @@
 		ED5B977C2C1E9AFA00AE1606 /* RegistTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistTextField.swift; sourceTree = "<group>"; };
 		ED5B977F2C1E9E8B00AE1606 /* RegistTextEditor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistTextEditor.swift; sourceTree = "<group>"; };
 		ED5B97832C1EACEE00AE1606 /* RegistButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistButton.swift; sourceTree = "<group>"; };
+		ED5B97852C1EAF3200AE1606 /* RegistView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -242,6 +244,7 @@
 			isa = PBXGroup;
 			children = (
 				ED5B977B2C1E9AE600AE1606 /* UI */,
+				ED5B97852C1EAF3200AE1606 /* RegistView.swift */,
 			);
 			path = Regist;
 			sourceTree = "<group>";
@@ -336,6 +339,7 @@
 				ED5B97602C1BFAF300AE1606 /* MapBody.swift in Sources */,
 				ED5B97542C1B544300AE1606 /* StatusTagModelTest.swift in Sources */,
 				ED5B97672C1C09EF00AE1606 /* LocationManager.swift in Sources */,
+				ED5B97862C1EAF3200AE1606 /* RegistView.swift in Sources */,
 				ED5B97462C1B38CF00AE1606 /* StatusIconUI.swift in Sources */,
 				ED5B977D2C1E9AFA00AE1606 /* RegistTextField.swift in Sources */,
 				ED5B97782C1D5CA600AE1606 /* LoginView.swift in Sources */,
