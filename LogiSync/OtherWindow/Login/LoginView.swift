@@ -8,13 +8,15 @@
 import SwiftUI
 
 struct LoginView: View {
-// 参考サイト
+// 参考サイト Combine
 // https://zenn.dev/usk2000/articles/6a1f6a6f3d6b4917addc
     
     // Model
     @State var userId: String = ""
     @State var userPass: String = ""
     
+    // ViewState
+    @State var isSheet: Bool = true
     @State var isOpen: Bool = false
     @Binding var index: Int
     
@@ -49,7 +51,11 @@ struct LoginView: View {
                     }).background(.blue, in: RoundedRectangle(cornerRadius: 5)).padding(.leading)
                 }
             }.sheet(isPresented: $isOpen, content: {
-                Text("新規作成画面")
+                ScrollView {
+                    VStack{
+                        RegistView().interactiveDismissDisabled(isSheet)
+                    }
+                }.scrollDismissesKeyboard(.immediately)
             })
             Spacer()
         }
