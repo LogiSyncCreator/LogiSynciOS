@@ -10,13 +10,18 @@ import SwiftUI
 struct OtherContentView: View {
     @Binding var index: Int
     var body: some View {
-        VStack{
-            Spacer().frame(height: 100)
-            ScrollView {
+//        VStack{
+//            Spacer()
+//            LoginView(index: $index)
+//            Spacer()
+//        }.background(Color(.systemBackground))
+        NavigationStack {
+            VStack{
+                Spacer()
                 LoginView(index: $index)
-            }.scrollDismissesKeyboard(.immediately)
-            Spacer()
-        }.background(Color(.systemBackground))
+                Spacer()
+            }.background(Color(.systemBackground)).scrollDismissesKeyboard(.immediately)
+        }
     }
 }
 

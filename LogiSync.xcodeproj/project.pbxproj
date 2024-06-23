@@ -35,6 +35,12 @@
 		ED5B97722C1D523000AE1606 /* OtherContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED5B97712C1D523000AE1606 /* OtherContentView.swift */; };
 		ED5B97752C1D5B1F00AE1606 /* CustomTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED5B97742C1D5B1F00AE1606 /* CustomTabView.swift */; };
 		ED5B97782C1D5CA600AE1606 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED5B97772C1D5CA600AE1606 /* LoginView.swift */; };
+		ED5B977D2C1E9AFA00AE1606 /* RegistTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED5B977C2C1E9AFA00AE1606 /* RegistTextField.swift */; };
+		ED5B97802C1E9E8B00AE1606 /* RegistTextEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED5B977F2C1E9E8B00AE1606 /* RegistTextEditor.swift */; };
+		ED5B97842C1EACEE00AE1606 /* RegistButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED5B97832C1EACEE00AE1606 /* RegistButton.swift */; };
+		ED5B97862C1EAF3200AE1606 /* RegistView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED5B97852C1EAF3200AE1606 /* RegistView.swift */; };
+		ED5B97882C1EC64300AE1606 /* RegistViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED5B97872C1EC64300AE1606 /* RegistViewModel.swift */; };
+		ED5B978A2C1EC66B00AE1606 /* RegistModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED5B97892C1EC66B00AE1606 /* RegistModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -69,6 +75,13 @@
 		ED5B97712C1D523000AE1606 /* OtherContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OtherContentView.swift; sourceTree = "<group>"; };
 		ED5B97742C1D5B1F00AE1606 /* CustomTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTabView.swift; sourceTree = "<group>"; };
 		ED5B97772C1D5CA600AE1606 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
+		ED5B977C2C1E9AFA00AE1606 /* RegistTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistTextField.swift; sourceTree = "<group>"; };
+		ED5B977F2C1E9E8B00AE1606 /* RegistTextEditor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistTextEditor.swift; sourceTree = "<group>"; };
+		ED5B97832C1EACEE00AE1606 /* RegistButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistButton.swift; sourceTree = "<group>"; };
+		ED5B97852C1EAF3200AE1606 /* RegistView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistView.swift; sourceTree = "<group>"; };
+		ED5B97872C1EC64300AE1606 /* RegistViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistViewModel.swift; sourceTree = "<group>"; };
+		ED5B97892C1EC66B00AE1606 /* RegistModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistModel.swift; sourceTree = "<group>"; };
+		ED5B978B2C25471D00AE1606 /* LogiSync.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = LogiSync.entitlements; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -102,6 +115,7 @@
 		ED5777992C18C0520042A5B5 /* LogiSync */ = {
 			isa = PBXGroup;
 			children = (
+				ED5B978B2C25471D00AE1606 /* LogiSync.entitlements */,
 				ED5B97732C1D5B0400AE1606 /* UI */,
 				ED5B97702C1D520800AE1606 /* OtherWindow */,
 				ED5B97682C1C0B1800AE1606 /* Info.plist */,
@@ -209,6 +223,7 @@
 		ED5B97702C1D520800AE1606 /* OtherWindow */ = {
 			isa = PBXGroup;
 			children = (
+				ED5B977A2C1E9AD000AE1606 /* Regist */,
 				ED5B97762C1D5C9200AE1606 /* Login */,
 				ED5B97712C1D523000AE1606 /* OtherContentView.swift */,
 			);
@@ -229,6 +244,27 @@
 				ED5B97772C1D5CA600AE1606 /* LoginView.swift */,
 			);
 			path = Login;
+			sourceTree = "<group>";
+		};
+		ED5B977A2C1E9AD000AE1606 /* Regist */ = {
+			isa = PBXGroup;
+			children = (
+				ED5B977B2C1E9AE600AE1606 /* UI */,
+				ED5B97852C1EAF3200AE1606 /* RegistView.swift */,
+				ED5B97872C1EC64300AE1606 /* RegistViewModel.swift */,
+				ED5B97892C1EC66B00AE1606 /* RegistModel.swift */,
+			);
+			path = Regist;
+			sourceTree = "<group>";
+		};
+		ED5B977B2C1E9AE600AE1606 /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				ED5B977C2C1E9AFA00AE1606 /* RegistTextField.swift */,
+				ED5B977F2C1E9E8B00AE1606 /* RegistTextEditor.swift */,
+				ED5B97832C1EACEE00AE1606 /* RegistButton.swift */,
+			);
+			path = UI;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -304,17 +340,23 @@
 				ED5B976A2C1C9C8400AE1606 /* MapCameraAutoButton.swift in Sources */,
 				ED5B97402C1B323B00AE1606 /* SettingButtonUI.swift in Sources */,
 				ED5B974E2C1B47DB00AE1606 /* TagItemUI.swift in Sources */,
+				ED5B97882C1EC64300AE1606 /* RegistViewModel.swift in Sources */,
+				ED5B97802C1E9E8B00AE1606 /* RegistTextEditor.swift in Sources */,
 				ED5B97482C1B3EEC00AE1606 /* UserThumbnailUI.swift in Sources */,
 				ED5B976D2C1CA66600AE1606 /* SendPointModel.swift in Sources */,
 				ED5B97502C1B4F0E00AE1606 /* StatusList.swift in Sources */,
 				ED5B97602C1BFAF300AE1606 /* MapBody.swift in Sources */,
 				ED5B97542C1B544300AE1606 /* StatusTagModelTest.swift in Sources */,
 				ED5B97672C1C09EF00AE1606 /* LocationManager.swift in Sources */,
+				ED5B978A2C1EC66B00AE1606 /* RegistModel.swift in Sources */,
+				ED5B97862C1EAF3200AE1606 /* RegistView.swift in Sources */,
 				ED5B97462C1B38CF00AE1606 /* StatusIconUI.swift in Sources */,
+				ED5B977D2C1E9AFA00AE1606 /* RegistTextField.swift in Sources */,
 				ED5B97782C1D5CA600AE1606 /* LoginView.swift in Sources */,
 				ED5B976F2C1CA6F900AE1606 /* MapViewTestData.swift in Sources */,
 				ED57779D2C18C0520042A5B5 /* ContentView.swift in Sources */,
 				ED57779F2C18C0520042A5B5 /* Item.swift in Sources */,
+				ED5B97842C1EACEE00AE1606 /* RegistButton.swift in Sources */,
 				ED5B97622C1BFBD700AE1606 /* UserLocationSendButtonUI.swift in Sources */,
 				ED5B974C2C1B43C900AE1606 /* ProfileUI.swift in Sources */,
 				ED5B975E2C1BFA9D00AE1606 /* MapView.swift in Sources */,
@@ -457,6 +499,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = LogiSync/LogiSync.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"LogiSync/Preview Content\"";
@@ -476,8 +520,9 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.nanaSoft.LogiSync;
+				PRODUCT_BUNDLE_IDENTIFIER = com.nanasoft.LogiSync;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
@@ -493,6 +538,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = LogiSync/LogiSync.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"LogiSync/Preview Content\"";
@@ -512,8 +559,9 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.nanaSoft.LogiSync;
+				PRODUCT_BUNDLE_IDENTIFIER = com.nanasoft.LogiSync;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
