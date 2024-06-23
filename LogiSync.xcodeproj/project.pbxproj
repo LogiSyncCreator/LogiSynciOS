@@ -81,6 +81,7 @@
 		ED5B97852C1EAF3200AE1606 /* RegistView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistView.swift; sourceTree = "<group>"; };
 		ED5B97872C1EC64300AE1606 /* RegistViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistViewModel.swift; sourceTree = "<group>"; };
 		ED5B97892C1EC66B00AE1606 /* RegistModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistModel.swift; sourceTree = "<group>"; };
+		ED5B978B2C25471D00AE1606 /* LogiSync.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = LogiSync.entitlements; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -114,6 +115,7 @@
 		ED5777992C18C0520042A5B5 /* LogiSync */ = {
 			isa = PBXGroup;
 			children = (
+				ED5B978B2C25471D00AE1606 /* LogiSync.entitlements */,
 				ED5B97732C1D5B0400AE1606 /* UI */,
 				ED5B97702C1D520800AE1606 /* OtherWindow */,
 				ED5B97682C1C0B1800AE1606 /* Info.plist */,
@@ -497,6 +499,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = LogiSync/LogiSync.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"LogiSync/Preview Content\"";
@@ -516,8 +520,9 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.nanaSoft.LogiSync;
+				PRODUCT_BUNDLE_IDENTIFIER = com.nanasoft.LogiSync;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
@@ -533,6 +538,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = LogiSync/LogiSync.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"LogiSync/Preview Content\"";
@@ -552,8 +559,9 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.nanaSoft.LogiSync;
+				PRODUCT_BUNDLE_IDENTIFIER = com.nanasoft.LogiSync;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;

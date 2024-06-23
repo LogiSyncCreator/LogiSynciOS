@@ -78,7 +78,7 @@ struct RegistView: View {
                     
                     HStack{
                         Spacer()
-                        RegistButton(registVM: registVM, proxy: proxy, isShowCheck: $isShowCheck)
+                        RegistButton(registVM: registVM, isShowCheck: $isShowCheck)
                         Spacer()
                     }
                     Spacer().frame(height: 300)

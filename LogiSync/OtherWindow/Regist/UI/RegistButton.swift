@@ -9,7 +9,6 @@ import SwiftUI
 
 struct RegistButton: View {
     @StateObject var registVM: RegistViewModel
-    @State var proxy: ScrollViewProxy
     @State var isAlert = false
     @Binding var isShowCheck: Bool
     
@@ -23,7 +22,6 @@ struct RegistButton: View {
                 isAlert.toggle()
             } else {
                 isShowCheck = true
-                proxy.scrollTo(registVM.proxyID)
             }
         }, label: {
             Text("登録")

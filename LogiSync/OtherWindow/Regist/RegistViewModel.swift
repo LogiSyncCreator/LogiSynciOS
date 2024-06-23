@@ -65,7 +65,8 @@ class RegistViewModel: ObservableObject {
                 res = "氏名が入力されていません"
                 break
             }
-        default: break
+        default:
+            break
             
         }
         
@@ -122,7 +123,9 @@ class RegistViewModel: ObservableObject {
                 proxyID = "氏名"
                 break
             }
-        default: break
+        default:
+            proxyID = ""
+            break
             
         }
     }

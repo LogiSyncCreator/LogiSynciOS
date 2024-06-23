@@ -22,6 +22,8 @@ Privacy - Location When In Use Usage Description を追加
 Privacy - Location Always and When In Use Usage Description を追加
 現在位置情報を共有、表示使用するために使用します をValueにセット
 
+アセットにカラーを追加して、ステータスに割り当てる
+
 
 6/16日にApple Devを契約する予定なので、それまでチーム開発は不便かも
 Bundle identifierはしばらく各自のものになるかも。
