@@ -8,9 +8,13 @@
 import SwiftUI
 
 struct UserLocationSendButtonUI: View {
+    
+    @ObservedObject var lonMan: LocationManager
+    
     var body: some View {
         Button {
-            
+            print("lat: \(lonMan.location?.coordinate.latitude)")
+            print("lon: \(lonMan.location?.coordinate.longitude)")
         } label: {
             HStack{
                 Image(systemName: "mappin.circle")
@@ -21,6 +25,6 @@ struct UserLocationSendButtonUI: View {
     }
 }
 
-#Preview {
-    UserLocationSendButtonUI()
-}
+//#Preview {
+//    UserLocationSendButtonUI()
+//}

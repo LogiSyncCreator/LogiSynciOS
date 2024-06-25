@@ -11,9 +11,17 @@ struct LoginView: View {
 // 参考サイト Combine
 // https://zenn.dev/usk2000/articles/6a1f6a6f3d6b4917addc
     
+    @StateObject var loginVM = LoginViewModel()
+    @EnvironmentObject var envModel: EnvModel
+    
     // Model
-    @State var userId: String = ""
-    @State var userPass: String = ""
+    @AppStorage ("userId") var userId: String = ""
+    @AppStorage ("userPass") var userPass: String = ""
+    
+    // UI
+    @State var error: Bool = false
+    @FocusState var isFocus1: Bool
+    @FocusState var isFocus2: Bool
     
     // ViewState
     @State var isSheet: Bool = true
@@ -27,9 +35,9 @@ struct LoginView: View {
                 Text("logisync").textCase(.uppercase).font(.largeTitle).bold()
             }
             VStack{
-                TextField("ID", text: $userId)
+                TextField("ID", text: $userId).focused($isFocus1)
                 Divider().padding(.vertical)
-                SecureField("パスワード", text: $userPass)
+                SecureField("パスワード", text: $userPass).focused($isFocus2)
                 Divider()
             }.padding()
             VStack{
@@ -52,13 +60,37 @@ struct LoginView: View {
 
                     
                     Button(action: {
-                        // ログイン処理
-                        withAnimation {
-                            index = 0
+                        // 使用例
+                        Task {
+                            do {
+                                
+                                let response = try await loginVM.login(id: userId, pass: userPass)
+                                
+                                envModel.setUser(json: response)
+                                
+                                // ログイン処理
+                                withAnimation {
+                                    index = 0
+                                    isFocus1 = false
+                                    isFocus2 = false
+                                }
+                                
+                            } catch {
+                                print("Error: \(error.localizedDescription)")
+                                self.error = true
+                                
+                            }
                         }
+                        
                     }, label: {
                         Text("ログイン").foregroundStyle(.white).font(.title).padding(EdgeInsets(top: 5, leading: 10, bottom: 5, trailing: 10)).bold()
                     }).background(.blue, in: RoundedRectangle(cornerRadius: 5)).padding(.leading)
+                }
+                if error {
+                    HStack{
+                        Text("ログインに失敗しました").foregroundStyle(.red)
+                        Spacer()
+                    }.padding()
                 }
             }.sheet(isPresented: $isOpen, content: {
                 ScrollView {

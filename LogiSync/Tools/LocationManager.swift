@@ -65,4 +65,34 @@ class LocationManager:NSObject, ObservableObject, CLLocationManagerDelegate {
         print("Failed to get location: \(error.localizedDescription)")
     }
     
+    func geoCoding(address: String, completion: @escaping (CLLocationCoordinate2D?, Error?) -> Void) {
+        CLGeocoder().geocodeAddressString(address) { placemarks, error in
+            if let error = error {
+                completion(nil, error)
+                return
+            }
+
+            guard let placemark = placemarks?.first, let location = placemark.location else {
+                completion(nil, NSError(domain: "GeocodingErrorDomain", code: -1, userInfo: [NSLocalizedDescriptionKey: "No location found"]))
+                return
+            }
+
+            let position = CLLocationCoordinate2D(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude)
+            completion(position, nil)
+        }
+    }
+    
+    // 中間座標
+    func midpointCoordinate(coordinate1: CLLocationCoordinate2D, coordinate2: CLLocationCoordinate2D) -> CLLocationCoordinate2D {
+        let latitude = (coordinate1.latitude + coordinate2.latitude) / 2
+        let longitude = (coordinate1.longitude + coordinate2.longitude) / 2
+        return CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
+    }
+    
+    // 中間距離
+    func distanceBetweenCoordinates(coordinate1: CLLocationCoordinate2D, coordinate2: CLLocationCoordinate2D) -> CLLocationDistance {
+        let location1 = CLLocation(latitude: coordinate1.latitude, longitude: coordinate1.longitude)
+        let location2 = CLLocation(latitude: coordinate2.latitude, longitude: coordinate2.longitude)
+        return location1.distance(from: location2)
+    }
 }

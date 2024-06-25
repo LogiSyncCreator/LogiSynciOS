@@ -25,7 +25,7 @@ struct CustomTabView: View {
                     Image(systemName: "person.fill").font(.title)
                     Text("ステータス").font(.caption)
                 }.frame(width: 100)
-            }
+            }.foregroundStyle(index == 0 ? Color.blue : Color.gray)
             Spacer()
             Button {
                 withAnimation{
@@ -38,7 +38,7 @@ struct CustomTabView: View {
                     Image(systemName: "location.fill").font(.title)
                     Text("位置共有").font(.caption)
                 }.frame(width: 100)
-            }
+            }.foregroundStyle(index == 1 ? Color.blue : Color.gray)
             Spacer()
             Button {
                 withAnimation{
@@ -51,7 +51,7 @@ struct CustomTabView: View {
                     Image(systemName: "person.fill").font(.title)
                     Text("連絡").font(.caption)
                 }.frame(width: 100)
-            }
+            }.foregroundStyle(index == 2 ? Color.blue : Color.gray)
             Spacer()
         }.padding(.top, 5).background(Material.bar)
     }
