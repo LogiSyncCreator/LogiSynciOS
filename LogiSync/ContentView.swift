@@ -10,6 +10,7 @@ import SwiftData
 
 struct ContentView: View {
     @Environment(\.modelContext) private var modelContext
+    @EnvironmentObject var envModel: EnvModel
     @Query private var items: [Item]
     // 表示ページのハンドリング
 //    列挙型に変えたい
@@ -20,11 +21,14 @@ struct ContentView: View {
             if viewIndex != 3 {
                 switch viewIndex {
                 case 0:
-                    StatusView().background(Color(.systemBackground)).transition(.move(edge: .leading))
+                    StatusView().background(Color(.systemBackground))
+//                        .transition(.move(edge: .leading))
                 case 1:
-                    MapView().background(Color(.systemBackground)).transition(.move(edge: .leading))
+                    MapView().background(Color(.systemBackground))
+//                        .transition(.move(edge: .leading))
                 case 2:
-                    Text("comming soon...").background(Color(.systemBackground)).transition(.move(edge: .leading))
+                    Text("comming soon...").background(Color(.systemBackground))
+//                        .transition(.move(edge: .leading))
                 default:
                     StatusView().transition(.move(edge: .leading))
                 }
@@ -49,4 +53,5 @@ struct ContentView: View {
 #Preview {
     ContentView()
         .modelContainer(for: Item.self, inMemory: true)
+        .environmentObject(EnvModel())
 }

@@ -13,7 +13,7 @@ struct StatusTestData {
         StatusTagModelTest(label: "オンライン", symboleColor: Color(.green), symbole: "checkmark.circle.fill"),
         StatusTagModelTest(label: "オフライン", symboleColor: Color(.gray), symbole: "xmark.circle")
     ]
-    var driverAccount: StatusAccountModelTest = StatusAccountModelTest(userId: "33675", pass: "password", name: "田中 照敏", companyCode: "CP000001", group: "株式会社架空運輸", selectedRole: "運転手", phone: "09014561234", profile: """
+    var driverAccount: StatusAccountModelTest = StatusAccountModelTest(userId: "33675", pass: "password", name: "田中 照敏", companyCode: "CP000001", group: "株式会社架空運輸", selectedRole: "荷主", phone: "09014561234", profile: """
 こんにちは！株式会社架空運輸のトラックドライバー、田中昭敏と申します。私は10年以上の運送業務の経験を持ち、常に安全運転と迅速な配送を心掛けています。
 
 私の仕事に対するモットーは、「信頼と責任」です。お客様の大切な荷物を確実にお届けするために、常に最善を尽くしております。運転技術だけでなく、お客様とのコミュニケーションも大切にし、丁寧な対応を心掛けています。

@@ -10,14 +10,15 @@ import MapKit
 
 struct MapView: View {
     @State var mapTestData: MapViewTestData = MapViewTestData()
+    @StateObject var locationManager = LocationManager()
     var body: some View {
         ZStack(content: {
-            MapBody(mapTestData: $mapTestData)
+            MapBody(mapTestData: $mapTestData, locationManager: locationManager)
             VStack{
                 Spacer()
                 HStack{
                     Spacer()
-                    UserLocationSendButtonUI()
+                    UserLocationSendButtonUI(lonMan: locationManager)
                 }
                 Spacer().frame(height: 50)
             }.padding()

@@ -9,7 +9,8 @@ import SwiftUI
 
 struct TagItemUI: View {
     
-    @Binding var symboleColor: Color
+//    @Binding var symboleColor: Color
+    @Binding var symboleColor: String
     @Binding var symbole: String
     @Binding var label: String
     @Binding var width: CGFloat
