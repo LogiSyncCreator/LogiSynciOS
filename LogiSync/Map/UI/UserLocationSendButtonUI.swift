@@ -6,10 +6,13 @@
 //
 
 import SwiftUI
+import SwiftData
 
 struct UserLocationSendButtonUI: View {
     
     @ObservedObject var lonMan: LocationManager
+    @Environment(\.modelContext) private var modelContext
+    @Query private var local: [LocationData]
     
     var body: some View {
         Button {
