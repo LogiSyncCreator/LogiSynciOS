@@ -21,7 +21,7 @@ struct ProfileUI: View {
                         }
                     })
                 )
-            if textHeight > 40 {
+            if textHeight > 35 {
                 HStack{
                     Spacer()
                     Button("プロフィールを\(isOpen ? "縮小" : "展開")する"){
