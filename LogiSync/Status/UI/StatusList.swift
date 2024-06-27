@@ -30,6 +30,10 @@ struct StatusList: View {
                     
                     envModel.statusData.name = envModel.statusList[index].name
                     
+                    Task {
+                        try await APIManager().sendNotificationStatus(host: envModel.user.userId, receiver: envModel.nowShipper.userId, status: envModel.statusData.name)
+                    }
+                    
 //                    Task {
 //                        try await APIManager().sendRequest(param: "\(envModel.user.userId)/\(envModel.statusList[index].name)", endPoint: "/status/setStatus/")
 //                        try await envModel.setNowStatus()

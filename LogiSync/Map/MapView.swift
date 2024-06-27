@@ -11,6 +11,7 @@ import MapKit
 struct MapView: View {
     @State var mapTestData: MapViewTestData = MapViewTestData()
     @StateObject var locationManager = LocationManager()
+    @EnvironmentObject var envModel: EnvModel
     var body: some View {
         ZStack(content: {
             MapBody(mapTestData: $mapTestData, locationManager: locationManager)
@@ -21,7 +22,13 @@ struct MapView: View {
                     UserLocationSendButtonUI(lonMan: locationManager)
                 }
                 Spacer().frame(height: 50)
-            }.padding()
+            }.padding().onAppear(){
+                Task{
+                    if envModel.nowMatchingLocations.isEmpty {
+                        try await envModel.setMatchingLocations()
+                    }
+                }
+            }
         })
     }
 }

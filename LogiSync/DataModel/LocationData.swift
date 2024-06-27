@@ -16,13 +16,15 @@ final class LocationData {
     var latitude: Double
     var createAt: Date
     var status: String
+    var sending: Bool   // 送信歴
     
-    init(id: String, userId: String, longitude: Double, latitude: Double, createAt: Date, status: String) {
+    init(id: String, userId: String, longitude: Double, latitude: Double, createAt: Date, status: String, sending: Bool) {
         self.id = id
         self.userId = userId
         self.longitude = longitude
         self.latitude = latitude
         self.createAt = createAt
         self.status = status
+        self.sending = sending
     }
 }

@@ -21,11 +21,14 @@ class EnvModel: ObservableObject {
     @Published var selectedMenberStatus: CustomStatus = CustomStatus(id: "", name: "", color: "", icon: "", manager: "", shipper: "", delete: false, index: 0)
     @Published var members: [User] = []
     @Published var matchSort: [Matching] = []
+    @Published var nowMatchingLocations: [MatchingLocation] = []
     
     private var cancellables = Set<AnyCancellable>()
+    private var cancellable = Set<AnyCancellable>()
     private let userDefaultsKey = "nowMatching"
     private let userDefaultsKey2 = "nowShipper"
     private let userDefaultsKey3 = "selectedMenberStatus"
+    private let userDefaultsKey4: String = "token"
     
     init() {
         
@@ -37,9 +40,8 @@ class EnvModel: ObservableObject {
                 .sink { [weak self] _ in
                     guard let self = self else { return }
                     
-                    print("data3")
-                    
                     Task {
+                        try? await self.sendToken()
                         try? await self.setMatching()
                         try? await self.setStatus()
                         try? await self.setCommonStatus()
@@ -83,6 +85,11 @@ class EnvModel: ObservableObject {
                     try? await self.setCommonStatus()
                     try? await self.setGroupStatus()
                     try? await self.setOnlineStatus()
+                    
+                    if self.user.role != "運転手" {
+                        try? await self.setMatchingLocations()
+                    }
+                    
                     self.saveMatchingToUserDefaults(self.nowMatching)
                     self.saveShipperToUserDefaults(self.nowShipper)
                 }
@@ -96,6 +103,23 @@ class EnvModel: ObservableObject {
                     self.saveSelectedStatusToUserDefaults(self.selectedMenberStatus)
                 }
             }.store(in: &cancellables)
+        
+        NotificationCenter.default.publisher(for: Notification.Name("didReceiveRemoteNotification"))
+            .sink { [weak self] notification in
+                guard let self = self else { return }
+                // 通知の監視
+                if notification.userInfo?["mode"] != nil {
+                    print("バックグラウンドから通知")
+                    if notification.userInfo!["mode"] as! String == "status" {
+                        Task {
+                            try? await self.setSelectedMenberStatus()
+                        }
+                    }
+                } else {
+                    print("不明な通知")
+                }
+            }.store(in: &cancellable)
+
         }
 
     func setUser(json: Data) {
@@ -246,6 +270,14 @@ class EnvModel: ObservableObject {
         }
     }
     
+    func setMatchingLocations() async throws {
+        let json = try await APIManager().searchLocation(param: self.nowMatching.driver)
+        let locations = try JSONDecoder().decode([MatchingLocation].self, from: json)
+        await MainActor.run {
+            self.nowMatchingLocations = locations
+        }
+    }
+    
     // userdefaults
     private func saveMatchingToUserDefaults(_ matching: Matching) {
             do {
@@ -309,6 +341,14 @@ class EnvModel: ObservableObject {
         UserDefaults.standard.removeObject(forKey: userDefaultsKey2)
         UserDefaults.standard.removeObject(forKey: userDefaultsKey3)
     }
+    
+    func sendToken() async throws {
+        let token = UserDefaults.standard.string(forKey: userDefaultsKey4)
+        if let token = token {
+            let status = try await APIManager().sendRequest(postData: ["userId" : self.user.userId, "token": token], endPoint: "/push")
+            print(status)
+        }
+    }
 }
 
 struct User: Identifiable, Codable {
@@ -333,11 +373,13 @@ struct Matching: Identifiable, Codable, Hashable {
     var delete: Bool
 }
 
-struct Status: Identifiable, Codable {
-    var id: String
+struct ResponseNowStatusDTO: Identifiable, Codable {
+    var id: UUID
     var userId: String
+    var statusId: String
     var name: String
-    var createAt: String
+    var color: String
+    var icon: String
     var delete: Bool
 }
 
@@ -350,4 +392,14 @@ struct CustomStatus: Identifiable, Codable {
     var shipper: String
     var delete: Bool
     var index: Int
+}
+
+struct MatchingLocation: Identifiable, Codable {
+    var id: String
+    var userId: String
+    var longitude: Double
+    var latitude: Double
+    var status: String
+    var createAt: String
+    var delete: Bool
 }

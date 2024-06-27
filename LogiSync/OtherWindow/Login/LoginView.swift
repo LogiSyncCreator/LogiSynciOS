@@ -42,21 +42,31 @@ struct LoginView: View {
             }.padding()
             VStack{
                 HStack {
-//                    Button(action: {
-//                        // シートを開く
+                    Button(action: {
+                        // シートを開く
 //                        isOpen.toggle()
-//                    }, label: {
-//                        Text("新規作成").foregroundStyle(.white).font(.title).padding(EdgeInsets(top: 5, leading: 10, bottom: 5, trailing: 10))
-//                    }).background(.blue, in: RoundedRectangle(cornerRadius: 5)).padding(.trailing).bold()
-                    NavigationLink {
-                        ScrollView {
-                            VStack{
-                                RegistView().interactiveDismissDisabled(isSheet)
-                            }
-                        }.scrollDismissesKeyboard(.immediately)
-                    } label: {
+                        // ログイン処理
+                        withAnimation {
+                            index = 0
+                            isFocus1 = false
+                            isFocus2 = false
+                        }
+                    }, label: {
                         Text("新規作成").foregroundStyle(.white).font(.title).padding(EdgeInsets(top: 5, leading: 10, bottom: 5, trailing: 10))
-                    }.background(.blue, in: RoundedRectangle(cornerRadius: 5)).padding(.trailing).bold()
+                    }).background(.blue, in: RoundedRectangle(cornerRadius: 5)).padding(.trailing).bold()
+                    
+                    
+//                    NavigationLink {
+//                        ScrollView {
+//                            VStack{
+//                                RegistView().interactiveDismissDisabled(isSheet)
+//                            }.onAppear(){
+//                                
+//                            }
+//                        }.scrollDismissesKeyboard(.immediately)
+//                    } label: {
+//                        Text("新規作成").foregroundStyle(.white).font(.title).padding(EdgeInsets(top: 5, leading: 10, bottom: 5, trailing: 10))
+//                    }.background(.blue, in: RoundedRectangle(cornerRadius: 5)).padding(.trailing).bold()
 
                     
                     Button(action: {

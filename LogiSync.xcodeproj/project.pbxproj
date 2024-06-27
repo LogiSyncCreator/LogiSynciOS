@@ -45,6 +45,8 @@
 		ED5B97D62C27FD3700AE1606 /* EnvModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED5B97D52C27FD3700AE1606 /* EnvModel.swift */; };
 		ED5B97D82C28C64400AE1606 /* APIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED5B97D72C28C64400AE1606 /* APIManager.swift */; };
 		EDDDC1E12C2ABE06003C96D9 /* LocationData.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDDDC1E02C2ABE06003C96D9 /* LocationData.swift */; };
+		EDDDC1E42C2AC53E003C96D9 /* Algorithms in Frameworks */ = {isa = PBXBuildFile; productRef = EDDDC1E32C2AC53E003C96D9 /* Algorithms */; };
+		EDDDC1E62C2BADEB003C96D9 /* LocationDeleteButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDDDC1E52C2BADEB003C96D9 /* LocationDeleteButton.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -90,6 +92,7 @@
 		ED5B97D52C27FD3700AE1606 /* EnvModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnvModel.swift; sourceTree = "<group>"; };
 		ED5B97D72C28C64400AE1606 /* APIManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIManager.swift; sourceTree = "<group>"; };
 		EDDDC1E02C2ABE06003C96D9 /* LocationData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationData.swift; sourceTree = "<group>"; };
+		EDDDC1E52C2BADEB003C96D9 /* LocationDeleteButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationDeleteButton.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -97,6 +100,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EDDDC1E42C2AC53E003C96D9 /* Algorithms in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -209,6 +213,7 @@
 				ED5B975F2C1BFAF300AE1606 /* MapBody.swift */,
 				ED5B97612C1BFBD700AE1606 /* UserLocationSendButtonUI.swift */,
 				ED5B97692C1C9C8400AE1606 /* MapCameraAutoButton.swift */,
+				EDDDC1E52C2BADEB003C96D9 /* LocationDeleteButton.swift */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -303,6 +308,9 @@
 			dependencies = (
 			);
 			name = LogiSync;
+			packageProductDependencies = (
+				EDDDC1E32C2AC53E003C96D9 /* Algorithms */,
+			);
 			productName = LogiSync;
 			productReference = ED5777972C18C0520042A5B5 /* LogiSync.app */;
 			productType = "com.apple.product-type.application";
@@ -331,6 +339,9 @@
 				Base,
 			);
 			mainGroup = ED57778E2C18C0520042A5B5;
+			packageReferences = (
+				EDDDC1E22C2AC53E003C96D9 /* XCRemoteSwiftPackageReference "swift-algorithms" */,
+			);
 			productRefGroup = ED5777982C18C0520042A5B5 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -385,6 +396,7 @@
 				ED5B975A2C1B5DDA00AE1606 /* StatusAccountModelTest.swift in Sources */,
 				ED5B97722C1D523000AE1606 /* OtherContentView.swift in Sources */,
 				ED5B97442C1B344600AE1606 /* RolePicker.swift in Sources */,
+				EDDDC1E62C2BADEB003C96D9 /* LocationDeleteButton.swift in Sources */,
 				ED5B97D82C28C64400AE1606 /* APIManager.swift in Sources */,
 				ED57779B2C18C0520042A5B5 /* LogiSyncApp.swift in Sources */,
 				ED5B97562C1B552D00AE1606 /* StatusTestData.swift in Sources */,
@@ -624,6 +636,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		EDDDC1E22C2AC53E003C96D9 /* XCRemoteSwiftPackageReference "swift-algorithms" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/apple/swift-algorithms.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.2.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		EDDDC1E32C2AC53E003C96D9 /* Algorithms */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = EDDDC1E22C2AC53E003C96D9 /* XCRemoteSwiftPackageReference "swift-algorithms" */;
+			productName = Algorithms;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = ED57778F2C18C0520042A5B5 /* Project object */;
 }

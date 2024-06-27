@@ -7,10 +7,14 @@
 
 import SwiftUI
 import MapKit
-
+import SwiftData
+import Algorithms
 
 
 struct MapBody: View {
+    
+    
+    @Query private var locationData: [LocationData]
     
     @Binding var mapTestData: MapViewTestData
     
@@ -28,7 +32,7 @@ struct MapBody: View {
     var body: some View {
         ZStack {
             Map(position: $userCameraPosition){
-                // ここから#11 送信したマップのサークル サークルサイズは50m
+//                // ここから#11 送信したマップのサークル サークルサイズは50m
 //                ForEach(mapTestData.sendPoints.indices, id: \.self){index in
 //                    Marker(coordinate: CLLocationCoordinate2D(latitude: mapTestData.sendPoints[index].point.latitude, longitude: mapTestData.sendPoints[index].point.longitude)) {
 //                        VStack{
@@ -38,12 +42,36 @@ struct MapBody: View {
 //                    MapCircle(center: CLLocationCoordinate2D(latitude: mapTestData.sendPoints[index].point.latitude, longitude: mapTestData.sendPoints[index].point.longitude), radius: CLLocationDistance(100)).foregroundStyle(Color(uiColor: sendCircleColor))
 //                }
                 // #11
+                if envModel.user.role == "運転手" {
+                    ForEach(locationData.indices, id: \.self){ index in
+                        Marker(coordinate: CLLocationCoordinate2D(latitude: locationData[index].latitude, longitude: locationData[index].longitude)){
+                            VStack{
+                                Text("\(locationData[index].createAt.description)\n\(locationData[index].status)")
+                            }
+                        }.tint(.green)
+                        MapCircle(center: CLLocationCoordinate2D(latitude: locationData[index].latitude, longitude: locationData[index].longitude), radius: CLLocationDistance(100)).foregroundStyle(Color(uiColor: sendCircleColor))
+                    }
+                } else {
+                    ForEach(envModel.nowMatchingLocations.indices, id: \.self) { index in
+                        if envModel.nowMatchingLocations[index].userId == envModel.nowShipper.userId
+                            {
+                            Marker(coordinate: CLLocationCoordinate2D(latitude: envModel.nowMatchingLocations[index].latitude, longitude: envModel.nowMatchingLocations[index].longitude)){
+                                VStack{
+                                    Text("\(envModel.nowMatchingLocations[index].createAt.description)\n\(envModel.nowMatchingLocations[index].status)")
+                                }
+                            }.tint(.green)
+                            MapCircle(center: CLLocationCoordinate2D(latitude: envModel.nowMatchingLocations[index].latitude, longitude: envModel.nowMatchingLocations[index].longitude), radius: CLLocationDistance(100)).foregroundStyle(Color(uiColor: sendCircleColor))
+                        }
+                    }
+                }
                 
                 // ここから#14 目的地
-                Marker(coordinate: CLLocationCoordinate2D(latitude: golLocation.latitude, longitude: golLocation.longitude)) {
-                    Text("目的地")
-                }.tint(.red)
-                MapCircle(center: CLLocationCoordinate2D(latitude: golLocation.latitude, longitude: golLocation.longitude), radius: CLLocationDistance(100)).foregroundStyle(Color(uiColor: destinationCircleColor))
+                if golLocation.latitude != 0 {
+                    Marker(coordinate: CLLocationCoordinate2D(latitude: golLocation.latitude, longitude: golLocation.longitude)) {
+                        Text("目的地")
+                    }.tint(.red)
+                    MapCircle(center: CLLocationCoordinate2D(latitude: golLocation.latitude, longitude: golLocation.longitude), radius: CLLocationDistance(100)).foregroundStyle(Color(uiColor: destinationCircleColor))
+                }
                 
                 UserAnnotation()
             }.mapControls {
@@ -65,6 +93,16 @@ struct MapBody: View {
                     }
                 }
                 
+                for data in locationData {
+                    print("-------")
+                    print(data.id)
+                    print(data.userId)
+                    print(data.longitude)
+                    print(data.latitude)
+                    print(data.createAt)
+                    print(data.status)
+                    print("-------")
+                }
                 
             }.onMapCameraChange {
                 index = -1
