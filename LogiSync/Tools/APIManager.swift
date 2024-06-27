@@ -20,7 +20,10 @@ class APIManager {
     
     // ユーザーのステータス名とタグを検索する　＊名前が一致するもの全て
     func getSearchUserStatus(param: String) async throws -> Data {
-        return try await sendRequest(param: param, endPoint: "/status/searchStatus/")
+        
+        let data = try await sendRequest(param: param, endPoint: "/status/searchStatus/")
+        
+        return data
     }
     
     // マッチングデータの取得
@@ -56,12 +59,22 @@ class APIManager {
     
     // ステータスの更新
     func updateNowStatus(param: String) async throws -> Data {
-        return try await sendRequest(param: param, endPoint: "/status/setStatus/")
+        let data = try await sendRequest(param: param, endPoint: "/status/setStatus/")
+        return data
+    }
+    
+    func sendNotificationStatus(host: String, receiver: String, status: String) async throws {
+        let num = try await sendRequest(param: "\(host)/\(receiver)/\(status)", endPoint: "/push/notificationstatus/")
     }
     
     // ユーザを探す
     func searchUser(param: String) async throws -> Data {
         return try await sendRequest(param: param, endPoint: "/accounts/serchuser/")
+    }
+    
+    // マッチング先の位置情報の取得
+    func searchLocation(param: String) async throws -> Data {
+        return try await sendRequest(param: param, endPoint: "/locations/")
     }
     
     func sendRequest(param: String, endPoint: String = "") async throws -> Data {
