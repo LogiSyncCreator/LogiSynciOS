@@ -9,49 +9,32 @@ import SwiftUI
 
 struct StatusList: View {
     @EnvironmentObject var envModel: EnvModel
+    @EnvironmentObject var environVM: EnvironmentViewModel
     @Binding var statusModel: [StatusTagModelTest] // 本番環境に合わせて変更する
     @State var width: CGFloat = 30          // デフォルトサイズ
 //    @Binding var myStatus: StatusTagModelTest   // 現在のステータス
-    @Binding var myStatus: CustomStatus
     
     @Binding var selectedRole: String
     
     var body: some View {
         List {
-            ForEach(envModel.statusList.indices, id: \.self){ index in
+            ForEach(environVM.model.statusList.indices, id: \.self){ index in
                 Button(action: {
-                    // 処理を書く
-//                    myStatus = statusModel[index]
-//                    envModel.nowStatus = envModel.statusList[index]
-//                    envModel.statusData.name = envModel.statusList[index].name
                     
-//                    Task {
-//                        print()
+//                    self.environVM.model.account.status = UserStatus(id: UUID().uuidString, userId: environVM.model.account.user.userId, statusId: environVM.model.statusList[index].id, name: environVM.model.statusList[index].name, color: environVM.model.statusList[index].color, icon: environVM.model.statusList[index].icon)
                     
-                    envModel.statusData.name = envModel.statusList[index].name
+                    environVM.changeStatusCalled.send(environVM.model.statusList[index])
                     
-                    Task {
-                        try await APIManager().sendNotificationStatus(host: envModel.user.userId, receiver: envModel.nowShipper.userId, status: envModel.statusData.name)
-                    }
+                    // 送信処理
                     
-//                    Task {
-//                        try await APIManager().sendRequest(param: "\(envModel.user.userId)/\(envModel.statusList[index].name)", endPoint: "/status/setStatus/")
-//                        try await envModel.setNowStatus()
-//                        print(envModel.nowStatus.name)
-//                    }
-//                    }
                     
                 }, label: {
                     HStack{
-//                        StatusIconUI(symboleColor: $statusModel[index].symboleColor, symbole: $statusModel[index].symbole, width: $width)
-                        StatusIconUI(symboleColor: $envModel.statusList[index].color, symbole: $envModel.statusList[index].icon, width: $width)
-                        Text(envModel.statusList[index].name).foregroundStyle(envModel.user.role == selectedRole ? Color(.label) : Color.gray)
-//                        Text(envModel.statusList[index].name).foregroundStyle( Color.gray)
+                        StatusIconUI(symboleColor: $environVM.model.statusList[index].color, symbole: $environVM.model.statusList[index].icon, width: $width)
+                        Text(environVM.model.statusList[index].name).foregroundStyle(environVM.model.account.user.role == selectedRole ? Color(.label) : Color.gray)
                     }
                 })
             }
-        }.scrollContentBackground(.hidden).onAppear(){
-            print(self.envModel.matching.count)
-        }
+        }.scrollContentBackground(.hidden)
     }
 }

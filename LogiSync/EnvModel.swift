@@ -403,3 +403,11 @@ struct MatchingLocation: Identifiable, Codable {
     var createAt: String
     var delete: Bool
 }
+
+struct Status: Codable {
+    var id: String = ""
+    var userId: String = ""
+    var name: String = ""
+    var createAt: String = ""
+    var delete: Bool = false
+}

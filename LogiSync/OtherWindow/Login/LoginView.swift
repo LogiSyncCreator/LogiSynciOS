@@ -13,6 +13,7 @@ struct LoginView: View {
     
     @StateObject var loginVM = LoginViewModel()
     @EnvironmentObject var envModel: EnvModel
+    @EnvironmentObject var environVM: EnvironmentViewModel
     
     // Model
     @AppStorage ("userId") var userId: String = ""
@@ -74,9 +75,13 @@ struct LoginView: View {
                         Task {
                             do {
                                 
-                                let response = try await loginVM.login(id: userId, pass: userPass)
+                                // 旧処理
+//                                let response = try await loginVM.login(id: userId, pass: userPass)
+//                                
+//                                envModel.setUser(json: response)
                                 
-                                envModel.setUser(json: response)
+                                // 新処理
+                                try await environVM.login(userId: userId, pass: userPass)
                                 
                                 // ログイン処理
                                 withAnimation {
