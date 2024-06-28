@@ -9,7 +9,6 @@ import SwiftUI
 
 // ステータスアイコン
 struct StatusIconUI: View {
-    
     @Binding var symboleColor: String       // アイコンの背景色
     @Binding var symbole: String        // SFシンボル
     @Binding var width: CGFloat         // サイズ
@@ -17,7 +16,9 @@ struct StatusIconUI: View {
     var body: some View {
         ZStack{
             Circle().frame(width: width).foregroundStyle(Color(.systemBackground))
-            Image(systemName: symbole.isEmpty ? "xmark.circle" : symbole).font(.system(size: width - 5)).foregroundColor(Color(symboleColor.isEmpty ? "gray" : symboleColor))
+            Image(systemName: symbole.isEmpty ? "xmark.circle" : symbole).font(.system(size: width - 5)).foregroundColor(Color(symboleColor.isEmpty ? "gray" : symboleColor)).onChange(of: symboleColor) {
+                print(symbole)
+            }
         }
     }
 }

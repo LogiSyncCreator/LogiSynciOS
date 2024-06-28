@@ -15,7 +15,7 @@ class APIManager {
 //  http://192.168.68.82:8080
     
     
-    let host = "http://192.168.68.82:8080"
+    let host = "http://172.20.10.3:8080"
     
     
     // ユーザーのステータス名とタグを検索する　＊名前が一致するもの全て
@@ -76,6 +76,8 @@ class APIManager {
     func searchLocation(param: String) async throws -> Data {
         return try await sendRequest(param: param, endPoint: "/locations/")
     }
+    
+    
     
     func sendRequest(param: String, endPoint: String = "") async throws -> Data {
         

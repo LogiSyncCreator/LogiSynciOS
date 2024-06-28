@@ -11,7 +11,9 @@ import SwiftData
 struct ContentView: View {
     @Environment(\.modelContext) private var modelContext
     @EnvironmentObject var envModel: EnvModel
+    @StateObject var environVM: EnvironmentViewModel = EnvironmentViewModel()
     @Query private var items: [Item]
+    
     // 表示ページのハンドリング
 //    列挙型に変えたい
     @State var viewIndex: Int = 0
@@ -21,7 +23,9 @@ struct ContentView: View {
             if viewIndex != 3 {
                 switch viewIndex {
                 case 0:
-                    StatusView().background(Color(.systemBackground))
+//                    ScrollView{
+                        StatusView().background(Color(.systemBackground))
+//                    }
 //                        .transition(.move(edge: .leading))
                 case 1:
                     MapView().background(Color(.systemBackground))

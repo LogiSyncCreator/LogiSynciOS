@@ -9,17 +9,30 @@ import Foundation
 
 class APIRequests {
     let host: String = "192.168.68.82"
+//    let host: String = "172.20.10.3"
     let port: String = "8080"
     let httpd: String = "http"
     
     
     func userLogin(id: String, pass: String) async throws -> Data {
         let postData: [String: Any] = ["username":id, "password":pass]
-        return try await APIRequest(postData: postData, endPoint: "login")
+        return try await APIRequest(postData: postData, endPoint: "accounts/login")
     }
     
     func getStatus(id: String) async throws -> Data {
-        return try await APIRequest(param: id, endPoint: "nowstatus")
+        return try await APIRequest(param: id, endPoint: "/status/nowstatus")
+    }
+    
+    func getStatusList(managerId: String, shipperId: String) async throws -> Data {
+        return try await APIRequest(param: "\(managerId)/\(shipperId)/", endPoint: "status/groupstatus")
+    }
+    
+    func getMatchingGroup(postData: [String: Any]) async throws -> Data {
+        return try await APIRequest(postData: postData, endPoint: "matching/group")
+    }
+    
+    func updateMyStatus(userId: String, statusId: String) async throws -> Data {
+        return try await APIRequest(param: "\(userId)/\(statusId)", endPoint: "status/setstatus")
     }
     
     /// Description

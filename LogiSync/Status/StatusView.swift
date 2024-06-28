@@ -8,8 +8,7 @@
 import SwiftUI
 
 struct StatusView: View {
-    
-    @EnvironmentObject var envModel: EnvModel
+    @EnvironmentObject var environVM: EnvironmentViewModel
 
     // 対象のユーザーのステータス
     // ピッカーに合わせて切り替える
@@ -26,7 +25,7 @@ struct StatusView: View {
     @State var rollFontColor: Color = Color(.label)
     @State var thumbWidth: CGFloat = 100
     @State var thumbStatusIconWidth: CGFloat = 40
-    @State var selectedRole: String = ""
+    @State var selectedRole: String = "運転手"
     
     
     var body: some View {
@@ -36,30 +35,30 @@ struct StatusView: View {
                 Spacer()
                 // ここのピッカーの値変更で表示を切り替えできるようにする
                 RolePicker(selectedRole: $selectedRole, fontColor: $rollFontColor).onAppear(){
-                    selectedRole = envModel.user.role
-                }.onChange(of: envModel.user.name) {
-                    selectedRole = envModel.user.role
-                }.disabled(envModel.nowMatching.id.isEmpty)
+                    selectedRole = environVM.model.account.user.role
+                }.onChange(of: environVM.model.account.user.name) {
+                    selectedRole = environVM.model.account.user.role
+                }.disabled(environVM.model.nowMatching == -1)
             }.padding()
             Divider()
             HStack{
                 UserThumbnailUI(width: $thumbWidth, uiImage: $account.uiimage).overlay(alignment: Alignment(horizontal: .trailing, vertical: .bottom)) {
-                    if selectedRole == envModel.user.role {
-                        StatusIconUI(symboleColor: $envModel.nowStatus.color, symbole: $envModel.nowStatus.icon, width: $thumbStatusIconWidth)
+                    if selectedRole == environVM.model.account.user.role {
+                        StatusIconUI(symboleColor: $environVM.model.account.status.color, symbole: $environVM.model.account.status.icon, width: $thumbStatusIconWidth)
                     } else {
-                        StatusIconUI(symboleColor: $envModel.selectedMenberStatus.color, symbole: $envModel.selectedMenberStatus.icon, width: $thumbStatusIconWidth)
+                        StatusIconUI(symboleColor: $environVM.model.nowMatchingUser.status.color, symbole: $environVM.model.nowMatchingUser.status.icon, width: $thumbStatusIconWidth)
                     }
                 }
-                UserNameUI(name: selectedRole == envModel.user.role ? $envModel.user.name : $envModel.nowShipper.name, group: selectedRole == envModel.user.role ? $envModel.user.company : $envModel.nowShipper.company).padding(.leading)
+                UserNameUI(name: selectedRole == environVM.model.account.user.role ? $environVM.model.account.user.name : $environVM.model.nowMatchingUser.user.name, group: selectedRole == environVM.model.account.user.role ? $environVM.model.account.user.company : $environVM.model.nowMatchingUser.user.company).padding(.leading)
                 Spacer()
             }.padding()
             Divider()
-            ProfileUI(profile: selectedRole == envModel.user.role ? $envModel.user.profile : $envModel.nowShipper.profile)
-            StatusList(statusModel: $statusModel, myStatus: $nowStatus, selectedRole: $selectedRole).disabled(selectedRole != envModel.user.role)
+            ProfileUI(profile: selectedRole == environVM.model.account.user.role ? $environVM.model.account.user.profile : $environVM.model.nowMatchingUser.user.profile)
+            StatusList(statusModel: $statusModel, selectedRole: $selectedRole).disabled(selectedRole != environVM.model.account.user.role)
         }
     }
 }
 
 #Preview {
-    StatusView().environmentObject(EnvModel())
+    StatusView().environmentObject(EnvironmentViewModel())
 }

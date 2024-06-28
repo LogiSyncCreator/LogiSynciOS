@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct SettingsSheet: View {
-    @EnvironmentObject var envModel: EnvModel
+    @EnvironmentObject var environVM: EnvironmentViewModel
     @Environment(\.presentationMode) var presentationMode
     var body: some View {
         
@@ -16,13 +16,13 @@ struct SettingsSheet: View {
             List {
                 NavigationLink("マッチングリスト") {
                     List {
-                        ForEach(envModel.matchSort.indices){ index in
+                        ForEach(environVM.model.matchings, id: \.matching.id){ matching in
                             Button {
-                                envModel.nowMatching = envModel.matchSort[index]
-                                envModel.nowShipper = envModel.members[index]
+                                environVM.model.nowMatching = matching.index
+                                environVM.changeMatchingCalled.send()
                                 presentationMode.wrappedValue.dismiss()
                             } label: {
-                                Text("\(envModel.members[index].company)：\(envModel.members[index].name)")
+                                Text("\(environVM.model.account.user.role == "運転手" ? matching.user.shipper.company : matching.user.driver.company )：\(environVM.model.account.user.role == "運転手" ? matching.user.shipper.name : matching.user.driver.name )")
                             }
                         }
                     }
@@ -31,7 +31,6 @@ struct SettingsSheet: View {
                     Text("アカウントの情報確認")
                 })
                 Button(action: {
-                    envModel.deleteUserDefaults()
                 }, label: {
                     Text("ログアウト")
                 }).foregroundStyle(Color(.red))
@@ -44,5 +43,5 @@ struct SettingsSheet: View {
 }
 
 #Preview {
-    SettingsSheet().environmentObject(EnvModel())
+    SettingsSheet().environmentObject(EnvironmentViewModel())
 }
