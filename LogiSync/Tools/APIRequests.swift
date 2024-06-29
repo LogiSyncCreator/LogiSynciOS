@@ -35,6 +35,11 @@ class APIRequests {
         return try await APIRequest(param: "\(userId)/\(statusId)", endPoint: "status/setstatus")
     }
     
+    func checkToken(token: UserToken) async throws {
+        let postData = ["userId": token.userId, "token": token.token]
+        return try await APIRequest(postData: postData, endPoint: "push")
+    }
+    
     /// Description
     /// - Parameters:
     ///   - param: http://******/{param}

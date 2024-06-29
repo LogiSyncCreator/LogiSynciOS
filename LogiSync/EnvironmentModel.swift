@@ -97,6 +97,16 @@ struct EnvironmentModel {
             return UserStatus()
         }
     }
+    
+    func checkMyToken() async throws {
+        do {
+            let key = "token"
+            guard let token = UserDefaults.standard.string(forKey: key) else { return }
+            try await api.checkToken(token: UserToken(userId: self.account.user.userId, token: token))
+        } catch {
+            print("token is invalid.")
+        }
+    }
 }
 
 struct MyUser {
@@ -145,4 +155,7 @@ struct MatchingUser: Codable {
     var driver: UserInformation
 }
 
-
+struct UserToken: Codable {
+    var userId: String
+    var token: String
+}

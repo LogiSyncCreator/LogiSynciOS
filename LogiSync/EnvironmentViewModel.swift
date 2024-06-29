@@ -22,6 +22,7 @@ class EnvironmentViewModel: ObservableObject {
         loginCalled.sink { [weak self] () in
             guard let self = self else { return }
             Task{
+                try await self.model.checkMyToken()
                 try await self.getUserStatus()
                 try await self.getMatchings()
                 try await self.findStatusList(managerId: "manager", shipperId: "shipper")
