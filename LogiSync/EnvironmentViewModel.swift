@@ -75,6 +75,7 @@ class EnvironmentViewModel: ObservableObject {
         
         NotificationCenter.default.publisher(for: Notification.Name("didReceiveRemoteNotification")).sink { [weak self] notificatin in
             guard let self = self else { return }
+            // マッチング登録の受信
             if notificatin.userInfo!["mode"] as! String == "matching" {
                 Task {
                     try await self.getMatchings()
@@ -83,6 +84,19 @@ class EnvironmentViewModel: ObservableObject {
                     }
                 }
             }
+            // ステータスの受信
+            if notificatin.userInfo!["mode"] as! String == "status" {
+                let userId = notificatin.userInfo!["userId"] as! String
+                Task {
+                    let status = try await self.model.retriveMatchingUserStatus(userId: userId)
+                    try await self.getMatchings()
+                    await MainActor.run {
+                        self.model.nowMatchingUser.status = status
+                        self.isReView.toggle()
+                    }
+                }
+            }
+            
         }.store(in: &cancellables)
     }
     
