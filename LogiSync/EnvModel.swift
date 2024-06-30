@@ -104,21 +104,21 @@ class EnvModel: ObservableObject {
                 }
             }.store(in: &cancellables)
         
-        NotificationCenter.default.publisher(for: Notification.Name("didReceiveRemoteNotification"))
-            .sink { [weak self] notification in
-                guard let self = self else { return }
-                // 通知の監視
-                if notification.userInfo?["mode"] != nil {
-                    print("バックグラウンドから通知")
-                    if notification.userInfo!["mode"] as! String == "status" {
-                        Task {
-                            try? await self.setSelectedMenberStatus()
-                        }
-                    }
-                } else {
-                    print("不明な通知")
-                }
-            }.store(in: &cancellable)
+//        NotificationCenter.default.publisher(for: Notification.Name("didReceiveRemoteNotification"))
+//            .sink { [weak self] notification in
+//                guard let self = self else { return }
+//                // 通知の監視
+//                if notification.userInfo?["mode"] != nil {
+//                    print("バックグラウンドから通知")
+//                    if notification.userInfo!["mode"] as! String == "status" {
+//                        Task {
+//                            try? await self.setSelectedMenberStatus()
+//                        }
+//                    }
+//                } else {
+//                    print("不明な通知")
+//                }
+//            }.store(in: &cancellable)
 
         }
 

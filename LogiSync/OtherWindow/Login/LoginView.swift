@@ -83,11 +83,13 @@ struct LoginView: View {
                                 // 新処理
                                 try await environVM.login(userId: userId, pass: userPass)
                                 
-                                // ログイン処理
-                                withAnimation {
-                                    index = 0
-                                    isFocus1 = false
-                                    isFocus2 = false
+                                if !environVM.model.account.user.userId.isEmpty {
+                                    // ログイン処理
+                                    withAnimation {
+                                        index = 0
+                                        isFocus1 = false
+                                        isFocus2 = false
+                                    }
                                 }
                                 
                             } catch {

@@ -40,6 +40,7 @@ struct LogiSyncApp: App {
 class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterDelegate {
     
     let userDefaultKey: String = "token"
+    let tokenFlagKey: String = "tokenFlag"
     let envModel = EnvModel()
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
@@ -57,22 +58,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
             print(i.key)
             print(i.value)
         }
-        
-        // プッシュ通知を受信した時の処理
-        if let aps = userInfo["aps"] as? [String: Any] {
-            if let alert = aps["alert"] as? [String: Any] {
-                let title = alert["title"] as? String ?? "No Title"
-                let body = alert["body"] as? String ?? "No Body"
-                
-                print(title)
-                
-                print("alert \(alert.count)")
-            }
-            
-            print("aps \(aps.count)")
-        }
-        
-        
         
         completionHandler(.newData)
     }
@@ -96,6 +81,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
         let tokenParts = deviceToken.map { data in String(format: "%02.2hhx", data) }
         let token = tokenParts.joined()
+        let beforeToken = UserDefaults.standard.string(forKey: userDefaultKey)
         print("Device Token: \(token)")
         // このトークンをサーバーに送信
         UserDefaults.standard.set(token, forKey: userDefaultKey)

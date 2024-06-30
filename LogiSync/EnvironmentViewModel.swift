@@ -17,6 +17,10 @@ class EnvironmentViewModel: ObservableObject {
     public let changeStatusCalled = PassthroughSubject<CustomStatus, Never>()
     public let changeMatchingCalled = PassthroughSubject<Void, Never>()
     
+    
+    private let userDefaultKey: String = "token"
+    private let tokenFlagKey: String = "tokenFlag"
+    
     init() {
 
         loginCalled.sink { [weak self] () in
@@ -69,6 +73,17 @@ class EnvironmentViewModel: ObservableObject {
             }
         }.store(in: &cancellables)
         
+        NotificationCenter.default.publisher(for: Notification.Name("didReceiveRemoteNotification")).sink { [weak self] notificatin in
+            guard let self = self else { return }
+            if notificatin.userInfo!["mode"] as! String == "matching" {
+                Task {
+                    try await self.getMatchings()
+                    await MainActor.run {
+                        self.isReView.toggle()
+                    }
+                }
+            }
+        }.store(in: &cancellables)
     }
     
     func login(userId: String, pass: String) async throws {
