@@ -29,7 +29,7 @@ class EnvironmentViewModel: ObservableObject {
                 try await self.model.checkMyToken()
                 try await self.getUserStatus()
                 try await self.getMatchings()
-                try await self.findStatusList(managerId: "manager", shipperId: "shipper")
+                try await self.findStatusList(managerId: "", shipperId: "")
                 await MainActor.run {
                     self.isReView.toggle()
                 }
@@ -63,9 +63,9 @@ class EnvironmentViewModel: ObservableObject {
             
             
             Task{
-                
                 let staus = try await self.model.retriveMatchingUserStatus(userId: self.model.nowMatchingUser.user.userId)
                 print(self.model.nowMatchingUser.user.userId)
+                try await self.findStatusList(managerId: self.model.matchings[self.model.nowMatching].user.manager.userId, shipperId: self.model.matchings[self.model.nowMatching].user.shipper.userId)
                 await MainActor.run {
                     self.model.nowMatchingUser.status = staus
                     self.isReView.toggle()
