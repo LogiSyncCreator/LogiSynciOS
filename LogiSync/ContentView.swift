@@ -24,7 +24,7 @@ struct ContentView: View {
                 switch viewIndex {
                 case 0:
 //                    ScrollView{
-                        StatusView().background(Color(.systemBackground))
+                    StatusView(viewIndex: $viewIndex).background(Color(.systemBackground))
 //                    }
 //                        .transition(.move(edge: .leading))
                 case 1:
@@ -34,7 +34,7 @@ struct ContentView: View {
                     Text("comming soon...").background(Color(.systemBackground))
 //                        .transition(.move(edge: .leading))
                 default:
-                    StatusView().transition(.move(edge: .leading))
+                    StatusView(viewIndex: $viewIndex).transition(.move(edge: .leading))
                 }
             }
             

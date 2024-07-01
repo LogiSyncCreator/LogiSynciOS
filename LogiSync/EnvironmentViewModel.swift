@@ -16,6 +16,7 @@ class EnvironmentViewModel: ObservableObject {
     private let loginCalled = PassthroughSubject<Void, Never>()
     public let changeStatusCalled = PassthroughSubject<CustomStatus, Never>()
     public let changeMatchingCalled = PassthroughSubject<Void, Never>()
+    public let changeLogoutCalled = PassthroughSubject<Void, Never>()
     
     
     private let userDefaultKey: String = "token"
@@ -29,7 +30,7 @@ class EnvironmentViewModel: ObservableObject {
                 try await self.model.checkMyToken()
                 try await self.getUserStatus()
                 try await self.getMatchings()
-                try await self.findStatusList(managerId: "manager", shipperId: "shipper")
+                try await self.findStatusList(managerId: "", shipperId: "")
                 await MainActor.run {
                     self.isReView.toggle()
                 }
@@ -41,7 +42,7 @@ class EnvironmentViewModel: ObservableObject {
             Task{
                 let status = try await self.updateUserStatus(statusId:customStatus.id)
                 
-                let nowStatus = UserStatus(id: status.id, userId: status.userId, statusId: status.statusId, name: customStatus.name, color: customStatus.color, icon: customStatus.icon)
+//                let nowStatus = UserStatus(id: status.id, userId: status.userId, statusId: status.statusId, name: customStatus.name, color: customStatus.color, icon: customStatus.icon)
                 
                 await MainActor.run {
 //                   self.model.account.status = nowStatus
@@ -63,14 +64,34 @@ class EnvironmentViewModel: ObservableObject {
             
             
             Task{
-                
                 let staus = try await self.model.retriveMatchingUserStatus(userId: self.model.nowMatchingUser.user.userId)
                 print(self.model.nowMatchingUser.user.userId)
+                try await self.findStatusList(managerId: self.model.matchings[self.model.nowMatching].user.manager.userId, shipperId: self.model.matchings[self.model.nowMatching].user.shipper.userId)
                 await MainActor.run {
                     self.model.nowMatchingUser.status = staus
                     self.isReView.toggle()
                 }
             }
+        }.store(in: &cancellables)
+        
+        changeLogoutCalled.sink { [weak self] () in
+            
+            guard let self = self else {
+                return
+            }
+            
+            guard let token = UserDefaults.standard.string(forKey: self.userDefaultKey) else {
+                print("token is invalid")
+                return
+            }
+                    
+            Task {
+                try? await APIRequests().deleteToken(token: token)
+                await MainActor.run {
+                    self.isReView.toggle()
+                }
+            }
+            
         }.store(in: &cancellables)
         
         NotificationCenter.default.publisher(for: Notification.Name("didReceiveRemoteNotification")).sink { [weak self] notificatin in
@@ -126,10 +147,10 @@ class EnvironmentViewModel: ObservableObject {
             postData = ["driver": model.account.user.userId,"manager":"","shipper":""]
             break
         case "荷主":
-            postData = ["driver": "","manager": model.account.user.userId,"shipper":""]
+            postData = ["driver": "","manager": "","shipper": model.account.user.userId]
             break
         case "管理者":
-            postData = ["driver": "","manager": "","shipper": model.account.user.userId]
+            postData = ["driver": "","manager": model.account.user.userId,"shipper":""]
             break
         default:
             break
@@ -157,4 +178,12 @@ class EnvironmentViewModel: ObservableObject {
         return updateStatus
     }
     
+    // ログアウト処理
+    func initModels(){
+        self.model.account = MyUser()
+        self.model.statusList = []
+        self.model.matchings = []
+        self.model.nowMatchingUser = MyUser()
+        self.model.nowMatching = -1
+    }
 }

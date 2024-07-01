@@ -10,6 +10,7 @@ import SwiftUI
 struct SettingsSheet: View {
     @EnvironmentObject var environVM: EnvironmentViewModel
     @Environment(\.presentationMode) var presentationMode
+    @Binding var viewIndex: Int
     var body: some View {
         
         NavigationStack {
@@ -27,21 +28,17 @@ struct SettingsSheet: View {
                         }
                     }
                 }
-                Button(action: {}, label: {
-                    Text("アカウントの情報確認")
-                })
                 Button(action: {
+                    environVM.changeLogoutCalled.send(())
+                    environVM.initModels()
+                    withAnimation {
+                        viewIndex = 3
+                    }
+                    presentationMode.wrappedValue.dismiss()
                 }, label: {
                     Text("ログアウト")
-                }).foregroundStyle(Color(.red))
-                Button(action: {}, label: {
-                    Text("アカウントの削除")
                 }).foregroundStyle(Color(.red))
             }.foregroundStyle(Color(.label))
         }
     }
-}
-
-#Preview {
-    SettingsSheet().environmentObject(EnvironmentViewModel())
 }
