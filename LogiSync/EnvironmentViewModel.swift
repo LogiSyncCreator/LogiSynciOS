@@ -44,7 +44,7 @@ class EnvironmentViewModel: ObservableObject {
                 let nowStatus = UserStatus(id: status.id, userId: status.userId, statusId: status.statusId, name: customStatus.name, color: customStatus.color, icon: customStatus.icon)
                 
                 await MainActor.run {
-                   self.model.account.status = nowStatus
+//                   self.model.account.status = nowStatus
                    self.isReView.toggle()
                 }
             }
@@ -91,7 +91,11 @@ class EnvironmentViewModel: ObservableObject {
                     let status = try await self.model.retriveMatchingUserStatus(userId: userId)
                     try await self.getMatchings()
                     await MainActor.run {
-                        self.model.nowMatchingUser.status = status
+                        if userId == self.model.account.user.userId {
+                            self.model.account.status = status
+                        } else {
+                            self.model.nowMatchingUser.status = status
+                        }
                         self.isReView.toggle()
                     }
                 }
