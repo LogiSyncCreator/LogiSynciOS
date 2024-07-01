@@ -33,7 +33,7 @@ struct StatusList: View {
                         StatusIconUI(symboleColor: $environVM.model.statusList[index].color, symbole: $environVM.model.statusList[index].icon, width: $width)
                         Text(environVM.model.statusList[index].name).foregroundStyle(environVM.model.account.user.role == selectedRole ? Color(.label) : Color.gray)
                     }
-                })
+                }).disabled(environVM.model.statusList[index].id == environVM.model.account.status.statusId)
             }
         }.scrollContentBackground(.hidden)
     }

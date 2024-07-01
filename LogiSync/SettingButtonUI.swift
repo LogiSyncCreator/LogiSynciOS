@@ -9,17 +9,14 @@ import SwiftUI
 
 struct SettingButtonUI: View {
     @State var isOpen: Bool = false
+    @Binding var viewIndex: Int
     var body: some View {
         Button(action: {
             isOpen.toggle()
         }, label: {
             Image(systemName: "gearshape.fill")
         }).sheet(isPresented: $isOpen, content: {
-            SettingsSheet()
+            SettingsSheet(viewIndex: $viewIndex)
         })
     }
-}
-
-#Preview {
-    SettingButtonUI()
 }

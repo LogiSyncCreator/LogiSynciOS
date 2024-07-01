@@ -40,19 +40,23 @@ class APIRequests {
         return try await APIRequest(postData: postData, endPoint: "push")
     }
     
+    func deleteToken(token: String) async throws {
+        return try await APIRequest(param: token, endPoint: "deletetoken", method: "DELETE")
+    }
+    
     /// Description
     /// - Parameters:
     ///   - param: http://******/{param}
     ///   - postData: ["key": value, ...]
     ///   - endPoint: http://{endpoint}/{param}
     ///   - method: GET or DELETE
-    func APIRequest(param: String, endPoint: String) async throws {
+    func APIRequest(param: String, endPoint: String, method: String = "GET") async throws {
         guard let url = URL(string: "\(httpd)://\(host):\(port)/\(endPoint)/\(param)") else {
             throw URLError(.badURL)
         }
         // URLRequestオブジェクトを作成
         var request = URLRequest(url: url)
-        request.httpMethod = "GET"
+        request.httpMethod = method
         
         // URLSessionを使用してリクエストを送信
         let (_, response) = try await URLSession.shared.data(for: request)
@@ -69,13 +73,13 @@ class APIRequests {
     ///   - postData: ["key": value, ...]
     ///   - endPoint: http://{endpoint}/{param}
     ///   - method: POST or DELETE
-    func APIRequest(postData: [String: Any], endPoint: String) async throws {
+    func APIRequest(postData: [String: Any], endPoint: String, method: String = "POST") async throws {
         guard let url = URL(string: "\(httpd)://\(host):\(port)/\(endPoint)") else {
             throw URLError(.badURL)
         }
         // URLRequestオブジェクトを作成
         var request = URLRequest(url: url)
-        request.httpMethod = "POST"
+        request.httpMethod = method
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
         
         // POSTデータを設定
@@ -96,13 +100,13 @@ class APIRequests {
     ///   - postData: ["key": value, ...]
     ///   - endPoint: http://{endpoint}/{param}
     ///   - method: GET or DELETE
-    func APIRequest(param: String, endPoint: String) async throws -> Data {
+    func APIRequest(param: String, endPoint: String, method: String = "GET") async throws -> Data {
         guard let url = URL(string: "\(httpd)://\(host):\(port)/\(endPoint)/\(param)") else {
             throw URLError(.badURL)
         }
         // URLRequestオブジェクトを作成
         var request = URLRequest(url: url)
-        request.httpMethod = "GET"
+        request.httpMethod = method
         
         // URLSessionを使用してリクエストを送信
         let (data, response) = try await URLSession.shared.data(for: request)
@@ -121,13 +125,13 @@ class APIRequests {
     ///   - postData: ["key": value, ...]
     ///   - endPoint: http://{endpoint}/{param}
     ///   - method: POST or DELETE
-    func APIRequest(postData: [String: Any], endPoint: String) async throws -> Data {
+    func APIRequest(postData: [String: Any], endPoint: String, method: String = "POST") async throws -> Data {
         guard let url = URL(string: "\(httpd)://\(host):\(port)/\(endPoint)") else {
             throw URLError(.badURL)
         }
         // URLRequestオブジェクトを作成
         var request = URLRequest(url: url)
-        request.httpMethod = "POST"
+        request.httpMethod = method
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
         
         // POSTデータを設定

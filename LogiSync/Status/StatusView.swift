@@ -27,11 +27,13 @@ struct StatusView: View {
     @State var thumbStatusIconWidth: CGFloat = 40
     @State var selectedRole: String = "運転手"
     
+    @Binding var viewIndex: Int
+    
     
     var body: some View {
         VStack{
             HStack{
-                SettingButtonUI()
+                SettingButtonUI(viewIndex: $viewIndex)
                 Spacer()
                 // ここのピッカーの値変更で表示を切り替えできるようにする
                 RolePicker(selectedRole: $selectedRole, fontColor: $rollFontColor).onAppear(){
@@ -59,6 +61,6 @@ struct StatusView: View {
     }
 }
 
-#Preview {
-    StatusView().environmentObject(EnvironmentViewModel())
-}
+//#Preview {
+//    StatusView().environmentObject(EnvironmentViewModel())
+//}
