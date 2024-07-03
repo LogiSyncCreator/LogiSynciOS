@@ -38,9 +38,10 @@ class EnvironmentViewModel: ObservableObject {
         }.store(in: &cancellables)
         
         changeStatusCalled.sink { [weak self] customStatus in
+            let completed: Bool = false
             guard let self = self else { return }
             Task{
-                let status = try await self.updateUserStatus(statusId:customStatus.id)
+                let _ = try await self.updateUserStatus(statusId:customStatus.id)
                 
 //                let nowStatus = UserStatus(id: status.id, userId: status.userId, statusId: status.statusId, name: customStatus.name, color: customStatus.color, icon: customStatus.icon)
                 
@@ -61,6 +62,7 @@ class EnvironmentViewModel: ObservableObject {
             } else {
                 self.model.nowMatchingUser.user = self.model.matchings[self.model.nowMatching].user.driver
             }
+            self.model.nowMatchingInformation = self.model.matchings[self.model.nowMatching].matching
             
             
             Task{
