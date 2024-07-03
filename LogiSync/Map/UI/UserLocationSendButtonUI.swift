@@ -13,25 +13,26 @@ struct UserLocationSendButtonUI: View {
     @ObservedObject var lonMan: LocationManager
     @Environment(\.modelContext) private var modelContext
     @Query private var local: [LocationData]
-    @EnvironmentObject var envModel: EnvModel
+    @EnvironmentObject var environVM: EnvironmentViewModel
     
     var body: some View {
         Button {
-            if envModel.user.role == "運転手" {
+            if environVM.model.account.user.role == "運転手" {
                 if let location = lonMan.location {
-                    let newModel = LocationData(id: UUID().uuidString, userId: envModel.user.userId, longitude: location.coordinate.longitude, latitude: location.coordinate.latitude, createAt: Date(), status: envModel.nowStatus.name, sending: false)
+                    let newModel = LocationData(id: UUID().uuidString, userId: environVM.model.account.user.userId, longitude: location.coordinate.longitude, latitude: location.coordinate.latitude, createAt: Date(), status: environVM.model.account.status.name, sending: false)
                     modelContext.insert(newModel)
                     try! modelContext.save()
                 }
             } else {
                 Task{
-                    try await envModel.setMatchingLocations()
+                    // 更新処理
+//                    try await envModel.setMatchingLocations()
                 }
             }
         } label: {
             HStack{
                 Image(systemName: "mappin.circle")
-                Text(envModel.user.role == "運転手" ? "送信" : "受信")
+                Text(environVM.model.account.user.role == "運転手" ? "送信" : "受信")
             }.font(.title3).foregroundStyle(Color(.label)).padding()
         }.background(Color(.systemGray4), in: RoundedRectangle(cornerRadius: 10.0))
 
