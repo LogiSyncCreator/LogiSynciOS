@@ -48,6 +48,7 @@
 		EDDDC1E82C2DCA38003C96D9 /* EnvironmentModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDDDC1E72C2DCA38003C96D9 /* EnvironmentModel.swift */; };
 		EDDDC1EC2C2DE0E0003C96D9 /* APIRequests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDDDC1EB2C2DE0E0003C96D9 /* APIRequests.swift */; };
 		EDDDC1EE2C2DEDF9003C96D9 /* EnvironmentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDDDC1ED2C2DEDF9003C96D9 /* EnvironmentViewModel.swift */; };
+		EDDDC1F22C33089D003C96D9 /* MapViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDDDC1F12C33089D003C96D9 /* MapViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -96,6 +97,7 @@
 		EDDDC1E72C2DCA38003C96D9 /* EnvironmentModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnvironmentModel.swift; sourceTree = "<group>"; };
 		EDDDC1EB2C2DE0E0003C96D9 /* APIRequests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIRequests.swift; sourceTree = "<group>"; };
 		EDDDC1ED2C2DEDF9003C96D9 /* EnvironmentViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnvironmentViewModel.swift; sourceTree = "<group>"; };
+		EDDDC1F12C33089D003C96D9 /* MapViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -206,6 +208,7 @@
 			children = (
 				ED5B975C2C1BFA8D00AE1606 /* UI */,
 				ED5B975D2C1BFA9D00AE1606 /* MapView.swift */,
+				EDDDC1F12C33089D003C96D9 /* MapViewModel.swift */,
 			);
 			path = Map;
 			sourceTree = "<group>";
@@ -402,6 +405,7 @@
 				ED5B97442C1B344600AE1606 /* RolePicker.swift in Sources */,
 				EDDDC1E62C2BADEB003C96D9 /* LocationDeleteButton.swift in Sources */,
 				ED5B97D82C28C64400AE1606 /* APIManager.swift in Sources */,
+				EDDDC1F22C33089D003C96D9 /* MapViewModel.swift in Sources */,
 				ED57779B2C18C0520042A5B5 /* LogiSyncApp.swift in Sources */,
 				ED5B97562C1B552D00AE1606 /* StatusTestData.swift in Sources */,
 				ED5B974A2C1B428E00AE1606 /* UserNameUI.swift in Sources */,

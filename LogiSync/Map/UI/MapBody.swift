@@ -19,6 +19,7 @@ struct MapBody: View {
     
     @ObservedObject var locationManager: LocationManager
     @EnvironmentObject var envModel: EnvModel
+    @EnvironmentObject var environVM: EnvironmentViewModel
     
     @State private var userCameraPosition: MapCameraPosition = .automatic
     
@@ -31,36 +32,19 @@ struct MapBody: View {
     var body: some View {
         ZStack {
             Map(position: $userCameraPosition){
-//                // ここから#11 送信したマップのサークル サークルサイズは50m
-//                ForEach(mapTestData.sendPoints.indices, id: \.self){index in
-//                    Marker(coordinate: CLLocationCoordinate2D(latitude: mapTestData.sendPoints[index].point.latitude, longitude: mapTestData.sendPoints[index].point.longitude)) {
-//                        VStack{
-//                            Text("\(mapTestData.sendPoints[index].time)\n\(mapTestData.sendPoints[index].status)")
-//                        }
-//                    }.tint(.green)
-//                    MapCircle(center: CLLocationCoordinate2D(latitude: mapTestData.sendPoints[index].point.latitude, longitude: mapTestData.sendPoints[index].point.longitude), radius: CLLocationDistance(100)).foregroundStyle(Color(uiColor: sendCircleColor))
-//                }
-                // #11
-                if envModel.user.role == "運転手" {
-                    ForEach(locationData.indices, id: \.self){ index in
-                        Marker(coordinate: CLLocationCoordinate2D(latitude: locationData[index].latitude, longitude: locationData[index].longitude)){
+
+//                マッチング関係にある共有位置情報の取得
+//                それらの表示
+//                onApperの処理
+                ForEach(envModel.nowMatchingLocations.indices, id: \.self) { index in
+                    if envModel.nowMatchingLocations[index].userId == envModel.nowShipper.userId
+                        {
+                        Marker(coordinate: CLLocationCoordinate2D(latitude: envModel.nowMatchingLocations[index].latitude, longitude: envModel.nowMatchingLocations[index].longitude)){
                             VStack{
-                                Text("\(locationData[index].createAt.description)\n\(locationData[index].status)")
+                                Text("\(envModel.nowMatchingLocations[index].createAt.description)\n\(envModel.nowMatchingLocations[index].status)")
                             }
                         }.tint(.green)
-                        MapCircle(center: CLLocationCoordinate2D(latitude: locationData[index].latitude, longitude: locationData[index].longitude), radius: CLLocationDistance(100)).foregroundStyle(Color(uiColor: sendCircleColor))
-                    }
-                } else {
-                    ForEach(envModel.nowMatchingLocations.indices, id: \.self) { index in
-                        if envModel.nowMatchingLocations[index].userId == envModel.nowShipper.userId
-                            {
-                            Marker(coordinate: CLLocationCoordinate2D(latitude: envModel.nowMatchingLocations[index].latitude, longitude: envModel.nowMatchingLocations[index].longitude)){
-                                VStack{
-                                    Text("\(envModel.nowMatchingLocations[index].createAt.description)\n\(envModel.nowMatchingLocations[index].status)")
-                                }
-                            }.tint(.green)
-                            MapCircle(center: CLLocationCoordinate2D(latitude: envModel.nowMatchingLocations[index].latitude, longitude: envModel.nowMatchingLocations[index].longitude), radius: CLLocationDistance(100)).foregroundStyle(Color(uiColor: sendCircleColor))
-                        }
+                        MapCircle(center: CLLocationCoordinate2D(latitude: envModel.nowMatchingLocations[index].latitude, longitude: envModel.nowMatchingLocations[index].longitude), radius: CLLocationDistance(100)).foregroundStyle(Color(uiColor: sendCircleColor))
                     }
                 }
                 
@@ -83,26 +67,14 @@ struct MapBody: View {
                 MapUserLocationButton()
                     .mapControlVisibility(.visible)
             }.onAppear {
-                locationManager.geoCoding(address: envModel.nowMatching.address) { position, err in
+                // 目的地をもとに処理する
+                locationManager.geoCoding(address: environVM.model.nowMatchingInformation.address) { position, err in
                     if let position = position {
                         self.golLocation = position
                         
                         userCameraPosition = .camera(MapCamera.init(centerCoordinate: locationManager.midpointCoordinate(coordinate1: CLLocationCoordinate2D(latitude: locationManager.location?.coordinate.latitude ?? 0.0, longitude: locationManager.location?.coordinate.longitude ?? 0.0), coordinate2: CLLocationCoordinate2D(latitude: golLocation.latitude, longitude: golLocation.longitude)), distance: locationManager.distanceBetweenCoordinates(coordinate1: CLLocationCoordinate2D(latitude: locationManager.location?.coordinate.latitude ?? 0.0, longitude: locationManager.location?.coordinate.longitude ?? 0.0), coordinate2: CLLocationCoordinate2D(latitude: golLocation.latitude, longitude: golLocation.longitude)) * 10))
-                        
                     }
                 }
-                
-                for data in locationData {
-                    print("-------")
-                    print(data.id)
-                    print(data.userId)
-                    print(data.longitude)
-                    print(data.latitude)
-                    print(data.createAt)
-                    print(data.status)
-                    print("-------")
-                }
-                
             }.onMapCameraChange {
                 index = -1
             }
