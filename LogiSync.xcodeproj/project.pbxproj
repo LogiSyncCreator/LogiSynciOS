@@ -49,6 +49,7 @@
 		EDDDC1EC2C2DE0E0003C96D9 /* APIRequests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDDDC1EB2C2DE0E0003C96D9 /* APIRequests.swift */; };
 		EDDDC1EE2C2DEDF9003C96D9 /* EnvironmentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDDDC1ED2C2DEDF9003C96D9 /* EnvironmentViewModel.swift */; };
 		EDDDC1F22C33089D003C96D9 /* MapViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDDDC1F12C33089D003C96D9 /* MapViewModel.swift */; };
+		EDDDC1F42C367FFA003C96D9 /* MapModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDDDC1F32C367FFA003C96D9 /* MapModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -98,6 +99,7 @@
 		EDDDC1EB2C2DE0E0003C96D9 /* APIRequests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIRequests.swift; sourceTree = "<group>"; };
 		EDDDC1ED2C2DEDF9003C96D9 /* EnvironmentViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnvironmentViewModel.swift; sourceTree = "<group>"; };
 		EDDDC1F12C33089D003C96D9 /* MapViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewModel.swift; sourceTree = "<group>"; };
+		EDDDC1F32C367FFA003C96D9 /* MapModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -209,6 +211,7 @@
 				ED5B975C2C1BFA8D00AE1606 /* UI */,
 				ED5B975D2C1BFA9D00AE1606 /* MapView.swift */,
 				EDDDC1F12C33089D003C96D9 /* MapViewModel.swift */,
+				EDDDC1F32C367FFA003C96D9 /* MapModel.swift */,
 			);
 			path = Map;
 			sourceTree = "<group>";
@@ -390,6 +393,7 @@
 				ED5B978A2C1EC66B00AE1606 /* RegistModel.swift in Sources */,
 				ED5B97862C1EAF3200AE1606 /* RegistView.swift in Sources */,
 				EDDDC1EC2C2DE0E0003C96D9 /* APIRequests.swift in Sources */,
+				EDDDC1F42C367FFA003C96D9 /* MapModel.swift in Sources */,
 				ED5B97462C1B38CF00AE1606 /* StatusIconUI.swift in Sources */,
 				ED5B977D2C1E9AFA00AE1606 /* RegistTextField.swift in Sources */,
 				ED5B97782C1D5CA600AE1606 /* LoginView.swift in Sources */,

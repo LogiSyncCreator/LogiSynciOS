@@ -28,8 +28,8 @@ class EnvironmentViewModel: ObservableObject {
             guard let self = self else { return }
             Task{
                 try await self.model.checkMyToken()
-                try await self.getUserStatus()
-                try await self.getMatchings()
+                try await self.setUserStatus()
+                try await self.setMatchings()
                 try await self.findStatusList(managerId: "", shipperId: "")
                 await MainActor.run {
                     self.isReView.toggle()
@@ -101,7 +101,7 @@ class EnvironmentViewModel: ObservableObject {
             // マッチング登録の受信
             if notificatin.userInfo!["mode"] as! String == "matching" {
                 Task {
-                    try await self.getMatchings()
+                    try await self.setMatchings()
                     await MainActor.run {
                         self.isReView.toggle()
                     }
@@ -112,7 +112,7 @@ class EnvironmentViewModel: ObservableObject {
                 let userId = notificatin.userInfo!["userId"] as! String
                 Task {
                     let status = try await self.model.retriveMatchingUserStatus(userId: userId)
-                    try await self.getMatchings()
+                    try await self.setMatchings()
                     await MainActor.run {
                         if userId == self.model.account.user.userId {
                             self.model.account.status = status
@@ -135,14 +135,14 @@ class EnvironmentViewModel: ObservableObject {
         }
     }
     
-    func getUserStatus() async throws {
+    func setUserStatus() async throws {
         let status = try await self.model.getUserStatus()
         await MainActor.run {
             self.model.account.status = status
         }
     }
     
-    func getMatchings() async throws {
+    func setMatchings() async throws {
         var postData: [String: Any] = [:]
         switch model.account.user.role {
         case "運転手":

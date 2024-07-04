@@ -32,9 +32,9 @@ class EnvModel: ObservableObject {
     
     init() {
         
-        loadMatchingFromUserDefaults()
-        loadShipperFromUserDefaults()
-        loadSelectedStatusFromUserDefaults()
+//        loadMatchingFromUserDefaults()
+//        loadShipperFromUserDefaults()
+//        loadSelectedStatusFromUserDefaults()
             $user
                 .dropFirst() // 初期値の変更を無視
                 .sink { [weak self] _ in
@@ -90,8 +90,8 @@ class EnvModel: ObservableObject {
                         try? await self.setMatchingLocations()
                     }
                     
-                    self.saveMatchingToUserDefaults(self.nowMatching)
-                    self.saveShipperToUserDefaults(self.nowShipper)
+//                    self.saveMatchingToUserDefaults(self.nowMatching)
+//                    self.saveShipperToUserDefaults(self.nowShipper)
                 }
             }.store(in: &cancellables)
         $nowShipper
@@ -100,7 +100,7 @@ class EnvModel: ObservableObject {
                 guard let self = self else { return }
                 Task {
                     try? await self.setSelectedMenberStatus()
-                    self.saveSelectedStatusToUserDefaults(self.selectedMenberStatus)
+//                    self.saveSelectedStatusToUserDefaults(self.selectedMenberStatus)
                 }
             }.store(in: &cancellables)
         
@@ -278,69 +278,69 @@ class EnvModel: ObservableObject {
         }
     }
     
+//    // userdefaults
+//    private func saveMatchingToUserDefaults(_ matching: Matching) {
+//            do {
+//                let data = try JSONEncoder().encode(matching)
+//                UserDefaults.standard.set(data, forKey: userDefaultsKey)
+//            } catch {
+//                print("Failed to save matching to UserDefaults: \(error)")
+//            }
+//        }
+//        
+//        private func loadMatchingFromUserDefaults() {
+//            guard let data = UserDefaults.standard.data(forKey: userDefaultsKey) else { return }
+//            do {
+//                let matching = try JSONDecoder().decode(Matching.self, from: data)
+//                nowMatching = matching
+//            } catch {
+//                print("Failed to load matching from UserDefaults: \(error)")
+//            }
+//        }
+//    // userdefaults
+//    private func saveShipperToUserDefaults(_ shipper: User) {
+//            do {
+//                let data = try JSONEncoder().encode(shipper)
+//                UserDefaults.standard.set(data, forKey: userDefaultsKey2)
+//            } catch {
+//                print("Failed to save matching to UserDefaults: \(error)")
+//            }
+//        }
+//        
+//        private func loadShipperFromUserDefaults() {
+//            guard let data = UserDefaults.standard.data(forKey: userDefaultsKey2) else { return }
+//            do {
+//                let shipper = try JSONDecoder().decode(User.self, from: data)
+//                nowShipper = shipper
+//            } catch {
+//                print("Failed to load matching from UserDefaults: \(error)")
+//            }
+//        }
     // userdefaults
-    private func saveMatchingToUserDefaults(_ matching: Matching) {
-            do {
-                let data = try JSONEncoder().encode(matching)
-                UserDefaults.standard.set(data, forKey: userDefaultsKey)
-            } catch {
-                print("Failed to save matching to UserDefaults: \(error)")
-            }
-        }
-        
-        private func loadMatchingFromUserDefaults() {
-            guard let data = UserDefaults.standard.data(forKey: userDefaultsKey) else { return }
-            do {
-                let matching = try JSONDecoder().decode(Matching.self, from: data)
-                nowMatching = matching
-            } catch {
-                print("Failed to load matching from UserDefaults: \(error)")
-            }
-        }
-    // userdefaults
-    private func saveShipperToUserDefaults(_ shipper: User) {
-            do {
-                let data = try JSONEncoder().encode(shipper)
-                UserDefaults.standard.set(data, forKey: userDefaultsKey2)
-            } catch {
-                print("Failed to save matching to UserDefaults: \(error)")
-            }
-        }
-        
-        private func loadShipperFromUserDefaults() {
-            guard let data = UserDefaults.standard.data(forKey: userDefaultsKey2) else { return }
-            do {
-                let shipper = try JSONDecoder().decode(User.self, from: data)
-                nowShipper = shipper
-            } catch {
-                print("Failed to load matching from UserDefaults: \(error)")
-            }
-        }
-    // userdefaults
-    private func saveSelectedStatusToUserDefaults(_ status: CustomStatus) {
-            do {
-                let data = try JSONEncoder().encode(status)
-                UserDefaults.standard.set(data, forKey: userDefaultsKey3)
-            } catch {
-                print("Failed to save matching to UserDefaults: \(error)")
-            }
-        }
-        
-        private func loadSelectedStatusFromUserDefaults() {
-            guard let data = UserDefaults.standard.data(forKey: userDefaultsKey3) else { return }
-            do {
-                let status = try JSONDecoder().decode(CustomStatus.self, from: data)
-                selectedMenberStatus = status
-            } catch {
-                print("Failed to load matching from UserDefaults: \(error)")
-            }
-        }
-    
-    func deleteUserDefaults(){
-        UserDefaults.standard.removeObject(forKey: userDefaultsKey)
-        UserDefaults.standard.removeObject(forKey: userDefaultsKey2)
-        UserDefaults.standard.removeObject(forKey: userDefaultsKey3)
-    }
+//    private func saveSelectedStatusToUserDefaults(_ status: CustomStatus) {
+//            do {
+//                let data = try JSONEncoder().encode(status)
+//                UserDefaults.standard.set(data, forKey: userDefaultsKey3)
+//            } catch {
+//                print("Failed to save matching to UserDefaults: \(error)")
+//            }
+//        }
+//        
+//        private func loadSelectedStatusFromUserDefaults() {
+//            guard let data = UserDefaults.standard.data(forKey: userDefaultsKey3) else { return }
+//            do {
+//                let status = try JSONDecoder().decode(CustomStatus.self, from: data)
+//                selectedMenberStatus = status
+//            } catch {
+//                print("Failed to load matching from UserDefaults: \(error)")
+//            }
+//        }
+//    
+//    func deleteUserDefaults(){
+//        UserDefaults.standard.removeObject(forKey: userDefaultsKey)
+//        UserDefaults.standard.removeObject(forKey: userDefaultsKey2)
+//        UserDefaults.standard.removeObject(forKey: userDefaultsKey3)
+//    }
     
     func sendToken() async throws {
         let token = UserDefaults.standard.string(forKey: userDefaultsKey4)
@@ -394,15 +394,7 @@ struct CustomStatus: Identifiable, Codable {
     var index: Int
 }
 
-struct MatchingLocation: Identifiable, Codable {
-    var id: String
-    var userId: String
-    var longitude: Double
-    var latitude: Double
-    var status: String
-    var createAt: String
-    var delete: Bool
-}
+
 
 struct Status: Codable {
     var id: String = ""

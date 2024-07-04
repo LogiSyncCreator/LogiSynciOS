@@ -18,7 +18,7 @@ struct MapBody: View {
     @Binding var mapTestData: MapViewTestData
     
     @ObservedObject var locationManager: LocationManager
-    @EnvironmentObject var envModel: EnvModel
+    @ObservedObject var mapVM: MapViewModel
     @EnvironmentObject var environVM: EnvironmentViewModel
     
     @State private var userCameraPosition: MapCameraPosition = .automatic
@@ -36,16 +36,13 @@ struct MapBody: View {
 //                マッチング関係にある共有位置情報の取得
 //                それらの表示
 //                onApperの処理
-                ForEach(envModel.nowMatchingLocations.indices, id: \.self) { index in
-                    if envModel.nowMatchingLocations[index].userId == envModel.nowShipper.userId
-                        {
-                        Marker(coordinate: CLLocationCoordinate2D(latitude: envModel.nowMatchingLocations[index].latitude, longitude: envModel.nowMatchingLocations[index].longitude)){
+                ForEach(mapVM.model.userLocations.indices, id: \.self) { index in
+                        Marker(coordinate: CLLocationCoordinate2D(latitude: mapVM.model.userLocations[index].latitude, longitude: mapVM.model.userLocations[index].longitude)){
                             VStack{
-                                Text("\(envModel.nowMatchingLocations[index].createAt.description)\n\(envModel.nowMatchingLocations[index].status)")
+                                Text("\(mapVM.model.userLocations[index].createAt.description)\n\(mapVM.model.userLocations[index].status)")
                             }
                         }.tint(.green)
-                        MapCircle(center: CLLocationCoordinate2D(latitude: envModel.nowMatchingLocations[index].latitude, longitude: envModel.nowMatchingLocations[index].longitude), radius: CLLocationDistance(100)).foregroundStyle(Color(uiColor: sendCircleColor))
-                    }
+                        MapCircle(center: CLLocationCoordinate2D(latitude: mapVM.model.userLocations[index].latitude, longitude: mapVM.model.userLocations[index].longitude), radius: CLLocationDistance(100)).foregroundStyle(Color(uiColor: sendCircleColor))
                 }
                 
                 // ここから#14 目的地
@@ -67,6 +64,11 @@ struct MapBody: View {
                 MapUserLocationButton()
                     .mapControlVisibility(.visible)
             }.onAppear {
+                if environVM.model.account.user.role == "運転手" {
+                    mapVM.receivedLocationEvent.send(environVM.model.account)
+                } else {
+                    mapVM.receivedLocationEvent.send(environVM.model.nowMatchingUser)
+                }
                 // 目的地をもとに処理する
                 locationManager.geoCoding(address: environVM.model.nowMatchingInformation.address) { position, err in
                     if let position = position {

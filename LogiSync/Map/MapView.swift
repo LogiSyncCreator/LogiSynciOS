@@ -17,7 +17,7 @@ struct MapView: View {
     @EnvironmentObject var envModel: EnvModel
     var body: some View {
         ZStack(content: {
-            MapBody(mapTestData: $mapTestData, locationManager: locationManager)
+            MapBody(mapTestData: $mapTestData, locationManager: locationManager, mapVM: mapVM)
             VStack{
                 Spacer()
                 HStack{

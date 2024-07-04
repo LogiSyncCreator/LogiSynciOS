@@ -48,6 +48,10 @@ class APIRequests {
         return try await APIRequest(postData: postData, endPoint: "locations")
     }
     
+    func getUserLocation(user: String) async throws -> Data {
+        return try await APIRequest(param: user, endPoint: "locations")
+    }
+    
     /// Description
     /// - Parameters:
     ///   - param: http://******/{param}
