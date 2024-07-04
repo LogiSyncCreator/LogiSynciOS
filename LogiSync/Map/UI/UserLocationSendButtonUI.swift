@@ -7,21 +7,21 @@
 
 import SwiftUI
 import SwiftData
+import MapKit
 
 struct UserLocationSendButtonUI: View {
     
-    @ObservedObject var lonMan: LocationManager
-    @Environment(\.modelContext) private var modelContext
     @Query private var local: [LocationData]
+    @Environment(\.modelContext) private var modelContext
+    @ObservedObject var mapVM: MapViewModel
+    @ObservedObject var lonMan: LocationManager
     @EnvironmentObject var environVM: EnvironmentViewModel
     
     var body: some View {
         Button {
             if environVM.model.account.user.role == "運転手" {
-                if let location = lonMan.location {
-                    let newModel = LocationData(id: UUID().uuidString, userId: environVM.model.account.user.userId, longitude: location.coordinate.longitude, latitude: location.coordinate.latitude, createAt: Date(), status: environVM.model.account.status.name, sending: false)
-                    modelContext.insert(newModel)
-                    try! modelContext.save()
+                if let location = lonMan.location?.coordinate {
+                    mapVM.sendLocationEvent.send(SendLocation(user: environVM.model.account, location: location, message: environVM.model.account.status.name))
                 }
             } else {
                 Task{

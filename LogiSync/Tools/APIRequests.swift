@@ -44,6 +44,10 @@ class APIRequests {
         return try await APIRequest(param: token, endPoint: "deletetoken", method: "DELETE")
     }
     
+    func setNowMyLocation(postData: [String: Any]) async throws {
+        return try await APIRequest(postData: postData, endPoint: "locations")
+    }
+    
     /// Description
     /// - Parameters:
     ///   - param: http://******/{param}
