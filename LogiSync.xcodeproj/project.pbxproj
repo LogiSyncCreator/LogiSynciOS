@@ -50,6 +50,7 @@
 		EDDDC1EE2C2DEDF9003C96D9 /* EnvironmentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDDDC1ED2C2DEDF9003C96D9 /* EnvironmentViewModel.swift */; };
 		EDDDC1F22C33089D003C96D9 /* MapViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDDDC1F12C33089D003C96D9 /* MapViewModel.swift */; };
 		EDDDC1F42C367FFA003C96D9 /* MapModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDDDC1F32C367FFA003C96D9 /* MapModel.swift */; };
+		EDDDC1F62C372B18003C96D9 /* TestLocalNotification.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDDDC1F52C372B18003C96D9 /* TestLocalNotification.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -100,6 +101,7 @@
 		EDDDC1ED2C2DEDF9003C96D9 /* EnvironmentViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnvironmentViewModel.swift; sourceTree = "<group>"; };
 		EDDDC1F12C33089D003C96D9 /* MapViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewModel.swift; sourceTree = "<group>"; };
 		EDDDC1F32C367FFA003C96D9 /* MapModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapModel.swift; sourceTree = "<group>"; };
+		EDDDC1F52C372B18003C96D9 /* TestLocalNotification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestLocalNotification.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -233,6 +235,7 @@
 				ED5B97662C1C09EF00AE1606 /* LocationManager.swift */,
 				ED5B97D72C28C64400AE1606 /* APIManager.swift */,
 				EDDDC1EB2C2DE0E0003C96D9 /* APIRequests.swift */,
+				EDDDC1F52C372B18003C96D9 /* TestLocalNotification.swift */,
 			);
 			path = Tools;
 			sourceTree = "<group>";
@@ -413,6 +416,7 @@
 				ED57779B2C18C0520042A5B5 /* LogiSyncApp.swift in Sources */,
 				ED5B97562C1B552D00AE1606 /* StatusTestData.swift in Sources */,
 				ED5B974A2C1B428E00AE1606 /* UserNameUI.swift in Sources */,
+				EDDDC1F62C372B18003C96D9 /* TestLocalNotification.swift in Sources */,
 				ED5B97752C1D5B1F00AE1606 /* CustomTabView.swift in Sources */,
 				ED5B97422C1B324C00AE1606 /* SettingsSheet.swift in Sources */,
 				ED5B97582C1B570500AE1606 /* StatusView.swift in Sources */,
