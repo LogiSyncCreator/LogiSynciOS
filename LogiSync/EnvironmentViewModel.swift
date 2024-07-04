@@ -38,7 +38,7 @@ class EnvironmentViewModel: ObservableObject {
         }.store(in: &cancellables)
         
         changeStatusCalled.sink { [weak self] customStatus in
-            let completed: Bool = false
+//            let completed: Bool = false
             guard let self = self else { return }
             Task{
                 let _ = try await self.updateUserStatus(statusId:customStatus.id)
