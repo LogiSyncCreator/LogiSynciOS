@@ -14,7 +14,7 @@ struct MapView: View {
     @State var mapTestData: MapViewTestData = MapViewTestData()
     @StateObject var mapVM: MapViewModel = MapViewModel()
     @StateObject var locationManager = LocationManager()
-    @EnvironmentObject var envModel: EnvModel
+//    @EnvironmentObject var envModel: EnvModel
     var body: some View {
         ZStack(content: {
             MapBody(mapTestData: $mapTestData, locationManager: locationManager, mapVM: mapVM)
@@ -25,19 +25,11 @@ struct MapView: View {
                     UserLocationSendButtonUI(mapVM: mapVM, lonMan: locationManager)
                 }
                 Spacer().frame(height: 50)
-            }.padding().onAppear(){
-                Task{
-                    // 位置情報のセット
-                    // 保存先を環境部にして通信回数を減らす？
-                    if envModel.nowMatchingLocations.isEmpty {
-                        try await envModel.setMatchingLocations()
-                    }
-                }
-            }
+            }.padding()
         })
     }
 }
 
 #Preview {
-    ContentView().environmentObject(EnvModel()).environmentObject(EnvironmentViewModel())
+    ContentView().environmentObject(EnvironmentViewModel())
 }

@@ -10,7 +10,7 @@ import SwiftData
 
 struct ContentView: View {
     @Environment(\.modelContext) private var modelContext
-    @EnvironmentObject var envModel: EnvModel
+//    @EnvironmentObject var envModel: EnvModel
     @StateObject var environVM: EnvironmentViewModel = EnvironmentViewModel()
     @Query private var items: [Item]
     
@@ -57,5 +57,4 @@ struct ContentView: View {
 #Preview {
     ContentView()
         .modelContainer(for: Item.self, inMemory: true)
-        .environmentObject(EnvModel())
 }

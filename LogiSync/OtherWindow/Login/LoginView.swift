@@ -12,7 +12,7 @@ struct LoginView: View {
 // https://zenn.dev/usk2000/articles/6a1f6a6f3d6b4917addc
     
     @StateObject var loginVM = LoginViewModel()
-    @EnvironmentObject var envModel: EnvModel
+//    @EnvironmentObject var envModel: EnvModel
     @EnvironmentObject var environVM: EnvironmentViewModel
     
     // Model
