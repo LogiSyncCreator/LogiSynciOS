@@ -11,6 +11,7 @@ import MapKit
 
 class LocationManager:NSObject, ObservableObject, CLLocationManagerDelegate {
     private var locationManager = CLLocationManager()
+    private let updates = CLLocationUpdate.liveUpdates()
     
     @Published var location: CLLocation? = nil
     var region: CLCircularRegion?
@@ -63,6 +64,19 @@ class LocationManager:NSObject, ObservableObject, CLLocationManagerDelegate {
     
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
         print("Failed to get location: \(error.localizedDescription)")
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didEnterRegion region: CLRegion) {
+        TestLocalNotification().scheduleNotification()
+        }
+    
+    func liveUpdates() async throws {
+        let location = CLLocationCoordinate2D(latitude: 35.1495518 , longitude: 136.8542867)
+        self.startMonitoringRegion(at: location, radius: 30, identifier: UUID().uuidString)
+        for try await update in updates {
+            guard let update = update.location else { return }
+            print(update.coordinate.latitude)
+        }
     }
     
     func geoCoding(address: String, completion: @escaping (CLLocationCoordinate2D?, Error?) -> Void) {
