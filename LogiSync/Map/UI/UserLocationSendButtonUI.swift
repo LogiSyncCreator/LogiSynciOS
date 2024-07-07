@@ -14,14 +14,15 @@ struct UserLocationSendButtonUI: View {
     @Query private var local: [LocationData]
     @Environment(\.modelContext) private var modelContext
     @ObservedObject var mapVM: MapViewModel
-    @ObservedObject var lonMan: LocationManager
+    @EnvironmentObject var lonMan: LocationManager
     @EnvironmentObject var environVM: EnvironmentViewModel
     
     var body: some View {
         Button {
             if environVM.model.account.user.role == "運転手" {
                 if let location = lonMan.location?.coordinate {
-                    mapVM.sendLocationEvent.send(SendLocation(user: environVM.model.account, location: location, message: environVM.model.account.status.name))
+                    mapVM.sendLocationEvent.send(SendLocation(user: environVM.model.account, location: location, message: environVM.model.account.status.name, matching: lonMan.targetMatching))
+                    mapVM.receivedLocationEvent.send(environVM.model.account.user.userId)
                 }
             } else {
                 Task{

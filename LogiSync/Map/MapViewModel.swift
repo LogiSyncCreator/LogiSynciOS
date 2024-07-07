@@ -47,6 +47,20 @@ class MapViewModel: ObservableObject {
                 }
             }
         }.store(in: &cancellables)
+        
+        NotificationCenter.default.publisher(for: Notification.Name("didReceiveRemoteNotification")).sink { [weak self] notificatin in
+            guard let self = self else { return }
+            
+            // ステータスの受信
+            if notificatin.userInfo!["mode"] as! String == "location" {
+                if let userId = notificatin.userInfo?["userId"] as? String {
+                    Task {
+                        try? await self.setUserLocation(user: userId)
+                    }
+                }
+            }
+            
+        }.store(in: &cancellables)
     }
     
     func sendMyLocation(sendLocation: SendLocation) async throws {
@@ -57,14 +71,18 @@ class MapViewModel: ObservableObject {
             "status": sendLocation.message,
             "delete": false
         ]
-        try await APIRequests().setNowMyLocation(postData: postData)
+        try await APIRequests().setNowMyLocation(postData: postData, matchingId: sendLocation.matching.id)
     }
     
     func setUserLocation(user: String) async throws {
         let locationList = try await self.model.retriveUserLocation(user: user)
         await MainActor.run {
-            self.model.userLocations.append(contentsOf: locationList)
+            self.model.userLocations = locationList
         }
+    }
+    
+    func deleteLocations(uuid: String) async throws {
+        try await self.model.deleteUserLocation(uuid: uuid)
     }
     
 }
@@ -73,4 +91,5 @@ struct SendLocation {
     var user: MyUser
     var location: CLLocationCoordinate2D
     var message: String
+    var matching: MatchingInformation
 }

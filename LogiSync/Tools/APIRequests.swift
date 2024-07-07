@@ -44,8 +44,8 @@ class APIRequests {
         return try await APIRequest(param: token, endPoint: "deletetoken", method: "DELETE")
     }
     
-    func setNowMyLocation(postData: [String: Any]) async throws {
-        return try await APIRequest(postData: postData, endPoint: "locations")
+    func setNowMyLocation(postData: [String: Any], matchingId: String = "") async throws {
+        return try await APIRequest(postData: postData, endPoint: "locations/\(matchingId)")
     }
     
     func getUserLocation(user: String) async throws -> Data {
