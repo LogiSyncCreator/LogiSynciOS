@@ -19,7 +19,7 @@ class MapViewModel: ObservableObject {
     
     private var cancellables = Set<AnyCancellable>()
     public var sendLocationEvent = PassthroughSubject<SendLocation, Never>()
-    public var receivedLocationEvent = PassthroughSubject<MyUser, Never>()
+    public var receivedLocationEvent = PassthroughSubject<String, Never>()
     
     init(){
         sendLocationEvent.sink {[weak self] data in

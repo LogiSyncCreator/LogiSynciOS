@@ -13,16 +13,16 @@ import MapKit
 struct MapView: View {
     @State var mapTestData: MapViewTestData = MapViewTestData()
     @StateObject var mapVM: MapViewModel = MapViewModel()
-    @StateObject var locationManager = LocationManager()
+    @EnvironmentObject var locationManager:LocationManager
 //    @EnvironmentObject var envModel: EnvModel
     var body: some View {
         ZStack(content: {
-            MapBody(mapTestData: $mapTestData, locationManager: locationManager, mapVM: mapVM)
+            MapBody(mapTestData: $mapTestData, mapVM: mapVM)
             VStack{
                 Spacer()
                 HStack{
                     Spacer()
-                    UserLocationSendButtonUI(mapVM: mapVM, lonMan: locationManager)
+                    UserLocationSendButtonUI(mapVM: mapVM)
                 }
                 Spacer().frame(height: 50)
             }.padding()
@@ -31,5 +31,5 @@ struct MapView: View {
 }
 
 #Preview {
-    ContentView().environmentObject(EnvironmentViewModel())
+    ContentView().environmentObject(EnvironmentViewModel()).environmentObject(LocationManager())
 }
