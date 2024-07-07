@@ -51,6 +51,9 @@
 		EDDDC1F22C33089D003C96D9 /* MapViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDDDC1F12C33089D003C96D9 /* MapViewModel.swift */; };
 		EDDDC1F42C367FFA003C96D9 /* MapModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDDDC1F32C367FFA003C96D9 /* MapModel.swift */; };
 		EDDDC1F62C372B18003C96D9 /* TestLocalNotification.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDDDC1F52C372B18003C96D9 /* TestLocalNotification.swift */; };
+		EDDDC1F82C373FB6003C96D9 /* StartMonitoringRegion.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDDDC1F72C373FB6003C96D9 /* StartMonitoringRegion.swift */; };
+		EDDDC1FA2C39259A003C96D9 /* MapLocationDeleteSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDDDC1F92C392599003C96D9 /* MapLocationDeleteSheet.swift */; };
+		EDDDC1FC2C3A5A25003C96D9 /* MapSettingsButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDDDC1FB2C3A5A25003C96D9 /* MapSettingsButton.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -102,6 +105,9 @@
 		EDDDC1F12C33089D003C96D9 /* MapViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewModel.swift; sourceTree = "<group>"; };
 		EDDDC1F32C367FFA003C96D9 /* MapModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapModel.swift; sourceTree = "<group>"; };
 		EDDDC1F52C372B18003C96D9 /* TestLocalNotification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestLocalNotification.swift; sourceTree = "<group>"; };
+		EDDDC1F72C373FB6003C96D9 /* StartMonitoringRegion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartMonitoringRegion.swift; sourceTree = "<group>"; };
+		EDDDC1F92C392599003C96D9 /* MapLocationDeleteSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapLocationDeleteSheet.swift; sourceTree = "<group>"; };
+		EDDDC1FB2C3A5A25003C96D9 /* MapSettingsButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapSettingsButton.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -214,6 +220,7 @@
 				ED5B975D2C1BFA9D00AE1606 /* MapView.swift */,
 				EDDDC1F12C33089D003C96D9 /* MapViewModel.swift */,
 				EDDDC1F32C367FFA003C96D9 /* MapModel.swift */,
+				EDDDC1F92C392599003C96D9 /* MapLocationDeleteSheet.swift */,
 			);
 			path = Map;
 			sourceTree = "<group>";
@@ -225,6 +232,8 @@
 				ED5B97612C1BFBD700AE1606 /* UserLocationSendButtonUI.swift */,
 				ED5B97692C1C9C8400AE1606 /* MapCameraAutoButton.swift */,
 				EDDDC1E52C2BADEB003C96D9 /* LocationDeleteButton.swift */,
+				EDDDC1F72C373FB6003C96D9 /* StartMonitoringRegion.swift */,
+				EDDDC1FB2C3A5A25003C96D9 /* MapSettingsButton.swift */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -344,11 +353,12 @@
 			};
 			buildConfigurationList = ED5777922C18C0520042A5B5 /* Build configuration list for PBXProject "LogiSync" */;
 			compatibilityVersion = "Xcode 14.0";
-			developmentRegion = en;
+			developmentRegion = ja;
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
 				Base,
+				ja,
 			);
 			mainGroup = ED57778E2C18C0520042A5B5;
 			packageReferences = (
@@ -398,6 +408,7 @@
 				EDDDC1EC2C2DE0E0003C96D9 /* APIRequests.swift in Sources */,
 				EDDDC1F42C367FFA003C96D9 /* MapModel.swift in Sources */,
 				ED5B97462C1B38CF00AE1606 /* StatusIconUI.swift in Sources */,
+				EDDDC1FC2C3A5A25003C96D9 /* MapSettingsButton.swift in Sources */,
 				ED5B977D2C1E9AFA00AE1606 /* RegistTextField.swift in Sources */,
 				ED5B97782C1D5CA600AE1606 /* LoginView.swift in Sources */,
 				ED5B976F2C1CA6F900AE1606 /* MapViewTestData.swift in Sources */,
@@ -405,10 +416,12 @@
 				ED57779F2C18C0520042A5B5 /* Item.swift in Sources */,
 				ED5B97842C1EACEE00AE1606 /* RegistButton.swift in Sources */,
 				ED5B97622C1BFBD700AE1606 /* UserLocationSendButtonUI.swift in Sources */,
+				EDDDC1F82C373FB6003C96D9 /* StartMonitoringRegion.swift in Sources */,
 				ED5B974C2C1B43C900AE1606 /* ProfileUI.swift in Sources */,
 				ED5B975E2C1BFA9D00AE1606 /* MapView.swift in Sources */,
 				ED5B975A2C1B5DDA00AE1606 /* StatusAccountModelTest.swift in Sources */,
 				ED5B97722C1D523000AE1606 /* OtherContentView.swift in Sources */,
+				EDDDC1FA2C39259A003C96D9 /* MapLocationDeleteSheet.swift in Sources */,
 				ED5B97442C1B344600AE1606 /* RolePicker.swift in Sources */,
 				EDDDC1E62C2BADEB003C96D9 /* LocationDeleteButton.swift in Sources */,
 				ED5B97D82C28C64400AE1606 /* APIManager.swift in Sources */,
