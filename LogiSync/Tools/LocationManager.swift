@@ -8,12 +8,23 @@
 import Foundation
 import CoreLocation
 import MapKit
+import Combine
 
 class LocationManager:NSObject, ObservableObject, CLLocationManagerDelegate {
     private var locationManager = CLLocationManager()
     private let updates = CLLocationUpdate.liveUpdates()
     
     @Published var location: CLLocation? = nil
+    @Published var updateLocationFlag: Bool = false
+    @Published var updateLocationstart: Bool = false
+    @Published var targetLocation: CLLocationCoordinate2D = CLLocationCoordinate2D(latitude: 0, longitude: 0)
+    @Published var targetMatching: MatchingInformation = MatchingInformation()
+    @Published var targetUser: MyUser = MyUser()
+    
+    @Published var intervalTime: Int = 10
+    
+    let userDefaultKeyIntevalTime: String = "interval"
+    
     var region: CLCircularRegion?
     
     init(locationManager: CLLocationManager = CLLocationManager()) {
@@ -24,6 +35,11 @@ class LocationManager:NSObject, ObservableObject, CLLocationManagerDelegate {
         self.locationManager.allowsBackgroundLocationUpdates = true
         self.locationManager.delegate = self
         self.locationManager.startUpdatingLocation()
+        
+        if loadUserdefaultIntervalTime() != 0 && loadUserdefaultIntervalTime() != self.intervalTime {
+            self.intervalTime = loadUserdefaultIntervalTime()
+        }
+        
     }
     
     func startMonitoringRegion(at location: CLLocationCoordinate2D, radius: CLLocationDistance, identifier: String) {
@@ -67,15 +83,50 @@ class LocationManager:NSObject, ObservableObject, CLLocationManagerDelegate {
     }
     
     func locationManager(_ manager: CLLocationManager, didEnterRegion region: CLRegion) {
-        TestLocalNotification().scheduleNotification()
-        }
+        TestLocalNotification().scheduleNotification("目的地{}km県内です")
+        
+    }
     
-    func liveUpdates() async throws {
-        let location = CLLocationCoordinate2D(latitude: 35.1495518 , longitude: 136.8542867)
-        self.startMonitoringRegion(at: location, radius: 30, identifier: UUID().uuidString)
-        for try await update in updates {
-            guard let update = update.location else { return }
-            print(update.coordinate.latitude)
+    func liveUpdates(_ rudius: CLLocationDistance = 1000,user: MyUser, sendLocationEvent: PassthroughSubject<SendLocation, Never>, receivedLocationEvent: PassthroughSubject<String, Never>) async throws {
+        print("Start liveUpdate")
+        self.startMonitoringRegion(at: self.targetLocation, radius: rudius, identifier: UUID().uuidString)
+
+        await withTaskGroup(of: Void.self) {[weak self] group in
+            guard let self = self else { return }
+            // 5分おきにイベントを発生させるタスク
+            group.addTask {
+                while true {
+                    // 5分（300秒）待つ
+                    try? await Task.sleep(nanoseconds: UInt64(self.intervalTime) * 60 * 1_000_000_000)
+                    
+                    // 5分おきのイベント処理
+                    sendLocationEvent.send(SendLocation(user: user, location: self.location?.coordinate ?? CLLocationCoordinate2D(latitude: 0, longitude: 0), message: "定時連絡", matching: self.targetMatching))
+                    receivedLocationEvent.send(user.user.userId)
+                    
+                    if self.updateLocationFlag {
+                        print("End liveUpdateLoop")
+                        return
+                    }
+                }
+            }
+
+            // 位置情報の更新処理を行うタスク
+            group.addTask {
+                do {
+                    for try await update in self.updates {
+                        guard let update = update.location else { return }
+                        print(self.targetLocation.latitude)
+                        
+                        if self.updateLocationFlag {
+                            print("End liveUpdate")
+                            return
+                        }
+                        
+                    }
+                } catch {
+                    print("位置情報更新エラー")
+                }
+            }
         }
     }
     
@@ -108,5 +159,16 @@ class LocationManager:NSObject, ObservableObject, CLLocationManagerDelegate {
         let location1 = CLLocation(latitude: coordinate1.latitude, longitude: coordinate1.longitude)
         let location2 = CLLocation(latitude: coordinate2.latitude, longitude: coordinate2.longitude)
         return location1.distance(from: location2)
+    }
+    
+    // ユーザーデフォルト
+    // インターバルのセーブ
+    func saveUserDefaultIntervalTime(time: Int){
+        UserDefaults.standard.setValue(time, forKey: userDefaultKeyIntevalTime)
+    }
+    // インターバルのロード
+    func loadUserdefaultIntervalTime() -> Int {
+        let time = UserDefaults.standard.integer(forKey: userDefaultKeyIntevalTime)
+        return time
     }
 }
