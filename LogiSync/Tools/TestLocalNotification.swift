@@ -10,10 +10,10 @@ import UserNotifications
 
 final class TestLocalNotification {
     
-    func createNotificationContent() -> UNNotificationContent {
+    func createNotificationContent(_ body: String = "この通知は見えていないはずだよ！") -> UNNotificationContent {
         let content = UNMutableNotificationContent()
         content.title = "テスト用"
-        content.body = "この通知は見えていないはずだよ！"
+        content.body = body
         content.sound = UNNotificationSound.default
         return content
     }
@@ -24,8 +24,8 @@ final class TestLocalNotification {
         return trigger
     }
     
-    func scheduleNotification() {
-        let content = createNotificationContent()
+    func scheduleNotification(_ body: String = "この通知は見えていないはずだよ！") {
+        let content = createNotificationContent(body)
         let trigger = createTrigger()
         let request = UNNotificationRequest(identifier: UUID().uuidString, content: content, trigger: trigger)
         

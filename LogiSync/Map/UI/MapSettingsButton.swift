@@ -14,6 +14,7 @@ struct MapSettingsButton: View {
     @ObservedObject var mapVM: MapViewModel
     
     @State var interval: String = "0"
+    @State var rudius: String = "0"
     @FocusState var isFocused: Bool
     @State var isAlert: Bool = false
     
@@ -51,10 +52,28 @@ struct MapSettingsButton: View {
                             }, label: {
                                 Text(String(locationMan.intervalTime) == interval ? "" : interval.isEmpty ? "" : "保存")
                             })
-                        }.alert("警告", isPresented: $isAlert) {
+                        }
+                        .alert("警告", isPresented: $isAlert) {
                             
                         } message: {
                             Text("現在位置情報を共有している場合、一度共有を停止して再度共有を開始してください。")
+                        }
+                    }
+                    
+                    Section("位置情報通知範囲"){
+                        HStack{
+                            TextField("位置情報通知範囲", text: $rudius).onAppear(){
+                                rudius = String(Int(locationMan.rudius))
+                            }.keyboardType(.numberPad)
+                            Button(action: {
+                                if let rudius = Double(rudius) {
+                                    locationMan.rudius = rudius
+                                    locationMan.saveUserDefaultrudius(rudius: locationMan.rudius)
+                                    isAlert.toggle()
+                                }
+                            }, label: {
+                                Text(String(Int(locationMan.rudius)) == rudius ? "" : rudius.isEmpty ? "" : "保存")
+                            })
                         }
                     }
                 }

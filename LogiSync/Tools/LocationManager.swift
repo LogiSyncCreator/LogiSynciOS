@@ -22,8 +22,10 @@ class LocationManager:NSObject, ObservableObject, CLLocationManagerDelegate {
     @Published var targetUser: MyUser = MyUser()
     
     @Published var intervalTime: Int = 10
+    @Published var rudius: CLLocationDistance = 1000 // m単位
     
     let userDefaultKeyIntevalTime: String = "interval"
+    let userDefaultKeyrudius: String = "rudius"
     
     var region: CLCircularRegion?
     
@@ -38,6 +40,9 @@ class LocationManager:NSObject, ObservableObject, CLLocationManagerDelegate {
         
         if loadUserdefaultIntervalTime() != 0 && loadUserdefaultIntervalTime() != self.intervalTime {
             self.intervalTime = loadUserdefaultIntervalTime()
+        }
+        if loadUserdefaultrudius() != 0 && loadUserdefaultrudius() != self.rudius {
+            self.rudius = loadUserdefaultrudius()
         }
         
     }
@@ -83,7 +88,8 @@ class LocationManager:NSObject, ObservableObject, CLLocationManagerDelegate {
     }
     
     func locationManager(_ manager: CLLocationManager, didEnterRegion region: CLRegion) {
-        TestLocalNotification().scheduleNotification("目的地{}km県内です")
+        
+        TestLocalNotification().scheduleNotification("1000m圏内")
         
     }
     
@@ -170,5 +176,14 @@ class LocationManager:NSObject, ObservableObject, CLLocationManagerDelegate {
     func loadUserdefaultIntervalTime() -> Int {
         let time = UserDefaults.standard.integer(forKey: userDefaultKeyIntevalTime)
         return time
+    }
+    // 範囲のセーブ
+    func saveUserDefaultrudius(rudius: Double){
+        UserDefaults.standard.setValue(rudius, forKey: userDefaultKeyrudius)
+    }
+    // 範囲のロード
+    func loadUserdefaultrudius() -> Double {
+        let rudius = UserDefaults.standard.double(forKey: userDefaultKeyrudius)
+        return rudius
     }
 }
