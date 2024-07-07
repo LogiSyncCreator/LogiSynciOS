@@ -52,6 +52,18 @@ class APIRequests {
         return try await APIRequest(param: user, endPoint: "locations")
     }
     
+    
+    func deleteUserLocatio(uuid: String) async throws {
+        return try await APIRequest(param: uuid, endPoint: "locations/deletemylocation", method: "DELETE")
+    }
+    /// pushでメッセージ
+    /// - Parameters:
+    ///   - user: 送り先のuser id
+    ///   - message: 送る内容, そのまま表示される
+    func sendUserMessage(user: String, message: String) async throws {
+        return try await APIRequest(param: "\(user)/\(message)", endPoint: "push/pushmsg", method: "GET")
+    }
+    
     /// Description
     /// - Parameters:
     ///   - param: http://******/{param}

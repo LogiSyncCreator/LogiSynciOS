@@ -20,9 +20,17 @@ struct MapModel {
             return []
         }
     }
+    
+    func deleteUserLocation(uuid: String) async throws {
+        do {
+            try await APIRequests().deleteUserLocatio(uuid: uuid)
+        } catch {
+            print("uuid is invalid")
+        }
+    }
 }
 
-struct MatchingLocation: Identifiable, Codable {
+struct MatchingLocation: Identifiable, Codable, Hashable {
     var id: String = ""
     var userId: String = ""
     var longitude: Double = 0.0

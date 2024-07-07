@@ -29,17 +29,18 @@ class MapViewModel: ObservableObject {
             Task{
                 try? await self.sendMyLocation(sendLocation: data)
                 await MainActor.run {
+                    self.receivedLocationEvent.send(data.user.user.userId)
                     self.isReview.toggle()
                 }
             }
             
         }.store(in: &cancellables)
         
-        receivedLocationEvent.sink {[weak self] user in
+        receivedLocationEvent.sink {[weak self] userId in
             guard let self = self else { return }
             
             Task {
-                try? await self.setUserLocation(user: user.user.userId)
+                try? await self.setUserLocation(user: userId)
                 await MainActor.run {
                     print(self.model.userLocations.count)
                     self.isReview.toggle()

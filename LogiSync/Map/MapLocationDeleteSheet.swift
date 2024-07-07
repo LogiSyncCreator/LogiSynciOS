@@ -8,11 +8,30 @@
 import SwiftUI
 
 struct MapLocationDeleteSheet: View {
+    @ObservedObject var mapVM: MapViewModel
+    @State var user: MyUser
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        VStack{
+            List{
+                ForEach(mapVM.model.userLocations, id: \.self){ model in
+                    Text(model.createAt)
+                }.onDelete(perform: { indexSet in
+                    rowRemove(offsets: indexSet)
+                })
+            }.toolbar{
+                EditButton()
+            }
+        }
     }
-}
-
-#Preview {
-    MapLocationDeleteSheet()
+    
+    
+    func rowRemove(offsets: IndexSet) {
+        offsets.forEach { index in
+            let model = mapVM.model.userLocations[index]
+            Task {
+                try await mapVM.deleteLocations(uuid: model.id)
+            }
+            
+        }
+    }
 }
