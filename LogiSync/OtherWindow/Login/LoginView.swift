@@ -45,13 +45,7 @@ struct LoginView: View {
                 HStack {
                     Button(action: {
                         // シートを開く
-//                        isOpen.toggle()
-                        // ログイン処理
-                        withAnimation {
-                            index = 0
-                            isFocus1 = false
-                            isFocus2 = false
-                        }
+                        isOpen.toggle()
                     }, label: {
                         Text("新規作成").foregroundStyle(.white).font(.title).padding(EdgeInsets(top: 5, leading: 10, bottom: 5, trailing: 10))
                     }).background(.blue, in: RoundedRectangle(cornerRadius: 5)).padding(.trailing).bold()
@@ -112,7 +106,7 @@ struct LoginView: View {
             }.sheet(isPresented: $isOpen, content: {
                 ScrollView {
                     VStack{
-                        RegistView().interactiveDismissDisabled(isSheet)
+                        RegistView(index: $index).interactiveDismissDisabled(isSheet)
                     }
                 }.scrollDismissesKeyboard(.immediately)
             })

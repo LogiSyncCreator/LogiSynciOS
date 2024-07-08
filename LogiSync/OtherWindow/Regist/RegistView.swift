@@ -15,6 +15,7 @@ struct RegistView: View {
     @State var fontColor: Color = Color(.label)
     @FocusState var companyCodeFieldFocus: Bool
     @State var isShowCheck: Bool = false
+    @Binding var index: Int
     
     var body: some View {
         ScrollViewReader(content: { proxy in
@@ -28,16 +29,11 @@ struct RegistView: View {
                     if isShowCheck {
                         Text(registVM.inputCheck(check: "氏名")).foregroundStyle(.red).padding(.leading)
                     }
-                    // 会社コード
-                    RegistTextField(title: "会社コード", titleKey: "CID00000", text: $registVM.model.companyCode).id("コード").focused($companyCodeFieldFocus).onChange(of: companyCodeFieldFocus) {
-                        // デバッグ
-                        print("company: \(companyCodeFieldFocus)")
-                    }
-                    // Combineで取得したい
                     
-                    Text("会社名: 未取得").padding([.leading, .bottom])
+                    RegistTextField(title: "会社名", titleKey: "株式会社HAL", text: $registVM.model.company).id("会社名")
+                    
                     if isShowCheck {
-                        Text(registVM.inputCheck(check: "コード")).foregroundStyle(.red).padding(.leading)
+                        Text(registVM.inputCheck(check: "会社名")).foregroundStyle(.red).padding(.leading)
                     }
                     
                     // 役割
@@ -45,6 +41,7 @@ struct RegistView: View {
                         Text("役割")
                         RolePicker(selectedRole: $registVM.model.selectedRole, fontColor: $fontColor)
                     }.padding()
+                    
                     
                         
                     // ID
@@ -56,15 +53,18 @@ struct RegistView: View {
                     // PASS
                     Text("パスワード")
                         .padding([.top, .leading])
-                    SecureField("パスワード", text: $registVM.model.userPass).padding([.leading, .bottom]).id("pass")
+                    SecureField("パスワード", text: $registVM.model.userPass).id("pass").padding(.horizontal)
+                    Divider().padding([.horizontal, .bottom])
                     if isShowCheck {
                         Text(registVM.inputCheck(check: "pass")).foregroundStyle(.red).padding(.leading)
                     }
                     
+                    
                     // 連絡先・携帯番号
                     Text("連絡先・携帯番号")
                         .padding([.top, .leading])
-                    TextField("00000000000", text: $registVM.model.userPhone).keyboardType(.phonePad).padding([.leading, .bottom]).id("phone")
+                    TextField("00000000000", text: $registVM.model.userPhone).keyboardType(.phonePad).padding(.horizontal).id("phone")
+                    Divider().padding([.horizontal, .bottom])
                     if isShowCheck {
                         Text(registVM.inputCheck(check: "phone")).foregroundStyle(.red).padding(.leading)
                     }
@@ -78,7 +78,7 @@ struct RegistView: View {
                     
                     HStack{
                         Spacer()
-                        RegistButton(registVM: registVM, isShowCheck: $isShowCheck)
+                        RegistButton(registVM: registVM, isShowCheck: $isShowCheck, index: $index)
                         Spacer()
                     }
                     Spacer().frame(height: 300)
@@ -88,6 +88,6 @@ struct RegistView: View {
     }
 }
 
-#Preview {
-    RegistView()
-}
+//#Preview {
+//    RegistView()
+//}

@@ -13,6 +13,21 @@ class APIRequests {
     let port: String = "8080"
     let httpd: String = "http"
     
+    func registUser(registUser: UserInformation, pass: String) async throws {
+        let postData: [String: Any] = [
+            "name": registUser.name,
+            "company": registUser.company ,
+            "role": registUser.role,
+            "userId": registUser.userId,
+            "pass": pass,
+            "phone": registUser.phone,
+            "profile": registUser.profile,
+            "delete": false
+        ]
+        
+        return try await APIRequest(postData: postData, endPoint: "accounts/regist")
+        
+    }
     
     func userLogin(id: String, pass: String) async throws -> Data {
         let postData: [String: Any] = ["username":id, "password":pass]

@@ -22,18 +22,13 @@ class RegistViewModel: ObservableObject {
             if model.userProfile.isEmpty || model.userProfile == "プロフィールを入力してください" {
                 res = "プロフィールが入力されていません"
             }
-        case "コード":
-            // 会社コード
-            // Combine実装後、フラグ操作で会社コードが合っているかも確認する
             
-            if model.companyCode.isEmpty {
-                res = "会社コードが未入力です"
+        case "会社名":
+            if model.company.isEmpty {
+                res = "会社名が未入力です"
                 break
             }
-            if self.companyCheck == false {
-                res = "会社コードが不適格です"
-                break
-            }
+            
         case "id":
             // id check
             if model.userId.isEmpty {
@@ -78,18 +73,6 @@ class RegistViewModel: ObservableObject {
             // プロフィールの入力確認
             if model.userProfile.isEmpty || model.userProfile == "プロフィールを入力してください" {
                 self.proxyID = "profile"
-                break
-            }
-        case "コード":
-            // 会社コード
-            // Combine実装後、フラグ操作で会社コードが合っているかも確認する
-            
-            if model.companyCode.isEmpty {
-                proxyID = "コード"
-                break
-            }
-            if self.companyCheck == false {
-                proxyID = "コード"
                 break
             }
         case "id":
