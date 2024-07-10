@@ -129,10 +129,16 @@ class EnvironmentViewModel: ObservableObject {
     }
     
     func login(userId: String, pass: String) async throws {
-        let user = try await self.model.getUserInfo(id: userId, pass: pass)
-        await MainActor.run {
-            self.model.account.user = user
-            loginCalled.send()
+        do {
+            let user = try await self.model.getUserInfo(id: userId, pass: pass)
+            
+            await MainActor.run {
+                self.model.account.user = user
+                loginCalled.send()
+            }
+            
+        } catch {
+            print("login failed")
         }
     }
     
@@ -188,5 +194,6 @@ class EnvironmentViewModel: ObservableObject {
         self.model.matchings = []
         self.model.nowMatchingUser = MyUser()
         self.model.nowMatching = -1
+        self.model.nowMatchingInformation = MatchingInformation()
     }
 }
