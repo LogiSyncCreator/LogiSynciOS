@@ -44,11 +44,12 @@ struct StartMonitoringRegion: View {
                     locationMan.targetLocation = goalLocation
                     locationMan.targetMatching = environVM.model.nowMatchingInformation
                     locationMan.targetUser = environVM.model.nowMatchingUser
+                    locationMan.myUser = environVM.model.account
                     mapVM.sendLocationEvent.send(SendLocation(user: environVM.model.account, location: locationMan.location?.coordinate ?? CLLocationCoordinate2D(latitude: 0.0, longitude: 0.0), message: "位置情報共有開始", matching: locationMan.targetMatching))
                     print(locationMan.targetMatching)
                     Task {
-                        try await APIRequests().sendUserMessage(user: locationMan.targetMatching.shipper, message: "\(environVM.model.account.user.company):\(environVM.model.account.user.name)\n運転開始につき\(locationMan.intervalTime)分おきに位置情報を共有します。")
-                        try await locationMan.liveUpdates(user: environVM.model.account, sendLocationEvent: sendLocationEvent, receivedLocationEvent: receivedLocationEvent)
+                        try? await APIRequests().sendUserMessage(user: locationMan.targetMatching.shipper, message: "\(environVM.model.account.user.company):\(environVM.model.account.user.name)\n運転開始につき\(locationMan.intervalTime)分おきに位置情報を共有します。")
+                        try? await locationMan.liveUpdates(locationMan.rudius, user: environVM.model.account, sendLocationEvent: sendLocationEvent, receivedLocationEvent: receivedLocationEvent)
                     }
                 }
                 Button("Cancel", role: .cancel) {
@@ -61,13 +62,14 @@ struct StartMonitoringRegion: View {
                 Button("OK") {
                     let receiver = locationMan.targetMatching.shipper
                     Task {
-                        try await APIRequests().sendUserMessage(user: receiver, message: "\(environVM.model.account.user.company):\(environVM.model.account.user.name)\n運転終了につき位置情報の共有を停止します。")
+                        try? await APIRequests().sendUserMessage(user: receiver, message: "\(environVM.model.account.user.company):\(environVM.model.account.user.name)\n運転終了につき位置情報の共有を停止します。")
                     }
                     locationMan.updateLocationstart.toggle()
                     locationMan.updateLocationFlag.toggle()
                     locationMan.targetLocation = CLLocationCoordinate2D(latitude: 0.0, longitude: 0.0)
                     locationMan.targetMatching = MatchingInformation()
                     locationMan.targetUser = MyUser()
+//                    locationMan.myUser = MyUser()
                     print(locationMan.targetMatching)
                 }
                 Button("Cancel", role: .cancel) {
