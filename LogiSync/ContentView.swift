@@ -13,6 +13,8 @@ struct ContentView: View {
 //    @EnvironmentObject var envModel: EnvModel
     @StateObject var environVM: EnvironmentViewModel = EnvironmentViewModel()
     @Query private var items: [Item]
+    @EnvironmentObject var locationManager:LocationManager
+    @Environment(\.scenePhase) var scenePhase
     
     // 表示ページのハンドリング
 //    列挙型に変えたい
@@ -50,6 +52,20 @@ struct ContentView: View {
             // 実装時は未ログイン時に3
             // ログイン時は1
             viewIndex = 3
+        }.onChange(of: scenePhase) { oldValue, newValue in
+            switch newValue {
+            case .background:
+                if locationManager.targetUser.user.userId.isEmpty {
+                    locationManager.stopUpdatingLocation()
+                }
+                break
+            case .inactive:
+                break
+            case .active:
+                locationManager.startUpdatingLocation()
+            @unknown default:
+                break
+            }
         }
     }
 }
