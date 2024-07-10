@@ -18,7 +18,7 @@ struct LocationDeleteButton: View {
         Button(action: {
             isSheet.toggle()
         }, label: {
-            Image(systemName: "trash").foregroundStyle(.red)
+            Image(systemName: "trash").foregroundStyle(environVM.model.account.user.role != "運転手" ? .gray : .red)
                 .padding([.top, .bottom], 11)
                 .padding([.leading, .trailing], 12)
         }).background(Material.ultraThick, in: RoundedRectangle(cornerRadius: 7.0)).disabled(environVM.model.account.user.role != "運転手")
