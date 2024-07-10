@@ -38,7 +38,7 @@ struct MapBody: View {
                 ForEach(mapVM.model.userLocations.indices, id: \.self) { index in
                         Marker(coordinate: CLLocationCoordinate2D(latitude: mapVM.model.userLocations[index].latitude, longitude: mapVM.model.userLocations[index].longitude)){
                             VStack{
-                                Text("\(mapVM.model.userLocations[index].createAt.description)\n\(mapVM.model.userLocations[index].status)")
+                                Text("\(self.isoDateFormatter(isoDate: mapVM.model.userLocations[index].createAt.description))\n\(mapVM.model.userLocations[index].status)")
                             }
                         }.tint(.green)
                         MapCircle(center: CLLocationCoordinate2D(latitude: mapVM.model.userLocations[index].latitude, longitude: mapVM.model.userLocations[index].longitude), radius: CLLocationDistance(100)).foregroundStyle(Color(uiColor: sendCircleColor))
@@ -52,12 +52,19 @@ struct MapBody: View {
                     MapCircle(center: CLLocationCoordinate2D(latitude: golLocation.latitude, longitude: golLocation.longitude), radius: CLLocationDistance(100)).foregroundStyle(Color("goalColor"))
                 }
                 
+                // 警告範囲
+                if locationManager.targetLocation.latitude != 0 {
+                    MapCircle(center: CLLocationCoordinate2D(latitude: locationManager.targetLocation.latitude, longitude: locationManager.targetLocation.longitude), radius: locationManager.rudius).foregroundStyle(Color("NotificationZone"))
+                }
+                
+                // 到着地点
                 if locationManager.targetLocation.latitude != 0 {
                     Marker(coordinate: CLLocationCoordinate2D(latitude: locationManager.targetLocation.latitude, longitude: locationManager.targetLocation.longitude)) {
                         Text("目的地")
                     }.tint(.red)
                     MapCircle(center: CLLocationCoordinate2D(latitude: locationManager.targetLocation.latitude, longitude: locationManager.targetLocation.longitude), radius: CLLocationDistance(100)).foregroundStyle(Color("targetColor"))
                 }
+                
                 
                 UserAnnotation()
             }.mapControls {
@@ -109,5 +116,25 @@ struct MapBody: View {
             }
         }
         
+    }
+    
+    func isoDateFormatter(isoDate: String) -> String {
+        print(isoDate)
+        
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZ"
+        dateFormatter.locale = Locale(identifier: "en_US_POSIX")
+        dateFormatter.timeZone = TimeZone(secondsFromGMT: 0)
+
+        guard let date = dateFormatter.date(from: isoDate) else {
+            return "無効な日付形式"
+        }
+
+        let jstFormatter = DateFormatter()
+        jstFormatter.dateFormat = "yyyy/MM/dd HH:mm"
+        jstFormatter.timeZone = TimeZone(identifier: "Asia/Tokyo")
+
+        let jstDate = jstFormatter.string(from: date)
+        return jstDate
     }
 }
