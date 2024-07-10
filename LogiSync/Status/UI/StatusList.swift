@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct StatusList: View {
-    @EnvironmentObject var envModel: EnvModel
+//    @EnvironmentObject var envModel: EnvModel
     @EnvironmentObject var environVM: EnvironmentViewModel
     @Binding var statusModel: [StatusTagModelTest] // 本番環境に合わせて変更する
     @State var width: CGFloat = 30          // デフォルトサイズ

@@ -7,12 +7,17 @@
 
 import SwiftUI
 
+enum ErrorMessage: String {
+    case manager = "管理者はログインできません"
+    case failed = "ログインに失敗しました"
+}
+
 struct LoginView: View {
 // 参考サイト Combine
 // https://zenn.dev/usk2000/articles/6a1f6a6f3d6b4917addc
     
     @StateObject var loginVM = LoginViewModel()
-    @EnvironmentObject var envModel: EnvModel
+//    @EnvironmentObject var envModel: EnvModel
     @EnvironmentObject var environVM: EnvironmentViewModel
     
     // Model
@@ -28,6 +33,8 @@ struct LoginView: View {
     @State var isSheet: Bool = true
     @State var isOpen: Bool = false
     @Binding var index: Int
+    
+    @State var errMsg = ""
     
     var body: some View {
         VStack{
@@ -45,13 +52,7 @@ struct LoginView: View {
                 HStack {
                     Button(action: {
                         // シートを開く
-//                        isOpen.toggle()
-                        // ログイン処理
-                        withAnimation {
-                            index = 0
-                            isFocus1 = false
-                            isFocus2 = false
-                        }
+                        isOpen.toggle()
                     }, label: {
                         Text("新規作成").foregroundStyle(.white).font(.title).padding(EdgeInsets(top: 5, leading: 10, bottom: 5, trailing: 10))
                     }).background(.blue, in: RoundedRectangle(cornerRadius: 5)).padding(.trailing).bold()
@@ -84,12 +85,22 @@ struct LoginView: View {
                                 try await environVM.login(userId: userId, pass: userPass)
                                 
                                 if !environVM.model.account.user.userId.isEmpty {
+                                    
+                                    if environVM.model.account.user.role == "管理者" {
+                                        errMsg = ErrorMessage.manager.rawValue
+                                        self.error = true
+                                        return
+                                    }
+                                    
                                     // ログイン処理
                                     withAnimation {
                                         index = 0
                                         isFocus1 = false
                                         isFocus2 = false
                                     }
+                                } else {
+                                    errMsg = ErrorMessage.failed.rawValue
+                                    self.error = true
                                 }
                                 
                             } catch {
@@ -105,14 +116,14 @@ struct LoginView: View {
                 }
                 if error {
                     HStack{
-                        Text("ログインに失敗しました").foregroundStyle(.red)
+                        Text(errMsg).foregroundStyle(.red)
                         Spacer()
                     }.padding()
                 }
             }.sheet(isPresented: $isOpen, content: {
                 ScrollView {
                     VStack{
-                        RegistView().interactiveDismissDisabled(isSheet)
+                        RegistView(index: $index).interactiveDismissDisabled(isSheet)
                     }
                 }.scrollDismissesKeyboard(.immediately)
             })

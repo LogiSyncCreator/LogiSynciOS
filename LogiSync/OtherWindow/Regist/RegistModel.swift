@@ -9,7 +9,7 @@ import Foundation
 
 struct RegistModel {
     var userName: String = ""
-    var companyCode: String = ""
+    var company: String = ""
     var selectedRole: String = "運転手"
     var userId: String = ""
     var userPass: String = ""

@@ -31,7 +31,7 @@ struct LogiSyncApp: App {
 
     var body: some Scene {
         WindowGroup {
-            ContentView().environmentObject(EnvModel()).environmentObject(EnvironmentViewModel())
+            ContentView().environmentObject(EnvironmentViewModel()).environmentObject(LocationManager())
         }
         .modelContainer(sharedModelContainer)
     }
@@ -41,7 +41,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     
     let userDefaultKey: String = "token"
     let tokenFlagKey: String = "tokenFlag"
-    let envModel = EnvModel()
+//    let envModel = EnvModel()
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         UNUserNotificationCenter.current().delegate = self

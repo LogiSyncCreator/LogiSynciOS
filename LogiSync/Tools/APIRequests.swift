@@ -8,11 +8,28 @@
 import Foundation
 
 class APIRequests {
+//    let host: String = "192.168.211.171"
     let host: String = "192.168.68.82"
-//    let host: String = "172.20.10.3"
+//        let host: String = "172.20.10.3"
+//    let host: String = "172.20.10.4"
     let port: String = "8080"
     let httpd: String = "http"
     
+    func registUser(registUser: UserInformation, pass: String) async throws {
+        let postData: [String: Any] = [
+            "name": registUser.name,
+            "company": registUser.company ,
+            "role": registUser.role,
+            "userId": registUser.userId,
+            "pass": pass,
+            "phone": registUser.phone,
+            "profile": registUser.profile,
+            "delete": false
+        ]
+        
+        return try await APIRequest(postData: postData, endPoint: "accounts/regist")
+        
+    }
     
     func userLogin(id: String, pass: String) async throws -> Data {
         let postData: [String: Any] = ["username":id, "password":pass]
@@ -42,6 +59,26 @@ class APIRequests {
     
     func deleteToken(token: String) async throws {
         return try await APIRequest(param: token, endPoint: "deletetoken", method: "DELETE")
+    }
+    
+    func setNowMyLocation(postData: [String: Any], matchingId: String = "") async throws {
+        return try await APIRequest(postData: postData, endPoint: "locations/\(matchingId)")
+    }
+    
+    func getUserLocation(user: String) async throws -> Data {
+        return try await APIRequest(param: user, endPoint: "locations")
+    }
+    
+    
+    func deleteUserLocatio(uuid: String) async throws {
+        return try await APIRequest(param: uuid, endPoint: "locations/deletemylocation", method: "DELETE")
+    }
+    /// pushでメッセージ
+    /// - Parameters:
+    ///   - user: 送り先のuser id
+    ///   - message: 送る内容, そのまま表示される
+    func sendUserMessage(user: String, message: String) async throws {
+        return try await APIRequest(param: "\(user)/\(message)", endPoint: "push/pushmsg", method: "GET")
     }
     
     /// Description

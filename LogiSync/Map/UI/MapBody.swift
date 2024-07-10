@@ -17,13 +17,13 @@ struct MapBody: View {
     
     @Binding var mapTestData: MapViewTestData
     
-    @ObservedObject var locationManager: LocationManager
-    @EnvironmentObject var envModel: EnvModel
+    @EnvironmentObject var locationManager: LocationManager
+    @ObservedObject var mapVM: MapViewModel
+    @EnvironmentObject var environVM: EnvironmentViewModel
     
     @State private var userCameraPosition: MapCameraPosition = .automatic
     
     var sendCircleColor: UIColor = UIColor(red: 200, green: 30, blue: 0, alpha: 0.3)
-    var destinationCircleColor: UIColor = UIColor(red: 200, green: 0, blue: 30, alpha: 0.3)
     
     @State var golLocation: CLLocationCoordinate2D = CLLocationCoordinate2D(latitude: 0, longitude: 0)
     @State var index: Int = -1
@@ -31,46 +31,40 @@ struct MapBody: View {
     var body: some View {
         ZStack {
             Map(position: $userCameraPosition){
-//                // ここから#11 送信したマップのサークル サークルサイズは50m
-//                ForEach(mapTestData.sendPoints.indices, id: \.self){index in
-//                    Marker(coordinate: CLLocationCoordinate2D(latitude: mapTestData.sendPoints[index].point.latitude, longitude: mapTestData.sendPoints[index].point.longitude)) {
-//                        VStack{
-//                            Text("\(mapTestData.sendPoints[index].time)\n\(mapTestData.sendPoints[index].status)")
-//                        }
-//                    }.tint(.green)
-//                    MapCircle(center: CLLocationCoordinate2D(latitude: mapTestData.sendPoints[index].point.latitude, longitude: mapTestData.sendPoints[index].point.longitude), radius: CLLocationDistance(100)).foregroundStyle(Color(uiColor: sendCircleColor))
-//                }
-                // #11
-                if envModel.user.role == "運転手" {
-                    ForEach(locationData.indices, id: \.self){ index in
-                        Marker(coordinate: CLLocationCoordinate2D(latitude: locationData[index].latitude, longitude: locationData[index].longitude)){
+
+//                マッチング関係にある共有位置情報の取得
+//                それらの表示
+//                onApperの処理
+                ForEach(mapVM.model.userLocations.indices, id: \.self) { index in
+                        Marker(coordinate: CLLocationCoordinate2D(latitude: mapVM.model.userLocations[index].latitude, longitude: mapVM.model.userLocations[index].longitude)){
                             VStack{
-                                Text("\(locationData[index].createAt.description)\n\(locationData[index].status)")
+                                Text("\(self.isoDateFormatter(isoDate: mapVM.model.userLocations[index].createAt.description))\n\(mapVM.model.userLocations[index].status)")
                             }
                         }.tint(.green)
-                        MapCircle(center: CLLocationCoordinate2D(latitude: locationData[index].latitude, longitude: locationData[index].longitude), radius: CLLocationDistance(100)).foregroundStyle(Color(uiColor: sendCircleColor))
-                    }
-                } else {
-                    ForEach(envModel.nowMatchingLocations.indices, id: \.self) { index in
-                        if envModel.nowMatchingLocations[index].userId == envModel.nowShipper.userId
-                            {
-                            Marker(coordinate: CLLocationCoordinate2D(latitude: envModel.nowMatchingLocations[index].latitude, longitude: envModel.nowMatchingLocations[index].longitude)){
-                                VStack{
-                                    Text("\(envModel.nowMatchingLocations[index].createAt.description)\n\(envModel.nowMatchingLocations[index].status)")
-                                }
-                            }.tint(.green)
-                            MapCircle(center: CLLocationCoordinate2D(latitude: envModel.nowMatchingLocations[index].latitude, longitude: envModel.nowMatchingLocations[index].longitude), radius: CLLocationDistance(100)).foregroundStyle(Color(uiColor: sendCircleColor))
-                        }
-                    }
+                        MapCircle(center: CLLocationCoordinate2D(latitude: mapVM.model.userLocations[index].latitude, longitude: mapVM.model.userLocations[index].longitude), radius: CLLocationDistance(100)).foregroundStyle(Color(uiColor: sendCircleColor))
                 }
                 
                 // ここから#14 目的地
                 if golLocation.latitude != 0 {
                     Marker(coordinate: CLLocationCoordinate2D(latitude: golLocation.latitude, longitude: golLocation.longitude)) {
+                        Text(locationManager.targetLocation.latitude == golLocation.latitude && locationManager.targetLocation.longitude == golLocation.longitude ? "目的地" : "マッチング")
+                    }.tint(locationManager.targetLocation.latitude == golLocation.latitude && locationManager.targetLocation.longitude == golLocation.longitude ? .red : .yellow)
+                    MapCircle(center: CLLocationCoordinate2D(latitude: golLocation.latitude, longitude: golLocation.longitude), radius: CLLocationDistance(100)).foregroundStyle(Color("goalColor"))
+                }
+                
+                // 警告範囲
+                if locationManager.targetLocation.latitude != 0 {
+                    MapCircle(center: CLLocationCoordinate2D(latitude: locationManager.targetLocation.latitude, longitude: locationManager.targetLocation.longitude), radius: locationManager.rudius).foregroundStyle(Color("NotificationZone"))
+                }
+                
+                // 到着地点
+                if locationManager.targetLocation.latitude != 0 {
+                    Marker(coordinate: CLLocationCoordinate2D(latitude: locationManager.targetLocation.latitude, longitude: locationManager.targetLocation.longitude)) {
                         Text("目的地")
                     }.tint(.red)
-                    MapCircle(center: CLLocationCoordinate2D(latitude: golLocation.latitude, longitude: golLocation.longitude), radius: CLLocationDistance(100)).foregroundStyle(Color(uiColor: destinationCircleColor))
+                    MapCircle(center: CLLocationCoordinate2D(latitude: locationManager.targetLocation.latitude, longitude: locationManager.targetLocation.longitude), radius: CLLocationDistance(100)).foregroundStyle(Color("targetColor"))
                 }
+                
                 
                 UserAnnotation()
             }.mapControls {
@@ -83,26 +77,19 @@ struct MapBody: View {
                 MapUserLocationButton()
                     .mapControlVisibility(.visible)
             }.onAppear {
-                locationManager.geoCoding(address: envModel.nowMatching.address) { position, err in
+                if environVM.model.account.user.role == "運転手" {
+                    mapVM.receivedLocationEvent.send(environVM.model.account.user.userId)
+                } else {
+                    mapVM.receivedLocationEvent.send(environVM.model.nowMatchingUser.user.userId)
+                }
+                // 目的地をもとに処理する
+                locationManager.geoCoding(address: environVM.model.nowMatchingInformation.address) { position, err in
                     if let position = position {
                         self.golLocation = position
                         
                         userCameraPosition = .camera(MapCamera.init(centerCoordinate: locationManager.midpointCoordinate(coordinate1: CLLocationCoordinate2D(latitude: locationManager.location?.coordinate.latitude ?? 0.0, longitude: locationManager.location?.coordinate.longitude ?? 0.0), coordinate2: CLLocationCoordinate2D(latitude: golLocation.latitude, longitude: golLocation.longitude)), distance: locationManager.distanceBetweenCoordinates(coordinate1: CLLocationCoordinate2D(latitude: locationManager.location?.coordinate.latitude ?? 0.0, longitude: locationManager.location?.coordinate.longitude ?? 0.0), coordinate2: CLLocationCoordinate2D(latitude: golLocation.latitude, longitude: golLocation.longitude)) * 10))
-                        
                     }
                 }
-                
-                for data in locationData {
-                    print("-------")
-                    print(data.id)
-                    print(data.userId)
-                    print(data.longitude)
-                    print(data.latitude)
-                    print(data.createAt)
-                    print(data.status)
-                    print("-------")
-                }
-                
             }.onMapCameraChange {
                 index = -1
             }
@@ -111,11 +98,43 @@ struct MapBody: View {
 //                Spacer()
                 HStack{
                     Spacer()
-                    MapCameraAutoButton(userCameraPosition: $userCameraPosition, locaMan: locationManager, index: $index, golLocation: $golLocation).padding(5).shadow(radius: 1)
+                    MapCameraAutoButton(userCameraPosition: $userCameraPosition, index: $index, golLocation: $golLocation).padding(5).shadow(radius: 1)
                 }
-                Spacer().frame(height: 380)
+                HStack{
+                    Spacer()
+                    StartMonitoringRegion(goalLocation: $golLocation, sendLocationEvent: $mapVM.sendLocationEvent, receivedLocationEvent: $mapVM.receivedLocationEvent, mapVM: mapVM).padding(5).shadow(radius: 1)
+                }
+                HStack {
+                    Spacer()
+                    MapSettingsButton(mapVM: mapVM).padding(5).shadow(radius: 1)
+                }
+                HStack{
+                    Spacer()
+                    LocationDeleteButton(mapVM: mapVM).padding(5).shadow(radius: 1)
+                }
+                Spacer().frame(height: 350)
             }
         }
         
+    }
+    
+    func isoDateFormatter(isoDate: String) -> String {
+        print(isoDate)
+        
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZ"
+        dateFormatter.locale = Locale(identifier: "en_US_POSIX")
+        dateFormatter.timeZone = TimeZone(secondsFromGMT: 0)
+
+        guard let date = dateFormatter.date(from: isoDate) else {
+            return "無効な日付形式"
+        }
+
+        let jstFormatter = DateFormatter()
+        jstFormatter.dateFormat = "yyyy/MM/dd HH:mm"
+        jstFormatter.timeZone = TimeZone(identifier: "Asia/Tokyo")
+
+        let jstDate = jstFormatter.string(from: date)
+        return jstDate
     }
 }

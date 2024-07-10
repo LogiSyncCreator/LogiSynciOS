@@ -13,6 +13,7 @@ struct EnvironmentModel {
     var matchings: [MyMatching] = []
     var nowMatching: Int = -1
     var nowMatchingUser: MyUser = MyUser()
+    var nowMatchingInformation: MatchingInformation = MatchingInformation()
     
     let api = APIRequests()
     

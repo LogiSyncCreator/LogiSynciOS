@@ -10,7 +10,7 @@ import MapKit
 
 struct MapCameraAutoButton: View {
     @Binding var userCameraPosition: MapCameraPosition
-    @ObservedObject var locaMan: LocationManager
+    @EnvironmentObject var locaMan: LocationManager
     @State var distance: [Double] = [1000, 10000, 100000]
     @Binding var index: Int
     @Binding var golLocation: CLLocationCoordinate2D
@@ -29,7 +29,7 @@ struct MapCameraAutoButton: View {
             
         }, label: {
             Image(systemName: "map").padding(11)
-        }).background(Material.ultraThick, in: RoundedRectangle(cornerRadius: 7.0))
+        }).background(Material.ultraThick, in: RoundedRectangle(cornerRadius: 7.0)).padding(.top, 80)
     }
     
     func upIndex(){
