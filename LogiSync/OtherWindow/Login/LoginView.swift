@@ -7,6 +7,11 @@
 
 import SwiftUI
 
+enum ErrorMessage: String {
+    case manager = "管理者はログインできません"
+    case failed = "ログインに失敗しました"
+}
+
 struct LoginView: View {
 // 参考サイト Combine
 // https://zenn.dev/usk2000/articles/6a1f6a6f3d6b4917addc
@@ -28,6 +33,8 @@ struct LoginView: View {
     @State var isSheet: Bool = true
     @State var isOpen: Bool = false
     @Binding var index: Int
+    
+    @State var errMsg = ""
     
     var body: some View {
         VStack{
@@ -78,12 +85,22 @@ struct LoginView: View {
                                 try await environVM.login(userId: userId, pass: userPass)
                                 
                                 if !environVM.model.account.user.userId.isEmpty {
+                                    
+                                    if environVM.model.account.user.role == "管理者" {
+                                        errMsg = ErrorMessage.manager.rawValue
+                                        self.error = true
+                                        return
+                                    }
+                                    
                                     // ログイン処理
                                     withAnimation {
                                         index = 0
                                         isFocus1 = false
                                         isFocus2 = false
                                     }
+                                } else {
+                                    errMsg = ErrorMessage.failed.rawValue
+                                    self.error = true
                                 }
                                 
                             } catch {
@@ -99,7 +116,7 @@ struct LoginView: View {
                 }
                 if error {
                     HStack{
-                        Text("ログインに失敗しました").foregroundStyle(.red)
+                        Text(errMsg).foregroundStyle(.red)
                         Spacer()
                     }.padding()
                 }
