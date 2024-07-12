@@ -27,7 +27,7 @@ struct UserLocationSendButtonUI: View {
             } else {
                 Task{
                     // 更新処理
-//                    try await envModel.setMatchingLocations()
+                    //                    try await envModel.setMatchingLocations()
                 }
             }
         } label: {
@@ -36,7 +36,7 @@ struct UserLocationSendButtonUI: View {
                 Text(environVM.model.account.user.role == "運転手" ? "送信" : "受信")
             }.font(.title3).foregroundStyle(Color(.label)).padding()
         }.background(Color(.systemGray4), in: RoundedRectangle(cornerRadius: 10.0))
-
+        
     }
 }
 

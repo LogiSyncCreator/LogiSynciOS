@@ -13,11 +13,11 @@ enum ErrorMessage: String {
 }
 
 struct LoginView: View {
-// 参考サイト Combine
-// https://zenn.dev/usk2000/articles/6a1f6a6f3d6b4917addc
+    // 参考サイト Combine
+    // https://zenn.dev/usk2000/articles/6a1f6a6f3d6b4917addc
     
     @StateObject var loginVM = LoginViewModel()
-//    @EnvironmentObject var envModel: EnvModel
+    //    @EnvironmentObject var envModel: EnvModel
     @EnvironmentObject var environVM: EnvironmentViewModel
     
     // Model
@@ -58,18 +58,18 @@ struct LoginView: View {
                     }).background(.blue, in: RoundedRectangle(cornerRadius: 5)).padding(.trailing).bold()
                     
                     
-//                    NavigationLink {
-//                        ScrollView {
-//                            VStack{
-//                                RegistView().interactiveDismissDisabled(isSheet)
-//                            }.onAppear(){
-//                                
-//                            }
-//                        }.scrollDismissesKeyboard(.immediately)
-//                    } label: {
-//                        Text("新規作成").foregroundStyle(.white).font(.title).padding(EdgeInsets(top: 5, leading: 10, bottom: 5, trailing: 10))
-//                    }.background(.blue, in: RoundedRectangle(cornerRadius: 5)).padding(.trailing).bold()
-
+                    //                    NavigationLink {
+                    //                        ScrollView {
+                    //                            VStack{
+                    //                                RegistView().interactiveDismissDisabled(isSheet)
+                    //                            }.onAppear(){
+                    //                                
+                    //                            }
+                    //                        }.scrollDismissesKeyboard(.immediately)
+                    //                    } label: {
+                    //                        Text("新規作成").foregroundStyle(.white).font(.title).padding(EdgeInsets(top: 5, leading: 10, bottom: 5, trailing: 10))
+                    //                    }.background(.blue, in: RoundedRectangle(cornerRadius: 5)).padding(.trailing).bold()
+                    
                     
                     Button(action: {
                         // 使用例
@@ -77,9 +77,9 @@ struct LoginView: View {
                             do {
                                 
                                 // 旧処理
-//                                let response = try await loginVM.login(id: userId, pass: userPass)
-//                                
-//                                envModel.setUser(json: response)
+                                //                                let response = try await loginVM.login(id: userId, pass: userPass)
+                                //                                
+                                //                                envModel.setUser(json: response)
                                 
                                 // 新処理
                                 try await environVM.login(userId: userId, pass: userPass)

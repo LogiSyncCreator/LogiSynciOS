@@ -9,7 +9,7 @@ import SwiftUI
 
 struct StatusView: View {
     @EnvironmentObject var environVM: EnvironmentViewModel
-
+    
     // 対象のユーザーのステータス
     // ピッカーに合わせて切り替える
     // VMで変更

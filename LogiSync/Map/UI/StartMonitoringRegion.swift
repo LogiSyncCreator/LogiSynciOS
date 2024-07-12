@@ -72,7 +72,7 @@ struct StartMonitoringRegion: View {
                     locationMan.targetLocation = CLLocationCoordinate2D(latitude: 0.0, longitude: 0.0)
                     locationMan.targetMatching = MatchingInformation()
                     locationMan.targetUser = MyUser()
-//                    locationMan.myUser = MyUser()
+                    //                    locationMan.myUser = MyUser()
                     print(locationMan.targetMatching)
                 }
                 Button("Cancel", role: .cancel) {

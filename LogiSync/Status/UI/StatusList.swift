@@ -8,11 +8,11 @@
 import SwiftUI
 
 struct StatusList: View {
-//    @EnvironmentObject var envModel: EnvModel
+    //    @EnvironmentObject var envModel: EnvModel
     @EnvironmentObject var environVM: EnvironmentViewModel
     @Binding var statusModel: [StatusTagModelTest] // 本番環境に合わせて変更する
     @State var width: CGFloat = 30          // デフォルトサイズ
-//    @Binding var myStatus: StatusTagModelTest   // 現在のステータス
+    //    @Binding var myStatus: StatusTagModelTest   // 現在のステータス
     
     @Binding var selectedRole: String
     
@@ -21,7 +21,7 @@ struct StatusList: View {
             ForEach(environVM.model.statusList.indices, id: \.self){ index in
                 Button(action: {
                     
-//                    self.environVM.model.account.status = UserStatus(id: UUID().uuidString, userId: environVM.model.account.user.userId, statusId: environVM.model.statusList[index].id, name: environVM.model.statusList[index].name, color: environVM.model.statusList[index].color, icon: environVM.model.statusList[index].icon)
+                    //                    self.environVM.model.account.status = UserStatus(id: UUID().uuidString, userId: environVM.model.account.user.userId, statusId: environVM.model.statusList[index].id, name: environVM.model.statusList[index].name, color: environVM.model.statusList[index].color, icon: environVM.model.statusList[index].icon)
                     
                     environVM.changeStatusCalled.send(environVM.model.statusList[index])
                     

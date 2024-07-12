@@ -11,8 +11,8 @@ import Combine
 
 class MapViewModel: ObservableObject {
     // SwiftDataの内容を送信して
-//    送信済みのものに対してsendingをtrueにする
-//    位置情報を削除する
+    //    送信済みのものに対してsendingをtrueにする
+    //    位置情報を削除する
     
     @Published var isReview: Bool = false
     @Published var model = MapModel()

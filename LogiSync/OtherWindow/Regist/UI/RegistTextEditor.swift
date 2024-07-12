@@ -17,9 +17,9 @@ struct RegistTextEditor: View {
         TextEditor(text: $text).frame(height: 200).focused($isFocus)
             .foregroundColor(self.text == placeholderString ? .gray : .primary)
             .onTapGesture {
-              if self.text == placeholderString {
-                self.text = ""
-              }
+                if self.text == placeholderString {
+                    self.text = ""
+                }
             }
             .onChange(of: isFocus) {
                 if !isFocus && text.isEmpty {

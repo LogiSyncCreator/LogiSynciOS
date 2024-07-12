@@ -31,17 +31,17 @@ struct MapBody: View {
     var body: some View {
         ZStack {
             Map(position: $userCameraPosition){
-
-//                マッチング関係にある共有位置情報の取得
-//                それらの表示
-//                onApperの処理
+                
+                //                マッチング関係にある共有位置情報の取得
+                //                それらの表示
+                //                onApperの処理
                 ForEach(mapVM.model.userLocations.indices, id: \.self) { index in
-                        Marker(coordinate: CLLocationCoordinate2D(latitude: mapVM.model.userLocations[index].latitude, longitude: mapVM.model.userLocations[index].longitude)){
-                            VStack{
-                                Text("\(self.isoDateFormatter(isoDate: mapVM.model.userLocations[index].createAt.description))\n\(mapVM.model.userLocations[index].status)")
-                            }
-                        }.tint(.green)
-                        MapCircle(center: CLLocationCoordinate2D(latitude: mapVM.model.userLocations[index].latitude, longitude: mapVM.model.userLocations[index].longitude), radius: CLLocationDistance(100)).foregroundStyle(Color(uiColor: sendCircleColor))
+                    Marker(coordinate: CLLocationCoordinate2D(latitude: mapVM.model.userLocations[index].latitude, longitude: mapVM.model.userLocations[index].longitude)){
+                        VStack{
+                            Text("\(self.isoDateFormatter(isoDate: mapVM.model.userLocations[index].createAt.description))\n\(mapVM.model.userLocations[index].status)")
+                        }
+                    }.tint(.green)
+                    MapCircle(center: CLLocationCoordinate2D(latitude: mapVM.model.userLocations[index].latitude, longitude: mapVM.model.userLocations[index].longitude), radius: CLLocationDistance(100)).foregroundStyle(Color(uiColor: sendCircleColor))
                 }
                 
                 // ここから#14 目的地
@@ -95,7 +95,7 @@ struct MapBody: View {
             }
             
             VStack(){
-//                Spacer()
+                //                Spacer()
                 HStack{
                     Spacer()
                     MapCameraAutoButton(userCameraPosition: $userCameraPosition, index: $index, golLocation: $golLocation).padding(5).shadow(radius: 1)
@@ -125,15 +125,15 @@ struct MapBody: View {
         dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZ"
         dateFormatter.locale = Locale(identifier: "en_US_POSIX")
         dateFormatter.timeZone = TimeZone(secondsFromGMT: 0)
-
+        
         guard let date = dateFormatter.date(from: isoDate) else {
             return "無効な日付形式"
         }
-
+        
         let jstFormatter = DateFormatter()
         jstFormatter.dateFormat = "yyyy/MM/dd HH:mm"
         jstFormatter.timeZone = TimeZone(identifier: "Asia/Tokyo")
-
+        
         let jstDate = jstFormatter.string(from: date)
         return jstDate
     }

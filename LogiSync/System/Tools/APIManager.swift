@@ -9,10 +9,10 @@ import Foundation
 
 class APIManager {
     
-//  phone = 
-//  http://172.20.10.3:8080
-//  home =
-//  http://192.168.68.82:8080
+    //  phone = 
+    //  http://172.20.10.3:8080
+    //  home =
+    //  http://192.168.68.82:8080
     
     
     let host = "http://172.20.10.3:8080"

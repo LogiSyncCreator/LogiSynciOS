@@ -43,7 +43,7 @@ struct RegistView: View {
                     }.padding()
                     
                     
-                        
+                    
                     // ID
                     RegistTextField(title: "ID", titleKey: "メールアドレス、社員番号", text: $registVM.model.userId).id("id")
                     if isShowCheck {

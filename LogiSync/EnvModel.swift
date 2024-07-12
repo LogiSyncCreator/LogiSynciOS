@@ -22,16 +22,16 @@ import Combine
 //    @Published var members: [User] = []
 //    @Published var matchSort: [Matching] = []
 //    @Published var nowMatchingLocations: [MatchingLocation] = []
-//    
+//
 //    private var cancellables = Set<AnyCancellable>()
 //    private var cancellable = Set<AnyCancellable>()
 //    private let userDefaultsKey = "nowMatching"
 //    private let userDefaultsKey2 = "nowShipper"
 //    private let userDefaultsKey3 = "selectedMenberStatus"
 //    private let userDefaultsKey4: String = "token"
-//    
+//
 //    init() {
-//        
+//
 ////        loadMatchingFromUserDefaults()
 ////        loadShipperFromUserDefaults()
 ////        loadSelectedStatusFromUserDefaults()
@@ -39,7 +39,7 @@ import Combine
 //                .dropFirst() // 初期値の変更を無視
 //                .sink { [weak self] _ in
 //                    guard let self = self else { return }
-//                    
+//
 //                    Task {
 //                        try? await self.sendToken()
 //                        try? await self.setMatching()
@@ -47,11 +47,11 @@ import Combine
 //                        try? await self.setCommonStatus()
 //                        try? await self.setGroupStatus()
 //                        try? await self.setNowStatus()
-//                        
+//
 //                    }
 //                }
 //                .store(in: &cancellables)
-//        
+//
 //        $statusData
 //            .dropFirst()
 //            .sink { [weak self] _ in
@@ -67,7 +67,7 @@ import Combine
 //                    }
 //                }
 //            }.store(in: &cancellables)
-//        
+//
 //        $matching
 //            .dropFirst()
 //            .sink { [weak self] _ in
@@ -76,7 +76,7 @@ import Combine
 //                    try? await self.setShippers()
 //                }
 //            }.store(in: &cancellables)
-//        
+//
 //        $nowMatching
 //            .dropFirst()
 //            .sink { [weak self] _ in
@@ -85,11 +85,11 @@ import Combine
 //                    try? await self.setCommonStatus()
 //                    try? await self.setGroupStatus()
 //                    try? await self.setOnlineStatus()
-//                    
+//
 //                    if self.user.role != "運転手" {
 //                        try? await self.setMatchingLocations()
 //                    }
-//                    
+//
 ////                    self.saveMatchingToUserDefaults(self.nowMatching)
 ////                    self.saveShipperToUserDefaults(self.nowShipper)
 //                }
@@ -103,7 +103,7 @@ import Combine
 ////                    self.saveSelectedStatusToUserDefaults(self.selectedMenberStatus)
 //                }
 //            }.store(in: &cancellables)
-//        
+//
 ////        NotificationCenter.default.publisher(for: Notification.Name("didReceiveRemoteNotification"))
 ////            .sink { [weak self] notification in
 ////                guard let self = self else { return }
@@ -134,35 +134,35 @@ import Combine
 //                }
 //            }
 //        }
-//    
-//    
+//
+//
 //    func setNowStatus() async throws {
 //        for status in statusList {
 //            if status.name == self.statusData.name {
 //                let json = try await APIManager().updateNowStatus(param: "\(user.userId)/\(self.statusData.name)")
-//                
+//
 //                let updatedStatusData = try JSONDecoder().decode(Status.self, from: json)
-//                
+//
 //                await MainActor.run {
 //                    self.statusData = updatedStatusData
 //                }
 //            }
 //        }
 //    }
-//    
+//
 //    func setOnlineStatus() async throws {
 //        let json = try await APIManager().updateNowStatus(param: "\(user.userId)/オンライン")
-//        
+//
 //        let updatedStatusData = try JSONDecoder().decode(Status.self, from: json)
-//        
+//
 //        await MainActor.run {
 //            self.statusData = updatedStatusData
 //        }
 //    }
-//    
+//
 //    func setMatching() async throws {
 //            var json: Data? = nil
-//            
+//
 //            switch user.role {
 //            case "運転手":
 //                json = try await APIManager().getMatching(driver: user.userId)
@@ -185,7 +185,7 @@ import Combine
 //                print("Json decode error.")
 //            }
 //        }
-//    
+//
 //    func setStatus() async throws {
 //        let json = try await APIManager().getNowStatus(param: user.userId)
 //        do {
@@ -197,7 +197,7 @@ import Combine
 //            print("Json decode error.")
 //        }
 //    }
-//    
+//
 //    func setCommonStatus() async throws {
 //        await MainActor.run {
 //            self.statusList = []
@@ -211,7 +211,7 @@ import Combine
 //            print("Json decode error.")
 //        }
 //    }
-//    
+//
 //    func setGroupStatus() async throws {
 //        let json = try await APIManager().matchingStatus(param: "\(nowMatching.manager)/\(nowMatching.shipper)")
 //        do {
@@ -221,10 +221,10 @@ import Combine
 //            }
 //        }
 //    }
-//    
+//
 //    func setSelectedMenberStatus() async throws {
 //        let json = try await APIManager().getSearchUserStatus(param: self.nowShipper.userId)
-//        
+//
 //        try await MainActor.run {
 //            let data = try JSONDecoder().decode([CustomStatus].self, from: json)
 //            self.selectedMenberStatus = data.first!
@@ -238,7 +238,7 @@ import Combine
 //            }
 //        }
 //    }
-//    
+//
 //    func setShippers() async throws {
 //        guard !matching.isEmpty else {
 //            print("Matching array is empty")
@@ -246,7 +246,7 @@ import Combine
 //        }
 //
 //        for match in matching {
-//            
+//
 //            do {
 //                var json = Data()
 //                if self.user.role == "運転手" {
@@ -262,14 +262,14 @@ import Combine
 //            } catch {
 //                print("err")
 //            }
-//            
+//
 //        }
 //
 //        await MainActor.run {
 //            print("Total shippers: \(self.members.count)")
 //        }
 //    }
-//    
+//
 //    func setMatchingLocations() async throws {
 //        let json = try await APIManager().searchLocation(param: self.nowMatching.driver)
 //        let locations = try JSONDecoder().decode([MatchingLocation].self, from: json)
@@ -277,7 +277,7 @@ import Combine
 //            self.nowMatchingLocations = locations
 //        }
 //    }
-//    
+//
 ////    // userdefaults
 ////    private func saveMatchingToUserDefaults(_ matching: Matching) {
 ////            do {
@@ -287,7 +287,7 @@ import Combine
 ////                print("Failed to save matching to UserDefaults: \(error)")
 ////            }
 ////        }
-////        
+////
 ////        private func loadMatchingFromUserDefaults() {
 ////            guard let data = UserDefaults.standard.data(forKey: userDefaultsKey) else { return }
 ////            do {
@@ -306,7 +306,7 @@ import Combine
 ////                print("Failed to save matching to UserDefaults: \(error)")
 ////            }
 ////        }
-////        
+////
 ////        private func loadShipperFromUserDefaults() {
 ////            guard let data = UserDefaults.standard.data(forKey: userDefaultsKey2) else { return }
 ////            do {
@@ -325,7 +325,7 @@ import Combine
 ////                print("Failed to save matching to UserDefaults: \(error)")
 ////            }
 ////        }
-////        
+////
 ////        private func loadSelectedStatusFromUserDefaults() {
 ////            guard let data = UserDefaults.standard.data(forKey: userDefaultsKey3) else { return }
 ////            do {
@@ -335,13 +335,13 @@ import Combine
 ////                print("Failed to load matching from UserDefaults: \(error)")
 ////            }
 ////        }
-////    
+////
 ////    func deleteUserDefaults(){
 ////        UserDefaults.standard.removeObject(forKey: userDefaultsKey)
 ////        UserDefaults.standard.removeObject(forKey: userDefaultsKey2)
 ////        UserDefaults.standard.removeObject(forKey: userDefaultsKey3)
 ////    }
-//    
+//
 //    func sendToken() async throws {
 //        let token = UserDefaults.standard.string(forKey: userDefaultsKey4)
 //        if let token = token {

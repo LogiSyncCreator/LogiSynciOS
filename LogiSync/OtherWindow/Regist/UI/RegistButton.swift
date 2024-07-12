@@ -92,7 +92,7 @@ struct RegistButton: View {
     func registCheck(){
         let check = ["profile","コード","id","pass","phone","氏名"]
         for name in check {
-           registVM.inputCheck(checkId: name)
+            registVM.inputCheck(checkId: name)
         }
     }
     

@@ -20,7 +20,7 @@ struct UserThumbnailUI: View {
             if let image = uiImage {
                 Image(uiImage: image)
             } else {
-//                Image(systemName: environVM.model.account.user.role == "運転手" ? "truck.box" : "person.circle.fill").resizable().aspectRatio(contentMode: .fit).frame(width: width - 5).clipShape(Circle()).foregroundStyle(.blue)
+                //                Image(systemName: environVM.model.account.user.role == "運転手" ? "truck.box" : "person.circle.fill").resizable().aspectRatio(contentMode: .fit).frame(width: width - 5).clipShape(Circle()).foregroundStyle(.blue)
                 Circle().frame(width: width).foregroundStyle(.blue).overlay {
                     Image(systemName: environVM.model.account.user.role == "運転手" ? "truck.box" : "person.circle.fill")
                         .resizable().aspectRatio(contentMode: .fit)

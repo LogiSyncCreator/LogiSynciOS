@@ -10,14 +10,14 @@ import SwiftData
 
 struct ContentView: View {
     @Environment(\.modelContext) private var modelContext
-//    @EnvironmentObject var envModel: EnvModel
+    //    @EnvironmentObject var envModel: EnvModel
     @StateObject var environVM: EnvironmentViewModel = EnvironmentViewModel()
     @Query private var items: [Item]
     @EnvironmentObject var locationManager:LocationManager
     @Environment(\.scenePhase) var scenePhase
     
     // 表示ページのハンドリング
-//    列挙型に変えたい
+    //    列挙型に変えたい
     @State var viewIndex: Int = 0
     
     var body: some View {
@@ -25,16 +25,16 @@ struct ContentView: View {
             if viewIndex != 3 {
                 switch viewIndex {
                 case 0:
-//                    ScrollView{
+                    //                    ScrollView{
                     StatusView(viewIndex: $viewIndex).background(Color(.systemBackground))
-//                    }
-//                        .transition(.move(edge: .leading))
+                    //                    }
+                    //                        .transition(.move(edge: .leading))
                 case 1:
                     MapView().background(Color(.systemBackground))
-//                        .transition(.move(edge: .leading))
+                    //                        .transition(.move(edge: .leading))
                 case 2:
                     Text("comming soon...").background(Color(.systemBackground))
-//                        .transition(.move(edge: .leading))
+                    //                        .transition(.move(edge: .leading))
                 default:
                     StatusView(viewIndex: $viewIndex).transition(.move(edge: .leading))
                 }

@@ -17,13 +17,13 @@ struct MapCameraAutoButton: View {
     var body: some View {
         Button(action: {
             
-//            if let position = locaMan.location {
-//                upIndex()
-//                print(index)
-//                userCameraPosition = .camera(MapCamera.init(centerCoordinate: position.coordinate, distance: distance[index]))
-//            } else {
-//                userCameraPosition = .automatic
-//            }
+            //            if let position = locaMan.location {
+            //                upIndex()
+            //                print(index)
+            //                userCameraPosition = .camera(MapCamera.init(centerCoordinate: position.coordinate, distance: distance[index]))
+            //            } else {
+            //                userCameraPosition = .automatic
+            //            }
             
             userCameraPosition = .camera(MapCamera.init(centerCoordinate: locaMan.midpointCoordinate(coordinate1: CLLocationCoordinate2D(latitude: locaMan.location?.coordinate.latitude ?? 0.0, longitude: locaMan.location?.coordinate.longitude ?? 0.0), coordinate2: CLLocationCoordinate2D(latitude: golLocation.latitude, longitude: golLocation.longitude)), distance: locaMan.distanceBetweenCoordinates(coordinate1: CLLocationCoordinate2D(latitude: locaMan.location?.coordinate.latitude ?? 0.0, longitude: locaMan.location?.coordinate.longitude ?? 0.0), coordinate2: CLLocationCoordinate2D(latitude: golLocation.latitude, longitude: golLocation.longitude)) * 10))
             

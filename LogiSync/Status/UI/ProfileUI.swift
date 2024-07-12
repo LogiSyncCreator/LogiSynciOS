@@ -54,7 +54,7 @@ struct ProfileUI: View {
     @Binding var profile: String
     @State private var isOpen: Bool = true
     @State private var textHeight: CGFloat = 0
-
+    
     var body: some View {
         VStack(alignment: .leading) {
             Text(isOpen ? profile : String(profile.prefix(30)) + "...")
@@ -75,7 +75,7 @@ struct ProfileUI: View {
                     }
                 }
             }.padding(.trailing)
-
+            
             Divider()
         }
     }

@@ -28,5 +28,5 @@ struct StatusIconUI: View {
 //    StatusIconUI(symboleColor: Color(.systemBackground), backColor: Color(.gray), symbole: "xmark.circle", width: 30)
 //    オンライン
 //    StatusIconUI(symboleColor: Color(.systemBackground), backColor: Color(.green), symbole: "checkmark.circle.fill", width: 30)
-    
+
 //}

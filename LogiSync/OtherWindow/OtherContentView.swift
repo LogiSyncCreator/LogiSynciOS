@@ -10,11 +10,11 @@ import SwiftUI
 struct OtherContentView: View {
     @Binding var index: Int
     var body: some View {
-//        VStack{
-//            Spacer()
-//            LoginView(index: $index)
-//            Spacer()
-//        }.background(Color(.systemBackground))
+        //        VStack{
+        //            Spacer()
+        //            LoginView(index: $index)
+        //            Spacer()
+        //        }.background(Color(.systemBackground))
         NavigationStack {
             VStack{
                 Spacer()

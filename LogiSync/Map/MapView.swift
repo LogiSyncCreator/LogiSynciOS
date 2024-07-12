@@ -14,7 +14,7 @@ struct MapView: View {
     @State var mapTestData: MapViewTestData = MapViewTestData()
     @StateObject var mapVM: MapViewModel = MapViewModel()
     @EnvironmentObject var locationManager:LocationManager
-//    @EnvironmentObject var envModel: EnvModel
+    //    @EnvironmentObject var envModel: EnvModel
     var body: some View {
         ZStack(content: {
             MapBody(mapTestData: $mapTestData, mapVM: mapVM)

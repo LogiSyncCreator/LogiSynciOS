@@ -109,14 +109,14 @@ class LocationManager:NSObject, ObservableObject, CLLocationManagerDelegate {
         // 任意範囲警告
         let arbitraryRadiusIdentifier = UUID().uuidString
         self.startMonitoringRegion(at: self.targetLocation, radius: rudius, identifier: arbitraryRadiusIdentifier)
-
+        
         await withTaskGroup(of: Void.self) {[weak self] group in
             guard let self = self else { return }
             // 5分おきにイベントを発生させるタスク
             group.addTask {
                 await self.periodicEventTask(user: user, sendLocationEvent: sendLocationEvent, receivedLocationEvent: receivedLocationEvent)
             }
-
+            
             // 位置情報の更新処理を行うタスク
             group.addTask {
                 await self.locationUpdateTask(rudius: self.rudius ,sendLocationEvent: sendLocationEvent, receivedLocationEvent: receivedLocationEvent)
@@ -155,7 +155,7 @@ class LocationManager:NSObject, ObservableObject, CLLocationManagerDelegate {
                 let distanceMeters = distanceBetweenCoordinates(coordinate1: targetLocation, coordinate2: update.coordinate)
                 
                 if distanceMeters < rudius && !inRudius {
-//                  distanceMetersがrudius圏内かつその数値が1km以上
+                    //                  distanceMetersがrudius圏内かつその数値が1km以上
                     inRudius.toggle()
                     TestLocalNotification().scheduleNotification("\(rudius)圏内に入りました")
                     Task { @MainActor in
@@ -194,12 +194,12 @@ class LocationManager:NSObject, ObservableObject, CLLocationManagerDelegate {
                 completion(nil, error)
                 return
             }
-
+            
             guard let placemark = placemarks?.first, let location = placemark.location else {
                 completion(nil, NSError(domain: "GeocodingErrorDomain", code: -1, userInfo: [NSLocalizedDescriptionKey: "No location found"]))
                 return
             }
-
+            
             let position = CLLocationCoordinate2D(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude)
             completion(position, nil)
         }
