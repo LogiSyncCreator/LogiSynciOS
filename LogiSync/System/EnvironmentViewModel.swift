@@ -24,7 +24,7 @@ class EnvironmentViewModel: ObservableObject {
     private let tokenFlagKey: String = "tokenFlag"
     
     init() {
-
+        
         loginCalled.sink { [weak self] () in
             guard let self = self else { return }
             Task{
@@ -39,16 +39,16 @@ class EnvironmentViewModel: ObservableObject {
         }.store(in: &cancellables)
         
         changeStatusCalled.sink { [weak self] customStatus in
-//            let completed: Bool = false
+            //            let completed: Bool = false
             guard let self = self else { return }
             Task{
                 let _ = try await self.updateUserStatus(statusId:customStatus.id)
                 
-//                let nowStatus = UserStatus(id: status.id, userId: status.userId, statusId: status.statusId, name: customStatus.name, color: customStatus.color, icon: customStatus.icon)
+                //                let nowStatus = UserStatus(id: status.id, userId: status.userId, statusId: status.statusId, name: customStatus.name, color: customStatus.color, icon: customStatus.icon)
                 
                 await MainActor.run {
-//                   self.model.account.status = nowStatus
-                   self.isReView.toggle()
+                    //                   self.model.account.status = nowStatus
+                    self.isReView.toggle()
                 }
             }
             
@@ -87,7 +87,7 @@ class EnvironmentViewModel: ObservableObject {
                 print("token is invalid")
                 return
             }
-                    
+            
             Task {
                 try? await APIRequests().deleteToken(token: token)
                 await MainActor.run {

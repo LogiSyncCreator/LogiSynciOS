@@ -121,6 +121,25 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		ED237A1F2C40E47E009A9F8A /* Chat */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Chat;
+			sourceTree = "<group>";
+		};
+		ED237A202C40E489009A9F8A /* System */ = {
+			isa = PBXGroup;
+			children = (
+				EDDDC1ED2C2DEDF9003C96D9 /* EnvironmentViewModel.swift */,
+				EDDDC1E72C2DCA38003C96D9 /* EnvironmentModel.swift */,
+				ED5B97512C1B541200AE1606 /* TestData */,
+				ED5B97652C1C09DE00AE1606 /* Tools */,
+				EDDDC1DF2C2ABC92003C96D9 /* DataModel */,
+			);
+			path = System;
+			sourceTree = "<group>";
+		};
 		ED57778E2C18C0520042A5B5 = {
 			isa = PBXGroup;
 			children = (
@@ -141,20 +160,17 @@
 		ED5777992C18C0520042A5B5 /* LogiSync */ = {
 			isa = PBXGroup;
 			children = (
-				EDDDC1DF2C2ABC92003C96D9 /* DataModel */,
+				ED237A202C40E489009A9F8A /* System */,
+				ED237A1F2C40E47E009A9F8A /* Chat */,
 				ED5B978B2C25471D00AE1606 /* LogiSync.entitlements */,
 				ED5B97732C1D5B0400AE1606 /* UI */,
 				ED5B97702C1D520800AE1606 /* OtherWindow */,
 				ED5B97682C1C0B1800AE1606 /* Info.plist */,
-				ED5B97652C1C09DE00AE1606 /* Tools */,
 				ED5B975B2C1BFA8200AE1606 /* Map */,
-				ED5B97512C1B541200AE1606 /* TestData */,
 				ED5B973D2C1B322200AE1606 /* Status */,
 				ED57779A2C18C0520042A5B5 /* LogiSyncApp.swift */,
 				ED57779C2C18C0520042A5B5 /* ContentView.swift */,
 				ED57779E2C18C0520042A5B5 /* Item.swift */,
-				EDDDC1E72C2DCA38003C96D9 /* EnvironmentModel.swift */,
-				EDDDC1ED2C2DEDF9003C96D9 /* EnvironmentViewModel.swift */,
 				ED5B97D52C27FD3700AE1606 /* EnvModel.swift */,
 				ED5777A02C18C0530042A5B5 /* Assets.xcassets */,
 				ED5777A22C18C0530042A5B5 /* Preview Content */,

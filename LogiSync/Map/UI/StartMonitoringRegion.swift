@@ -19,6 +19,8 @@ struct StartMonitoringRegion: View {
     @Binding var receivedLocationEvent: PassthroughSubject<String, Never>
     @ObservedObject var mapVM: MapViewModel
     
+    @AppStorage ("execution") var isExecution: Bool = false
+    
     var body: some View {
         Button(action: {
             if !locationMan.updateLocationstart {
@@ -63,6 +65,7 @@ struct StartMonitoringRegion: View {
                     let receiver = locationMan.targetMatching.shipper
                     Task {
                         try? await APIRequests().sendUserMessage(user: receiver, message: "\(environVM.model.account.user.company):\(environVM.model.account.user.name)\n運転終了につき位置情報の共有を停止します。")
+                        sendLocationEvent.send(SendLocation(user: self.environVM.model.account, location: self.locationMan.location?.coordinate ?? CLLocationCoordinate2D(latitude: 0, longitude: 0), message: "到着", matching: self.locationMan.targetMatching))
                     }
                     locationMan.updateLocationstart.toggle()
                     locationMan.updateLocationFlag.toggle()

@@ -142,6 +142,10 @@ class LocationManager:NSObject, ObservableObject, CLLocationManagerDelegate {
     
     private func locationUpdateTask(rudius: CLLocationDistance = 1000, sendLocationEvent: PassthroughSubject<SendLocation, Never>, receivedLocationEvent: PassthroughSubject<String, Never>) async {
         
+        var inRudius: Bool = false
+        var isArrival: Bool = false
+        var isEndFlag: Bool = false
+        
         do {
             
             for try await update in self.updates {
@@ -150,8 +154,9 @@ class LocationManager:NSObject, ObservableObject, CLLocationManagerDelegate {
                 
                 let distanceMeters = distanceBetweenCoordinates(coordinate1: targetLocation, coordinate2: update.coordinate)
                 
-                if distanceMeters < rudius {
+                if distanceMeters < rudius && !inRudius {
 //                  distanceMetersがrudius圏内かつその数値が1km以上
+                    inRudius.toggle()
                     TestLocalNotification().scheduleNotification("\(rudius)圏内に入りました")
                     Task { @MainActor in
                         try? await APIRequests().sendUserMessage(user: self.targetMatching.shipper, message: "\(rudius)圏内に入りました")
@@ -160,15 +165,23 @@ class LocationManager:NSObject, ObservableObject, CLLocationManagerDelegate {
                     }
                 }
                 
-                if distanceMeters < rudius && distanceMeters < 100 {
+                if distanceMeters < rudius && distanceMeters < 100 && !isArrival {
+                    isArrival.toggle()
                     TestLocalNotification().scheduleNotification("近くにいます")
                     Task { @MainActor in
                         try? await APIRequests().sendUserMessage(user: self.targetMatching.shipper, message: "近くにいます")
                         sendLocationEvent.send(SendLocation(user: self.myUser, location: self.locationManager.location?.coordinate ?? CLLocationCoordinate2D(latitude: 0, longitude: 0), message: "近くにいます", matching: self.targetMatching))
                         receivedLocationEvent.send(self.targetMatching.driver)
-                        return
                     }
+                    
+                    isEndFlag = true
+                    
                 }
+                
+                if self.updateLocationFlag {
+                    break
+                }
+                
             }
         } catch {
             print("位置情報更新エラー: \(error.localizedDescription)")

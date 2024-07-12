@@ -21,14 +21,14 @@ struct LogiSyncApp: App {
             LocationData.self,
         ])
         let modelConfiguration = ModelConfiguration(schema: schema, isStoredInMemoryOnly: false)
-
+        
         do {
             return try ModelContainer(for: schema, configurations: [modelConfiguration])
         } catch {
             fatalError("Could not create ModelContainer: \(error)")
         }
     }()
-
+    
     var body: some Scene {
         WindowGroup {
             ContentView().environmentObject(EnvironmentViewModel()).environmentObject(LocationManager())
@@ -41,8 +41,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     
     let userDefaultKey: String = "token"
     let tokenFlagKey: String = "tokenFlag"
-//    let envModel = EnvModel()
-
+    //    let envModel = EnvModel()
+    
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         UNUserNotificationCenter.current().delegate = self
         requestNotificationAuthorization(application: application)
@@ -61,7 +61,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         
         completionHandler(.newData)
     }
-
+    
     
     
     func requestNotificationAuthorization(application: UIApplication) {
@@ -111,33 +111,33 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         
         var responseData = ""
         
-            guard let url = URL(string: "http://192.168.68.82:8080/hello") else {
-                print("Invalid URL")
+        guard let url = URL(string: "http://192.168.68.82:8080/hello") else {
+            print("Invalid URL")
+            return
+        }
+        
+        URLSession.shared.dataTask(with: url) { data, response, error in
+            if let error = error {
+                print("Error: \(error.localizedDescription)")
                 return
             }
             
-            URLSession.shared.dataTask(with: url) { data, response, error in
-                if let error = error {
-                    print("Error: \(error.localizedDescription)")
-                    return
-                }
-                
-                guard let httpResponse = response as? HTTPURLResponse,
-                      (200...299).contains(httpResponse.statusCode) else {
-                    print("Invalid response")
-                    return
-                }
-                
-                if let data = data {
-                    if let jsonString = String(data: data, encoding: .utf8) {
-                        DispatchQueue.main.async {
-                            responseData = jsonString
-                            print(responseData)
-                        }
+            guard let httpResponse = response as? HTTPURLResponse,
+                  (200...299).contains(httpResponse.statusCode) else {
+                print("Invalid response")
+                return
+            }
+            
+            if let data = data {
+                if let jsonString = String(data: data, encoding: .utf8) {
+                    DispatchQueue.main.async {
+                        responseData = jsonString
+                        print(responseData)
                     }
                 }
-            }.resume()
-        }
+            }
+        }.resume()
+    }
     
 }
 

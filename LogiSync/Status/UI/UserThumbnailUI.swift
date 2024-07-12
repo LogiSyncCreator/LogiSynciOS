@@ -28,7 +28,6 @@ struct UserThumbnailUI: View {
                         .foregroundStyle(Color("UnRapLabelColor"))
                         .scaleEffect(x: environVM.model.account.user.role == "運転手" ? -1 : 1, y: 1)
                 }
-                
             }
         }
     }
