@@ -9,11 +9,11 @@ import Foundation
 
 class APIRequests {
     //    let host: String = "192.168.211.171"
-    //    let host: String = "192.168.68.82"
+    let host: String = "192.168.68.82"
     //    wireless
     //        let host: String = "172.20.10.3"
     //    usb
-    let host: String = "172.20.10.4"
+    //    let host: String = "172.20.10.4"
     let port: String = "8080"
     let httpd: String = "http"
     

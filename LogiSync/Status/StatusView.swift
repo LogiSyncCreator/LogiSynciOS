@@ -44,7 +44,7 @@ struct StatusView: View {
             }.padding()
             Divider()
             HStack{
-                UserThumbnailUI(width: $thumbWidth, uiImage: $account.uiimage).overlay(alignment: Alignment(horizontal: .trailing, vertical: .bottom)) {
+                UserThumbnailUI(width: $thumbWidth, uiImage: $account.uiimage, userRole: $selectedRole).overlay(alignment: Alignment(horizontal: .trailing, vertical: .bottom)) {
                     if selectedRole == environVM.model.account.user.role {
                         StatusIconUI(symboleColor: $environVM.model.account.status.color, symbole: $environVM.model.account.status.icon, width: $thumbStatusIconWidth)
                     } else {

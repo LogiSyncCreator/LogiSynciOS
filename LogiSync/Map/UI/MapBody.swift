@@ -112,7 +112,7 @@ struct MapBody: View {
                     Spacer()
                     LocationDeleteButton(mapVM: mapVM).padding(5).shadow(radius: 1)
                 }
-                Spacer().frame(height: 350)
+                Spacer().frame(height: 200)
             }
         }
         

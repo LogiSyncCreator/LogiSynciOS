@@ -125,6 +125,20 @@ class EnvironmentViewModel: ObservableObject {
                 }
             }
             
+            // ステータスの更新
+            if notificatin.userInfo!["mode"] as! String == "BackStatus" {
+                guard let shipperId = notificatin.userInfo!["shipperId"] as? String else { return }
+                guard let managerId = notificatin.userInfo!["managerId"] as? String else { return }
+                
+                Task {
+                    try await self.findStatusList(managerId: managerId,shipperId: shipperId)
+                    await MainActor.run {
+                        self.isReView.toggle()
+                    }
+                }
+                
+            }
+            
         }.store(in: &cancellables)
     }
     
