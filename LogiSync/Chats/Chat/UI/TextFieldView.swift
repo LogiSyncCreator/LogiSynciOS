@@ -10,7 +10,6 @@ import SwiftUI
 struct TextFieldView: View {
     @EnvironmentObject var environVM: EnvironmentViewModel
     @State var index: Int
-    @State var chats: [Chats]
     @State var width: CGFloat = 48
     @State var uiImage: UIImage? = nil
     @State var role: String = ""

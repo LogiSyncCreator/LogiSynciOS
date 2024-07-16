@@ -10,6 +10,7 @@ import SwiftUI
 struct ChatListView: View {
     @EnvironmentObject var environVM: EnvironmentViewModel
     @StateObject var viewModel = ChatListViewModel()
+    @StateObject var mVASpeech = VASpeech()
     //    @State var currentUser: MyUser = MyUser()
     
     @Environment(\.modelContext) private var modelContext
@@ -24,7 +25,10 @@ struct ChatListView: View {
             ScrollView {
                 LazyVStack(spacing: 0) {
                     ForEach(environVM.model.matchings.indices, id: \.self) { index in
-                        NavigationLink(destination: ChatView(index: index)) { // ChatViewというメッセージ画面に遷移
+                        NavigationLink(destination: VStack{
+                            ChatView(mVASpeech: mVASpeech, index: index)
+                            Spacer().frame(height: 50)
+                        }) { // ChatViewというメッセージ画面に遷移
                             ChatBarUI(index: index) // chatGroupごとのデザイン
                         }
                     }
@@ -32,16 +36,7 @@ struct ChatListView: View {
             }
         }
         .onAppear {
-//            NavigationLinkから戻るときは実行しない
-//            if isOnApper {
-//                isOnApper = false
-//            } else {
-//                mVASpeech.prepareRecording()
-//                self.currentUser = environVM.model.account
-//                viewModel.syncData(fetchRooms: fetchRooms)
-//                print(fetchRooms)
-//                print(viewModel.rooms)
-//            }
+            mVASpeech.prepareRecording()
         }
     }
 }

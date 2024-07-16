@@ -19,6 +19,7 @@
 		ED237A9B2C46B1BA009A9F8A /* QuickMessageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED237A9A2C46B1BA009A9F8A /* QuickMessageView.swift */; };
 		ED237A9D2C46B223009A9F8A /* MsgChangeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED237A9C2C46B223009A9F8A /* MsgChangeViewModel.swift */; };
 		ED237A9F2C46B35E009A9F8A /* ChatInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED237A9E2C46B35E009A9F8A /* ChatInputView.swift */; };
+		ED237AA12C46B9D7009A9F8A /* MsgChangeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED237AA02C46B9D7009A9F8A /* MsgChangeView.swift */; };
 		ED57779B2C18C0520042A5B5 /* LogiSyncApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED57779A2C18C0520042A5B5 /* LogiSyncApp.swift */; };
 		ED57779D2C18C0520042A5B5 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED57779C2C18C0520042A5B5 /* ContentView.swift */; };
 		ED57779F2C18C0520042A5B5 /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED57779E2C18C0520042A5B5 /* Item.swift */; };
@@ -81,6 +82,7 @@
 		ED237A9A2C46B1BA009A9F8A /* QuickMessageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuickMessageView.swift; sourceTree = "<group>"; };
 		ED237A9C2C46B223009A9F8A /* MsgChangeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MsgChangeViewModel.swift; sourceTree = "<group>"; };
 		ED237A9E2C46B35E009A9F8A /* ChatInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatInputView.swift; sourceTree = "<group>"; };
+		ED237AA02C46B9D7009A9F8A /* MsgChangeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MsgChangeView.swift; sourceTree = "<group>"; };
 		ED5777972C18C0520042A5B5 /* LogiSync.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LogiSync.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		ED57779A2C18C0520042A5B5 /* LogiSyncApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogiSyncApp.swift; sourceTree = "<group>"; };
 		ED57779C2C18C0520042A5B5 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -174,6 +176,7 @@
 				ED237A9A2C46B1BA009A9F8A /* QuickMessageView.swift */,
 				ED237A9C2C46B223009A9F8A /* MsgChangeViewModel.swift */,
 				ED237A9E2C46B35E009A9F8A /* ChatInputView.swift */,
+				ED237AA02C46B9D7009A9F8A /* MsgChangeView.swift */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -528,6 +531,7 @@
 				ED237A952C46A97C009A9F8A /* VASpeech.swift in Sources */,
 				ED237A9B2C46B1BA009A9F8A /* QuickMessageView.swift in Sources */,
 				ED5B97582C1B570500AE1606 /* StatusView.swift in Sources */,
+				ED237AA12C46B9D7009A9F8A /* MsgChangeView.swift in Sources */,
 				EDDDC1EE2C2DEDF9003C96D9 /* EnvironmentViewModel.swift in Sources */,
 				ED237A9F2C46B35E009A9F8A /* ChatInputView.swift in Sources */,
 				ED5B97D62C27FD3700AE1606 /* EnvModel.swift in Sources */,
