@@ -14,6 +14,8 @@ struct UserThumbnailUI: View {
     @Binding var width: CGFloat
     @Binding var uiImage: UIImage?
     
+    @Binding var userRole: String
+    
     var body: some View {
         ZStack{
             // サムネイル画像があれば使用する
@@ -22,11 +24,11 @@ struct UserThumbnailUI: View {
             } else {
                 //                Image(systemName: environVM.model.account.user.role == "運転手" ? "truck.box" : "person.circle.fill").resizable().aspectRatio(contentMode: .fit).frame(width: width - 5).clipShape(Circle()).foregroundStyle(.blue)
                 Circle().frame(width: width).foregroundStyle(.blue).overlay {
-                    Image(systemName: environVM.model.account.user.role == "運転手" ? "truck.box" : "person.circle.fill")
+                    Image(systemName: userRole == "運転手" ? "truck.box" : "person.circle.fill")
                         .resizable().aspectRatio(contentMode: .fit)
-                        .frame(width: environVM.model.account.user.role == "運転手" ? (width - 30) : (width - 5))
+                        .frame(width: userRole == "運転手" ? (width - 30) : (width - 5))
                         .foregroundStyle(Color("UnRapLabelColor"))
-                        .scaleEffect(x: environVM.model.account.user.role == "運転手" ? -1 : 1, y: 1)
+                        .scaleEffect(x: userRole == "運転手" ? -1 : 1, y: 1)
                 }
             }
         }

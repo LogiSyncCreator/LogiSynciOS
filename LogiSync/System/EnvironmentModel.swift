@@ -15,6 +15,8 @@ struct EnvironmentModel {
     var nowMatchingUser: MyUser = MyUser()
     var nowMatchingInformation: MatchingInformation = MatchingInformation()
     
+    var chats: [Chats] = []
+    
     let api = APIRequests()
     
     
@@ -160,4 +162,14 @@ struct MatchingUser: Codable {
 struct UserToken: Codable {
     var userId: String
     var token: String
+}
+
+struct Chats: Codable, Hashable {
+    var id: String = ""
+    var matchingId: String = ""
+    var sendUserId: String = ""
+    var sendMessage: String = ""
+    var createAt: String = ""
+    var userName: String = ""
+    var role: String = ""
 }

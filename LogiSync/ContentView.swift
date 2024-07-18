@@ -33,7 +33,7 @@ struct ContentView: View {
                     MapView().background(Color(.systemBackground))
                     //                        .transition(.move(edge: .leading))
                 case 2:
-                    Text("comming soon...").background(Color(.systemBackground))
+                    ChatListView().background(Color(.systemBackground))
                     //                        .transition(.move(edge: .leading))
                 default:
                     StatusView(viewIndex: $viewIndex).transition(.move(edge: .leading))

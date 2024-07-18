@@ -7,6 +7,20 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		ED237A882C46A1BE009A9F8A /* ChatListModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED237A872C46A1BE009A9F8A /* ChatListModel.swift */; };
+		ED237A8A2C46A1CD009A9F8A /* ChatListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED237A892C46A1CD009A9F8A /* ChatListView.swift */; };
+		ED237A8C2C46A1DC009A9F8A /* ChatListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED237A8B2C46A1DC009A9F8A /* ChatListViewModel.swift */; };
+		ED237A8F2C46A240009A9F8A /* ChatListTopView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED237A8E2C46A240009A9F8A /* ChatListTopView.swift */; };
+		ED237A912C46A378009A9F8A /* ChatBarUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED237A902C46A378009A9F8A /* ChatBarUI.swift */; };
+		ED237A932C46A394009A9F8A /* ChatView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED237A922C46A394009A9F8A /* ChatView.swift */; };
+		ED237A952C46A97C009A9F8A /* VASpeech.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED237A942C46A97C009A9F8A /* VASpeech.swift */; };
+		ED237A972C46AB44009A9F8A /* TextFieldView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED237A962C46AB44009A9F8A /* TextFieldView.swift */; };
+		ED237A992C46AD75009A9F8A /* MessageUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED237A982C46AD75009A9F8A /* MessageUI.swift */; };
+		ED237A9B2C46B1BA009A9F8A /* QuickMessageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED237A9A2C46B1BA009A9F8A /* QuickMessageView.swift */; };
+		ED237A9D2C46B223009A9F8A /* MsgChangeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED237A9C2C46B223009A9F8A /* MsgChangeViewModel.swift */; };
+		ED237A9F2C46B35E009A9F8A /* ChatInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED237A9E2C46B35E009A9F8A /* ChatInputView.swift */; };
+		ED237AA12C46B9D7009A9F8A /* MsgChangeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED237AA02C46B9D7009A9F8A /* MsgChangeView.swift */; };
+		ED237AA82C495253009A9F8A /* akiba.gpx in Resources */ = {isa = PBXBuildFile; fileRef = ED237AA72C495252009A9F8A /* akiba.gpx */; };
 		ED57779B2C18C0520042A5B5 /* LogiSyncApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED57779A2C18C0520042A5B5 /* LogiSyncApp.swift */; };
 		ED57779D2C18C0520042A5B5 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED57779C2C18C0520042A5B5 /* ContentView.swift */; };
 		ED57779F2C18C0520042A5B5 /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED57779E2C18C0520042A5B5 /* Item.swift */; };
@@ -57,6 +71,20 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		ED237A872C46A1BE009A9F8A /* ChatListModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatListModel.swift; sourceTree = "<group>"; };
+		ED237A892C46A1CD009A9F8A /* ChatListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatListView.swift; sourceTree = "<group>"; };
+		ED237A8B2C46A1DC009A9F8A /* ChatListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatListViewModel.swift; sourceTree = "<group>"; };
+		ED237A8E2C46A240009A9F8A /* ChatListTopView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatListTopView.swift; sourceTree = "<group>"; };
+		ED237A902C46A378009A9F8A /* ChatBarUI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatBarUI.swift; sourceTree = "<group>"; };
+		ED237A922C46A394009A9F8A /* ChatView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatView.swift; sourceTree = "<group>"; };
+		ED237A942C46A97C009A9F8A /* VASpeech.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VASpeech.swift; sourceTree = "<group>"; };
+		ED237A962C46AB44009A9F8A /* TextFieldView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldView.swift; sourceTree = "<group>"; };
+		ED237A982C46AD75009A9F8A /* MessageUI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageUI.swift; sourceTree = "<group>"; };
+		ED237A9A2C46B1BA009A9F8A /* QuickMessageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuickMessageView.swift; sourceTree = "<group>"; };
+		ED237A9C2C46B223009A9F8A /* MsgChangeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MsgChangeViewModel.swift; sourceTree = "<group>"; };
+		ED237A9E2C46B35E009A9F8A /* ChatInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatInputView.swift; sourceTree = "<group>"; };
+		ED237AA02C46B9D7009A9F8A /* MsgChangeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MsgChangeView.swift; sourceTree = "<group>"; };
+		ED237AA72C495252009A9F8A /* akiba.gpx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = akiba.gpx; sourceTree = "<group>"; };
 		ED5777972C18C0520042A5B5 /* LogiSync.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LogiSync.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		ED57779A2C18C0520042A5B5 /* LogiSyncApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogiSyncApp.swift; sourceTree = "<group>"; };
 		ED57779C2C18C0520042A5B5 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -80,7 +108,7 @@
 		ED5B975F2C1BFAF300AE1606 /* MapBody.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapBody.swift; sourceTree = "<group>"; };
 		ED5B97612C1BFBD700AE1606 /* UserLocationSendButtonUI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserLocationSendButtonUI.swift; sourceTree = "<group>"; };
 		ED5B97662C1C09EF00AE1606 /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
-		ED5B97682C1C0B1800AE1606 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		ED5B97682C1C0B1800AE1606 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		ED5B97692C1C9C8400AE1606 /* MapCameraAutoButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapCameraAutoButton.swift; sourceTree = "<group>"; };
 		ED5B976C2C1CA66600AE1606 /* SendPointModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendPointModel.swift; sourceTree = "<group>"; };
 		ED5B976E2C1CA6F900AE1606 /* MapViewTestData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewTestData.swift; sourceTree = "<group>"; };
@@ -121,13 +149,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		ED237A1F2C40E47E009A9F8A /* Chat */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Chat;
-			sourceTree = "<group>";
-		};
 		ED237A202C40E489009A9F8A /* System */ = {
 			isa = PBXGroup;
 			children = (
@@ -140,9 +161,61 @@
 			path = System;
 			sourceTree = "<group>";
 		};
+		ED237A832C46A0DB009A9F8A /* Chats */ = {
+			isa = PBXGroup;
+			children = (
+				ED237A862C46A17B009A9F8A /* ChatList */,
+				ED237A852C46A172009A9F8A /* Chat */,
+			);
+			path = Chats;
+			sourceTree = "<group>";
+		};
+		ED237A842C46A126009A9F8A /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				ED237A962C46AB44009A9F8A /* TextFieldView.swift */,
+				ED237A982C46AD75009A9F8A /* MessageUI.swift */,
+				ED237A9A2C46B1BA009A9F8A /* QuickMessageView.swift */,
+				ED237A9C2C46B223009A9F8A /* MsgChangeViewModel.swift */,
+				ED237A9E2C46B35E009A9F8A /* ChatInputView.swift */,
+				ED237AA02C46B9D7009A9F8A /* MsgChangeView.swift */,
+			);
+			path = UI;
+			sourceTree = "<group>";
+		};
+		ED237A852C46A172009A9F8A /* Chat */ = {
+			isa = PBXGroup;
+			children = (
+				ED237A842C46A126009A9F8A /* UI */,
+				ED237A922C46A394009A9F8A /* ChatView.swift */,
+			);
+			path = Chat;
+			sourceTree = "<group>";
+		};
+		ED237A862C46A17B009A9F8A /* ChatList */ = {
+			isa = PBXGroup;
+			children = (
+				ED237A8D2C46A22A009A9F8A /* UI */,
+				ED237A872C46A1BE009A9F8A /* ChatListModel.swift */,
+				ED237A892C46A1CD009A9F8A /* ChatListView.swift */,
+				ED237A8B2C46A1DC009A9F8A /* ChatListViewModel.swift */,
+			);
+			path = ChatList;
+			sourceTree = "<group>";
+		};
+		ED237A8D2C46A22A009A9F8A /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				ED237A8E2C46A240009A9F8A /* ChatListTopView.swift */,
+				ED237A902C46A378009A9F8A /* ChatBarUI.swift */,
+			);
+			path = UI;
+			sourceTree = "<group>";
+		};
 		ED57778E2C18C0520042A5B5 = {
 			isa = PBXGroup;
 			children = (
+				ED237AA72C495252009A9F8A /* akiba.gpx */,
 				ED5777AA2C18C3810042A5B5 /* README.md */,
 				ED5777992C18C0520042A5B5 /* LogiSync */,
 				ED5777982C18C0520042A5B5 /* Products */,
@@ -160,12 +233,12 @@
 		ED5777992C18C0520042A5B5 /* LogiSync */ = {
 			isa = PBXGroup;
 			children = (
+				ED237A832C46A0DB009A9F8A /* Chats */,
+				ED5B97682C1C0B1800AE1606 /* Info.plist */,
 				ED237A202C40E489009A9F8A /* System */,
-				ED237A1F2C40E47E009A9F8A /* Chat */,
 				ED5B978B2C25471D00AE1606 /* LogiSync.entitlements */,
 				ED5B97732C1D5B0400AE1606 /* UI */,
 				ED5B97702C1D520800AE1606 /* OtherWindow */,
-				ED5B97682C1C0B1800AE1606 /* Info.plist */,
 				ED5B975B2C1BFA8200AE1606 /* Map */,
 				ED5B973D2C1B322200AE1606 /* Status */,
 				ED57779A2C18C0520042A5B5 /* LogiSyncApp.swift */,
@@ -261,6 +334,7 @@
 				ED5B97D72C28C64400AE1606 /* APIManager.swift */,
 				EDDDC1EB2C2DE0E0003C96D9 /* APIRequests.swift */,
 				EDDDC1FD2C3A7BCF003C96D9 /* TestLocalNotification.swift */,
+				ED237A942C46A97C009A9F8A /* VASpeech.swift */,
 			);
 			path = Tools;
 			sourceTree = "<group>";
@@ -394,6 +468,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				ED237AA82C495253009A9F8A /* akiba.gpx in Resources */,
 				ED5777A42C18C0530042A5B5 /* Preview Assets.xcassets in Resources */,
 				ED5777A12C18C0530042A5B5 /* Assets.xcassets in Resources */,
 			);
@@ -413,6 +488,7 @@
 				ED5B97D42C27F8CD00AE1606 /* LoginViewModel.swift in Sources */,
 				EDDDC1E82C2DCA38003C96D9 /* EnvironmentModel.swift in Sources */,
 				ED5B97882C1EC64300AE1606 /* RegistViewModel.swift in Sources */,
+				ED237A882C46A1BE009A9F8A /* ChatListModel.swift in Sources */,
 				ED5B97802C1E9E8B00AE1606 /* RegistTextEditor.swift in Sources */,
 				ED5B97482C1B3EEC00AE1606 /* UserThumbnailUI.swift in Sources */,
 				ED5B976D2C1CA66600AE1606 /* SendPointModel.swift in Sources */,
@@ -424,12 +500,16 @@
 				ED5B97862C1EAF3200AE1606 /* RegistView.swift in Sources */,
 				EDDDC1EC2C2DE0E0003C96D9 /* APIRequests.swift in Sources */,
 				EDDDC1F42C367FFA003C96D9 /* MapModel.swift in Sources */,
+				ED237A912C46A378009A9F8A /* ChatBarUI.swift in Sources */,
 				ED5B97462C1B38CF00AE1606 /* StatusIconUI.swift in Sources */,
+				ED237A992C46AD75009A9F8A /* MessageUI.swift in Sources */,
 				EDDDC1FC2C3A5A25003C96D9 /* MapSettingsButton.swift in Sources */,
 				ED5B977D2C1E9AFA00AE1606 /* RegistTextField.swift in Sources */,
+				ED237A8A2C46A1CD009A9F8A /* ChatListView.swift in Sources */,
 				ED5B97782C1D5CA600AE1606 /* LoginView.swift in Sources */,
 				ED5B976F2C1CA6F900AE1606 /* MapViewTestData.swift in Sources */,
 				ED57779D2C18C0520042A5B5 /* ContentView.swift in Sources */,
+				ED237A9D2C46B223009A9F8A /* MsgChangeViewModel.swift in Sources */,
 				ED57779F2C18C0520042A5B5 /* Item.swift in Sources */,
 				ED5B97842C1EACEE00AE1606 /* RegistButton.swift in Sources */,
 				ED5B97622C1BFBD700AE1606 /* UserLocationSendButtonUI.swift in Sources */,
@@ -437,6 +517,7 @@
 				ED5B974C2C1B43C900AE1606 /* ProfileUI.swift in Sources */,
 				ED5B975E2C1BFA9D00AE1606 /* MapView.swift in Sources */,
 				ED5B975A2C1B5DDA00AE1606 /* StatusAccountModelTest.swift in Sources */,
+				ED237A8F2C46A240009A9F8A /* ChatListTopView.swift in Sources */,
 				ED5B97722C1D523000AE1606 /* OtherContentView.swift in Sources */,
 				EDDDC1FA2C39259A003C96D9 /* MapLocationDeleteSheet.swift in Sources */,
 				ED5B97442C1B344600AE1606 /* RolePicker.swift in Sources */,
@@ -444,12 +525,19 @@
 				ED5B97D82C28C64400AE1606 /* APIManager.swift in Sources */,
 				EDDDC1F22C33089D003C96D9 /* MapViewModel.swift in Sources */,
 				ED57779B2C18C0520042A5B5 /* LogiSyncApp.swift in Sources */,
+				ED237A972C46AB44009A9F8A /* TextFieldView.swift in Sources */,
 				ED5B97562C1B552D00AE1606 /* StatusTestData.swift in Sources */,
 				ED5B974A2C1B428E00AE1606 /* UserNameUI.swift in Sources */,
+				ED237A8C2C46A1DC009A9F8A /* ChatListViewModel.swift in Sources */,
 				ED5B97752C1D5B1F00AE1606 /* CustomTabView.swift in Sources */,
+				ED237A932C46A394009A9F8A /* ChatView.swift in Sources */,
 				ED5B97422C1B324C00AE1606 /* SettingsSheet.swift in Sources */,
+				ED237A952C46A97C009A9F8A /* VASpeech.swift in Sources */,
+				ED237A9B2C46B1BA009A9F8A /* QuickMessageView.swift in Sources */,
 				ED5B97582C1B570500AE1606 /* StatusView.swift in Sources */,
+				ED237AA12C46B9D7009A9F8A /* MsgChangeView.swift in Sources */,
 				EDDDC1EE2C2DEDF9003C96D9 /* EnvironmentViewModel.swift in Sources */,
+				ED237A9F2C46B35E009A9F8A /* ChatInputView.swift in Sources */,
 				ED5B97D62C27FD3700AE1606 /* EnvModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -581,6 +669,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_ENTITLEMENTS = LogiSync/LogiSync.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -594,11 +683,13 @@
 				INFOPLIST_FILE = LogiSync/Info.plist;
 				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "位置情報を使用します";
 				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "位置情報を使用します";
+				INFOPLIST_KEY_NSMicrophoneUsageDescription = "このアプリはマイクを使用します";
+				INFOPLIST_KEY_NSSpeechRecognitionUsageDescription = "このアプリは音声を認識します";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -623,6 +714,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_ENTITLEMENTS = LogiSync/LogiSync.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -636,11 +728,13 @@
 				INFOPLIST_FILE = LogiSync/Info.plist;
 				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "位置情報を使用します";
 				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "位置情報を使用します";
+				INFOPLIST_KEY_NSMicrophoneUsageDescription = "このアプリはマイクを使用します";
+				INFOPLIST_KEY_NSSpeechRecognitionUsageDescription = "このアプリは音声を認識します";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
