@@ -12,6 +12,9 @@ import SwiftUI
 struct QuickMessageView: View {
     @Environment(\.modelContext) private var modelContext: ModelContext
     @EnvironmentObject var environVM: EnvironmentViewModel
+    @EnvironmentObject var chatVM: ChatListViewModel
+    @State var matchingId: String
+    @Binding var receivedId: String
     
     @Environment(\.dismiss) private var dismiss
     @Binding var editText: String
@@ -63,14 +66,19 @@ struct QuickMessageView: View {
                                 editText = message.message
                                 
                                 //ここで送信の処理
+                                Task {
+                                    try await chatVM.sendMessage(matchingId: matchingId, sendUserId: environVM.model.account.user.userId, sendMessage: editText)
+                                    try await chatVM.api.sendUserMessage(user: receivedId, message: "\(environVM.model.account.user.company) \(environVM.model.account.user.name)\n\(editText)")
+                                    await MainActor.run {
+                                        //カウントアップ
+                                        msgViewModel.countUp(messageId: message.id)
+                                        editText = ""
+                                        dismiss()
+                                    }
+                                }
+                                
 //                                chatViewModel.sendAndInsert(mc: modelContext ,matchingsId: room.matchingsId, sendUserId: currentUser.user.id, message: editText, sendUserName: currentUser.user.name, role: currentUser.user.role)
                                 
-                                //カウントアップ
-                                msgViewModel.countUp(messageId: message.id)
-                                
-                                
-                                editText = ""
-                                dismiss()
                             } label: {
                                 Text(message.message)
                                     .padding()

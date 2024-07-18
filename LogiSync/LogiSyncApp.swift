@@ -31,7 +31,7 @@ struct LogiSyncApp: App {
     
     var body: some Scene {
         WindowGroup {
-            ContentView().environmentObject(EnvironmentViewModel()).environmentObject(LocationManager())
+            ContentView().environmentObject(EnvironmentViewModel()).environmentObject(LocationManager()).environmentObject(ChatListViewModel())
         }
         .modelContainer(sharedModelContainer)
     }

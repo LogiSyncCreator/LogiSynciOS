@@ -169,7 +169,7 @@ struct Chats: Codable, Hashable {
     var matchingId: String = ""
     var sendUserId: String = ""
     var sendMessage: String = ""
-    var createAt: Date = Date()
+    var createAt: String = ""
     var userName: String = ""
     var role: String = ""
 }

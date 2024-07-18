@@ -20,6 +20,7 @@
 		ED237A9D2C46B223009A9F8A /* MsgChangeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED237A9C2C46B223009A9F8A /* MsgChangeViewModel.swift */; };
 		ED237A9F2C46B35E009A9F8A /* ChatInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED237A9E2C46B35E009A9F8A /* ChatInputView.swift */; };
 		ED237AA12C46B9D7009A9F8A /* MsgChangeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED237AA02C46B9D7009A9F8A /* MsgChangeView.swift */; };
+		ED237AA82C495253009A9F8A /* akiba.gpx in Resources */ = {isa = PBXBuildFile; fileRef = ED237AA72C495252009A9F8A /* akiba.gpx */; };
 		ED57779B2C18C0520042A5B5 /* LogiSyncApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED57779A2C18C0520042A5B5 /* LogiSyncApp.swift */; };
 		ED57779D2C18C0520042A5B5 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED57779C2C18C0520042A5B5 /* ContentView.swift */; };
 		ED57779F2C18C0520042A5B5 /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED57779E2C18C0520042A5B5 /* Item.swift */; };
@@ -83,6 +84,7 @@
 		ED237A9C2C46B223009A9F8A /* MsgChangeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MsgChangeViewModel.swift; sourceTree = "<group>"; };
 		ED237A9E2C46B35E009A9F8A /* ChatInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatInputView.swift; sourceTree = "<group>"; };
 		ED237AA02C46B9D7009A9F8A /* MsgChangeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MsgChangeView.swift; sourceTree = "<group>"; };
+		ED237AA72C495252009A9F8A /* akiba.gpx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = akiba.gpx; sourceTree = "<group>"; };
 		ED5777972C18C0520042A5B5 /* LogiSync.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LogiSync.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		ED57779A2C18C0520042A5B5 /* LogiSyncApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogiSyncApp.swift; sourceTree = "<group>"; };
 		ED57779C2C18C0520042A5B5 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -213,6 +215,7 @@
 		ED57778E2C18C0520042A5B5 = {
 			isa = PBXGroup;
 			children = (
+				ED237AA72C495252009A9F8A /* akiba.gpx */,
 				ED5777AA2C18C3810042A5B5 /* README.md */,
 				ED5777992C18C0520042A5B5 /* LogiSync */,
 				ED5777982C18C0520042A5B5 /* Products */,
@@ -465,6 +468,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				ED237AA82C495253009A9F8A /* akiba.gpx in Resources */,
 				ED5777A42C18C0530042A5B5 /* Preview Assets.xcassets in Resources */,
 				ED5777A12C18C0530042A5B5 /* Assets.xcassets in Resources */,
 			);
@@ -665,6 +669,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_ENTITLEMENTS = LogiSync/LogiSync.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -683,8 +688,8 @@
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -709,6 +714,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_ENTITLEMENTS = LogiSync/LogiSync.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -727,8 +733,8 @@
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

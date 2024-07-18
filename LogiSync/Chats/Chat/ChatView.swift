@@ -12,9 +12,11 @@ import Combine
 
 struct ChatView: View {
     @EnvironmentObject var environVM: EnvironmentViewModel
+    @EnvironmentObject var chatVM: ChatListViewModel
     @ObservedObject var mVASpeech: VASpeech
     @State var index: Int
     @State var title: String = ""
+    @State var receivedId: String = ""
     
     @Environment(\.modelContext) private var modelContext
     //    @Query(sort: \Messages.creatAt) private var fetchMessages: [Messages]
@@ -45,7 +47,7 @@ struct ChatView: View {
                     TextFieldView(index: index).onTapGesture {
                         focus = false
                     }.layoutPriority(1)
-                    ChatInputView(editText: $editText, mVASpeech: mVASpeech, msgViewModel: msgViewModel).focused($focus)
+                    ChatInputView(matchingId: environVM.model.matchings[index].matching.id, receivedId: $receivedId, editText: $editText, mVASpeech: mVASpeech, msgViewModel: msgViewModel).focused($focus)
                 }
                 
                 if mVASpeech.isLoading {
@@ -67,11 +69,14 @@ struct ChatView: View {
                 }
         }
         .onAppear(){
-            
+//            chatVM.loadChat.send(environVM.model.matchings[index].matching.id)
+            chatVM.retrieveChat.send(environVM.model.matchings[index].matching.id)
             if environVM.model.account.user.role == "運転手" {
                 title = environVM.model.matchings[index].user.shipper.company
+                receivedId = environVM.model.matchings[index].user.shipper.userId
             } else {
                 title = environVM.model.matchings[index].user.driver.company
+                receivedId = environVM.model.matchings[index].user.driver.userId
             }
             
         }

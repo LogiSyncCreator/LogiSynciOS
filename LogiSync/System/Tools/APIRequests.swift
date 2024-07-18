@@ -13,7 +13,7 @@ class APIRequests {
     //    wireless
     //        let host: String = "172.20.10.3"
     //    usb
-    //    let host: String = "172.20.10.4"
+//        let host: String = "172.20.10.4"
     let port: String = "8080"
     let httpd: String = "http"
     
@@ -81,6 +81,19 @@ class APIRequests {
     ///   - message: 送る内容, そのまま表示される
     func sendUserMessage(user: String, message: String) async throws {
         return try await APIRequest(param: "\(user)/\(message)", endPoint: "push/pushmsg", method: "GET")
+    }
+    
+    func sendChatMessage(matchingId: String, sendUserId: String, sendMessage: String) async throws {
+        let postData = [
+            "matchingId": matchingId,
+            "sendUserId": sendUserId,
+            "sendMessage": sendMessage
+        ]
+        return try await APIRequest(postData: postData, endPoint: "chats/send")
+    }
+    
+    func getChat(matchingId: String) async throws -> Data {
+        return try await APIRequest(param: matchingId, endPoint: "chats/received")
     }
     
     /// Description

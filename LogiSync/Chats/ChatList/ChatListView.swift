@@ -9,7 +9,7 @@ import SwiftUI
 
 struct ChatListView: View {
     @EnvironmentObject var environVM: EnvironmentViewModel
-    @StateObject var viewModel = ChatListViewModel()
+    @EnvironmentObject var chatVM: ChatListViewModel
     @StateObject var mVASpeech = VASpeech()
     //    @State var currentUser: MyUser = MyUser()
     

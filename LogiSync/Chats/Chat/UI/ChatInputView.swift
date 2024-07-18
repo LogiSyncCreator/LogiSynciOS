@@ -3,7 +3,11 @@ import SwiftData
 
 struct ChatInputView: View {
     @Environment(\.modelContext) private var modelContext: ModelContext
+    @EnvironmentObject var chatVM: ChatListViewModel
+    @EnvironmentObject var environVM: EnvironmentViewModel
     
+    @State var matchingId: String
+    @Binding var receivedId: String
     @Binding var editText: String
     
     @FocusState private var focus: Bool
@@ -143,7 +147,13 @@ struct ChatInputView: View {
                                 //ここで送信の処理
 //                                chatViewModel.sendAndInsert(mc: modelContext ,matchingsId: room.matchingsId, sendUserId: currentUser.user.id, message: editText, sendUserName: currentUser.user.name, role: currentUser.user.role)
                                 
-                                editText = ""
+                                Task {
+                                    try await chatVM.sendMessage(matchingId: matchingId, sendUserId: environVM.model.account.user.userId, sendMessage: editText)
+                                    try await chatVM.api.sendUserMessage(user: receivedId, message: "\(environVM.model.account.user.company) \(environVM.model.account.user.name)\n\(editText)")
+                                    await MainActor.run {
+                                        editText = ""
+                                    }
+                                }
                                 
                                 //シミュレーターでは挙動がバグるため、以下を設定している
                                 isChat = false
@@ -163,7 +173,7 @@ struct ChatInputView: View {
                 .padding(.horizontal)
                 .padding(.bottom, 3)
                 .sheet(isPresented: $isSheet) {
-                    QuickMessageView(editText: $editText, isChat: $isChat, focus: $focus, msgViewModel: msgViewModel)
+                    QuickMessageView(matchingId: matchingId, receivedId: $receivedId, editText: $editText, isChat: $isChat, focus: $focus, msgViewModel: msgViewModel)
                         .presentationContentInteraction(.resizes)
                         .presentationDetents([.medium, .large])
                         .presentationContentInteraction(.scrolls)
