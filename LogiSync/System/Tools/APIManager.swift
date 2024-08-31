@@ -64,7 +64,7 @@ class APIManager {
     }
     
     func sendNotificationStatus(host: String, receiver: String, status: String) async throws {
-        let num = try await sendRequest(param: "\(host)/\(receiver)/\(status)", endPoint: "/push/notificationstatus/")
+        try await sendRequest(param: "\(host)/\(receiver)/\(status)", endPoint: "/push/notificationstatus/")
     }
     
     // ユーザを探す
@@ -78,7 +78,7 @@ class APIManager {
     }
     
     
-    
+    @discardableResult
     func sendRequest(param: String, endPoint: String = "") async throws -> Data {
         
         guard let url = URL(string: "\(host)\(endPoint)\(param)") else {
