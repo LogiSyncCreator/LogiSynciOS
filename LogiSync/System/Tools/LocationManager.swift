@@ -144,7 +144,6 @@ class LocationManager:NSObject, ObservableObject, CLLocationManagerDelegate {
         
         var inRudius: Bool = false
         var isArrival: Bool = false
-        var isEndFlag: Bool = false
         
         do {
             
@@ -173,8 +172,6 @@ class LocationManager:NSObject, ObservableObject, CLLocationManagerDelegate {
                         sendLocationEvent.send(SendLocation(user: self.myUser, location: self.locationManager.location?.coordinate ?? CLLocationCoordinate2D(latitude: 0, longitude: 0), message: "近くにいます", matching: self.targetMatching))
                         receivedLocationEvent.send(self.targetMatching.driver)
                     }
-                    
-                    isEndFlag = true
                     
                 }
                 
